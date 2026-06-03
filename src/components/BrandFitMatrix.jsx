@@ -248,8 +248,8 @@ export function BrandFitMatrix({
   elements, setElements,
   basicDecisions, setBasicDecisions,
   historicalCombos, setHistoricalCombos,
-  setSubStep,
-  subStep
+  savedStyles, setSavedStyles,
+  subStep, setSubStep
 }) {
   const [activeTab, setActiveTab] = useState('trends');
   const [newReq, setNewReq] = useState({ name: '', weight: 1, role: '設計師' });
@@ -302,7 +302,7 @@ export function BrandFitMatrix({
           });
         });
 
-        const top30 = sorted.slice(0, 30).map(item => ({
+        const top50 = sorted.slice(0, 50).map(item => ({
           id: item.id,
           category: item.category,
           name: item.name,
@@ -312,31 +312,47 @@ export function BrandFitMatrix({
           isTrend: true
         }));
         
+        // Normalize element names for deduplication (e.g. '白' and '白色')
+        const normalizeName = name => name.replace(/色$/, '');
+
         // Merge AI elements and basic elements
         const mergedMap = new Map();
         
-        // First add basic elements
+        // First add basic elements with default baseline stats
         Array.from(basicElementsMap.values()).forEach(el => {
-          mergedMap.set(el.name, el);
+          // Give basic elements a default safe baseline score if they don't get matched with AI
+          const baseScore = 4.0 + Math.random() * 2.0; 
+          const defaultEl = {
+            ...el,
+            trendScore: baseScore,
+            interval: [baseScore - 0.5, baseScore + 0.5]
+          };
+          mergedMap.set(normalizeName(el.name), defaultEl);
         });
         
         // Then add AI elements (merging tags if overlap)
-        top30.forEach(el => {
-          if (mergedMap.has(el.name)) {
-            const existing = mergedMap.get(el.name);
+        top50.forEach(el => {
+          const normName = normalizeName(el.name);
+          const score = el.score || el.trendScore;
+          if (mergedMap.has(normName)) {
+            const existing = mergedMap.get(normName);
+            existing.name = el.name; // Prefer AI element's name
             existing.isTrend = true;
-            existing.trendScore = el.trendScore;
+            existing.trendScore = score;
             existing.interval = el.interval;
             existing.timeline = el.timeline;
           } else {
-            mergedMap.set(el.name, el);
+            mergedMap.set(normName, {
+              ...el,
+              trendScore: score
+            });
           }
         });
         
         const mergedArray = Array.from(mergedMap.values());
         
         // Define category order
-        const CATEGORY_ORDER = ['品項', '主色', '配色', '面料', '圖騰印花', '細節設計'];
+        const CATEGORY_ORDER = ['風格', '品項', '版型', '面料', '主色', '配色', '圖騰印花', '細節設計'];
         
         // Sort by category first, then by score (basics without score go to bottom of category)
         mergedArray.sort((a, b) => {
@@ -1276,8 +1292,19 @@ export function BrandFitMatrix({
               <tr>
                 <th colSpan="3" className="border border-[#d1d5db] bg-[#f3f4f6] p-2 text-right">流行度預測中位數與區間 (+6個月)</th>
                 {displayElements.map(el => {
-                  const spreadUp = el.interval && typeof el.trendScore === 'number' ? (el.interval[1] - el.trendScore).toFixed(2) : null;
-                  const spreadDown = el.interval && typeof el.trendScore === 'number' ? (el.trendScore - el.interval[0]).toFixed(2) : null;
+                  let spreadUp = null;
+                  let spreadDown = null;
+                  const safeTrendScore = typeof el.trendScore === 'number' ? el.trendScore : parseFloat(el.trendScore || 0);
+                  
+                  if (el.interval && !isNaN(safeTrendScore)) {
+                    if (Array.isArray(el.interval) && el.interval.length === 2 && !isNaN(el.interval[0]) && !isNaN(el.interval[1])) {
+                      spreadUp = Math.max(0, el.interval[1] - safeTrendScore).toFixed(2);
+                      spreadDown = Math.max(0, safeTrendScore - el.interval[0]).toFixed(2);
+                    } else if (el.interval.upper !== undefined && el.interval.lower !== undefined && !isNaN(el.interval.upper) && !isNaN(el.interval.lower)) {
+                      spreadUp = Math.max(0, el.interval.upper - safeTrendScore).toFixed(2);
+                      spreadDown = Math.max(0, safeTrendScore - el.interval.lower).toFixed(2);
+                    }
+                  }
                   return (
                     <th 
                       key={`trend-${el.id}`} 
@@ -1286,8 +1313,8 @@ export function BrandFitMatrix({
                       title="點擊兩下放大趨勢圖"
                     >
                       <div className="flex flex-col items-center gap-0.5">
-                        <span className="text-[#92400e] font-bold text-sm">{el.trendScore}</span>
-                        {spreadUp !== null && <span className="text-[#b45309] text-[11px] font-medium leading-tight mt-1">+{spreadUp}<br/>-{spreadDown}</span>}
+                        <span className="text-[#92400e] font-bold text-sm">{!isNaN(safeTrendScore) ? safeTrendScore.toFixed(1) : 0}</span>
+                        {spreadUp !== null && spreadUp !== "NaN" && <span className="text-[#b45309] text-[11px] font-medium leading-tight mt-1">+{spreadUp}<br/>-{spreadDown}</span>}
                       </div>
                     </th>
                   );
@@ -1426,7 +1453,13 @@ export function BrandFitMatrix({
 
       {subStep === 3 && (
         <div className="flex-1 p-4 min-h-0 flex flex-col bg-[#f3f4f6]">
-          <TrendyStyleDecision />
+          <TrendyStyleDecision 
+            elements={elements} 
+            savedStyles={savedStyles}
+            setSavedStyles={setSavedStyles}
+            matrixState={matrixState}
+            requirements={requirements}
+          />
         </div>
       )}
     </div>

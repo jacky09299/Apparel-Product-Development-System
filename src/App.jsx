@@ -104,6 +104,7 @@ function App() {
   const [elements, setElements] = useStickyState(initialElements, 'erp2_elems');
   const [basicDecisions, setBasicDecisions] = useStickyState({}, 'erp2_basicDecisions');
   const [historicalCombos, setHistoricalCombos] = useStickyState([], 'erp2_historicalCombos');
+  const [savedStyles, setSavedStyles] = useStickyState([], 'erp2_savedStyles');
 
   const [matrixState, setMatrixState] = useStickyState(() => {
     const initial = {};
@@ -126,6 +127,7 @@ function App() {
     elements, setElements,
     basicDecisions, setBasicDecisions,
     historicalCombos, setHistoricalCombos,
+    savedStyles, setSavedStyles,
     setSubStep
   };
 

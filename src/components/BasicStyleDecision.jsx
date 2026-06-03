@@ -92,8 +92,20 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
         suggestionText = '建議停產或改款';
       }
 
+      const sales = combo.salesVolume || Math.floor(1000 + Math.random() * 9000);
+      const price = combo.estPrice || Math.floor(500 + Math.random() * 2500);
+      const unitCost = combo.estVariableCost || Math.floor(150 + Math.random() * 400);
+      
+      const unitProfit = price - unitCost;
+      const estMargin = unitProfit / price;
+
       return {
         ...combo,
+        sales,
+        estSales: sales,
+        estPrice: price,
+        estUnitCost: unitCost,
+        estMargin,
         hasEnoughMatches,
         matchCount,
         trendHitCount,
@@ -110,6 +122,50 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
     setBasicDecisions(prev => ({ ...prev, [id]: status }));
   };
 
+  const handleAutoDemo = () => {
+    const candidates = [...analyzedCombos].sort((a, b) => {
+      const scoreA = (a.estMargin * 100) + (a.totalFitScore * 5);
+      const scoreB = (b.estMargin * 100) + (b.totalFitScore * 5);
+      return scoreB - scoreA;
+    });
+
+    const newDecisions = {};
+    const selected = [];
+
+    const getSimilarity = (itemA, itemB) => {
+      const setA = new Set(itemA.elements.map(e => e.name || e.label));
+      const setB = new Set(itemB.elements.map(e => e.name || e.label));
+      let intersection = 0;
+      for (let a of setA) if (setB.has(a)) intersection++;
+      const union = setA.size + setB.size - intersection;
+      return union === 0 ? 0 : intersection / union;
+    };
+
+    for (const combo of candidates) {
+      if (selected.length >= 12) {
+        newDecisions[combo.id] = 'reject';
+        continue;
+      }
+
+      let tooSimilar = false;
+      for (const sel of selected) {
+        if (getSimilarity(combo, sel) > 0.3) {
+          tooSimilar = true;
+          break;
+        }
+      }
+
+      if (!tooSimilar && combo.estMargin > 0.1 && combo.totalFitScore > 0) {
+        selected.push(combo);
+        newDecisions[combo.id] = 'approve';
+      } else {
+        newDecisions[combo.id] = 'reject';
+      }
+    }
+
+    setBasicDecisions(newDecisions);
+  };
+
   return (
     <div className="w-full mx-auto h-full min-h-0 flex flex-col">
       <div className="flex-1 grid grid-cols-1 xl:grid-cols-2 gap-6 h-full min-h-0">
@@ -118,20 +174,28 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
         <div className="xl:col-span-1 flex flex-col h-full min-h-0">
           <div className="flex justify-between items-center bg-[#f9fafb] p-3 border border-[#d1d5db] rounded-t-lg mb-2 shrink-0">
              <h3 className="font-bold text-[#111827]">基礎款式清單</h3>
-             <div className="flex gap-2">
-                <span className="text-xs text-gray-500 font-bold self-center mr-1">排序:</span>
+             <div className="flex items-center gap-4">
+                 <button 
+                   onClick={handleAutoDemo}
+                   className="px-3 py-1.5 text-xs rounded-md bg-indigo-600 text-white font-bold hover:bg-indigo-700 shadow-sm transition-colors flex items-center gap-1"
+                 >
+                   ✨ AI 智慧決策 (Demo)
+                 </button>
+                 <div className="flex gap-2">
+                    <span className="text-xs text-gray-500 font-bold self-center mr-1">排序:</span>
                 <button 
                   onClick={() => setSortBy('trend')} 
                   className={`px-2 py-1 text-[10px] rounded border ${sortBy === 'trend' ? 'bg-blue-100 text-blue-700 border-blue-200 font-bold' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
                 >流行度</button>
                 <button 
-                  onClick={() => setSortBy('roi')} 
-                  className={`px-2 py-1 text-[10px] rounded border ${sortBy === 'roi' ? 'bg-purple-100 text-purple-700 border-purple-200 font-bold' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
-                >預估 ROI</button>
+                  onClick={() => setSortBy('margin')} 
+                  className={`px-2 py-1 text-[10px] rounded border ${sortBy === 'margin' ? 'bg-purple-100 text-purple-700 border-purple-200 font-bold' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
+                >預估毛利率</button>
                 <button 
                   onClick={() => setSortBy('fit')} 
                   className={`px-2 py-1 text-[10px] rounded border ${sortBy === 'fit' ? 'bg-green-100 text-green-700 border-green-200 font-bold' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
                 >契合度</button>
+             </div>
              </div>
           </div>
           <div className="overflow-y-auto pr-2 space-y-4 flex-1">
@@ -141,8 +205,8 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
               leftList.sort((a, b) => b.totalTrendScore - a.totalTrendScore);
             } else if (sortBy === 'fit') {
               leftList.sort((a, b) => b.totalFitScore - a.totalFitScore);
-            } else if (sortBy === 'roi') {
-              leftList.sort((a, b) => b.estRoi - a.estRoi);
+            } else if (sortBy === 'margin') {
+              leftList.sort((a, b) => b.estMargin - a.estMargin);
             }
             return leftList.map(combo => {
               const currentDecision = basicDecisions[combo.id];
@@ -217,8 +281,8 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                       <div className="text-xs font-bold text-[#4b5563] mb-2 border-b pb-1">預估單款財務表現</div>
                       <div className="flex items-center gap-3 h-8">
                         <div className="flex flex-col">
-                          <span className="text-[10px] text-[#6b7280]">預估 ROI</span>
-                          <span className="text-sm font-bold text-purple-600">{(combo.estRoi * 100).toFixed(0)}%</span>
+                          <span className="text-[10px] text-[#6b7280]">預估毛利率</span>
+                          <span className="text-sm font-bold text-purple-600">{(combo.estMargin * 100).toFixed(0)}%</span>
                         </div>
                         <div className="w-px h-6 bg-[#d1d5db]"></div>
                         <div className="flex flex-col">
@@ -227,8 +291,8 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                         </div>
                         <div className="w-px h-6 bg-[#d1d5db]"></div>
                         <div className="flex flex-col">
-                          <span className="text-[10px] text-[#6b7280]">單件總成本</span>
-                          <span className="text-sm font-bold text-[#374151]">${Math.round(combo.estFixedCost / combo.estSales + combo.estVariableCost)}</span>
+                          <span className="text-[10px] text-[#6b7280]">單件製造成本</span>
+                          <span className="text-sm font-bold text-[#374151]">${combo.estUnitCost}</span>
                         </div>
                       </div>
                     </div>
@@ -270,17 +334,15 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
               devList.sort((a, b) => b.totalTrendScore - a.totalTrendScore);
             } else if (rightSortBy === 'fit') {
               devList.sort((a, b) => b.totalFitScore - a.totalFitScore);
-            } else if (rightSortBy === 'roi') {
-              devList.sort((a, b) => b.estRoi - a.estRoi);
+            } else if (rightSortBy === 'margin') {
+              devList.sort((a, b) => b.estMargin - a.estMargin);
             } else if (rightSortBy === 'comp') {
               devList.sort((a, b) => b.competitionScore - a.competitionScore);
             }
             
-            const totalFixedCost = devList.reduce((acc, curr) => acc + (curr.estFixedCost || 0), 0);
-            const totalVariableCost = devList.reduce((acc, curr) => acc + (curr.estVariableCost || 0) * (curr.estSales || 0), 0);
-            const totalCost = totalFixedCost + totalVariableCost;
+            const totalCost = devList.reduce((acc, curr) => acc + (curr.estUnitCost || 0) * (curr.estSales || 0), 0);
             const totalRevenue = devList.reduce((acc, curr) => acc + (curr.estPrice || 0) * (curr.estSales || 0), 0);
-            const totalAvgRoi = totalCost > 0 ? (totalRevenue - totalCost) / totalCost : 0;
+            const totalAvgMargin = totalRevenue > 0 ? (totalRevenue - totalCost) / totalRevenue : 0;
             
             return (
               <>
@@ -297,9 +359,9 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                         className={`px-2 py-1 text-[10px] rounded border ${rightSortBy === 'trend' ? 'bg-blue-100 text-blue-700 border-blue-200 font-bold' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
                       >流行度</button>
                       <button 
-                        onClick={() => setRightSortBy('roi')} 
-                        className={`px-2 py-1 text-[10px] rounded border ${rightSortBy === 'roi' ? 'bg-purple-100 text-purple-700 border-purple-200 font-bold' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
-                      >預估 ROI</button>
+                        onClick={() => setRightSortBy('margin')} 
+                        className={`px-2 py-1 text-[10px] rounded border ${rightSortBy === 'margin' ? 'bg-purple-100 text-purple-700 border-purple-200 font-bold' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
+                      >預估毛利率</button>
                       <button 
                         onClick={() => setRightSortBy('fit')} 
                         className={`px-2 py-1 text-[10px] rounded border ${rightSortBy === 'fit' ? 'bg-green-100 text-green-700 border-green-200 font-bold' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
@@ -324,7 +386,7 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                         <tr>
                           <th className="px-3 py-2 font-medium">款式名稱</th>
                           <th className="px-2 py-2 font-medium text-center">狀態</th>
-                          <th className="px-2 py-2 font-medium text-right">單件成本</th>
+                          <th className="px-2 py-2 font-medium text-right">單件製造成本</th>
                           <th className="px-2 py-2 font-medium text-right">預估銷量</th>
                           <th className="px-2 py-2 font-medium text-right">預估售價</th>
                           <th className="px-2 py-2 font-medium text-right" title="和其他選進款式的相似度總和">競爭值</th>
@@ -343,7 +405,7 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                               </span>
                             </td>
                             <td className="px-2 py-3 text-right font-medium text-[#374151]">
-                              ${Math.round(combo.estFixedCost / combo.estSales + combo.estVariableCost)}
+                              ${combo.estUnitCost}
                             </td>
                             <td className="px-2 py-3 text-right font-medium text-[#374151]">
                               {combo.estSales?.toLocaleString()}
@@ -374,20 +436,20 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                   <div className="text-xs font-bold text-gray-400 mb-3 border-b border-gray-700 pb-2">本季開發計畫 - 綜合財務預估 (Summary)</div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="flex flex-col">
-                      <span className="text-[10px] text-gray-400 uppercase tracking-wider">總固定成本</span>
-                      <span className="text-lg font-bold">${totalFixedCost.toLocaleString()}</span>
+                      <span className="text-[10px] text-gray-400 uppercase tracking-wider">總開發件數</span>
+                      <span className="text-lg font-bold">{devList.reduce((acc, curr) => acc + (curr.estSales || 0), 0).toLocaleString()} 件</span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[10px] text-gray-400 uppercase tracking-wider">總變動成本</span>
-                      <span className="text-lg font-bold">${totalVariableCost.toLocaleString()}</span>
+                      <span className="text-[10px] text-gray-400 uppercase tracking-wider">總製造成本</span>
+                      <span className="text-lg font-bold">${totalCost.toLocaleString()}</span>
                     </div>
                     <div className="flex flex-col border-l border-gray-700 pl-4">
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider">總預估營收</span>
                       <span className="text-xl font-bold text-green-400">${totalRevenue.toLocaleString()}</span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[10px] text-gray-400 uppercase tracking-wider">綜合預估 ROI</span>
-                      <span className="text-xl font-bold text-purple-400">{(totalAvgRoi * 100).toFixed(1)}%</span>
+                      <span className="text-[10px] text-gray-400 uppercase tracking-wider">綜合預估毛利率</span>
+                      <span className="text-xl font-bold text-purple-400">{(totalAvgMargin * 100).toFixed(1)}%</span>
                     </div>
                   </div>
                   
