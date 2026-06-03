@@ -1,5 +1,54 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-50: var(--primary-50);
+  --color-primary-hover: var(--primary-hover);
+  
+  --color-surface-base: var(--surface-base);
+  --color-content-main: var(--content-main);
+
+  --color-status-good-bg: var(--status-good-bg);
+  --color-status-good-text: var(--status-good-text);
+  --color-status-good-border: var(--status-good-border);
+
+  --color-status-warn-bg: var(--status-warn-bg);
+  --color-status-warn-text: var(--status-warn-text);
+  --color-status-warn-border: var(--status-warn-border);
+
+  --color-status-bad-bg: var(--status-bad-bg);
+  --color-status-bad-text: var(--status-bad-text);
+  --color-status-bad-border: var(--status-bad-border);
+}
+
+:root {
+  /* =========================================
+     🎨 系統全局顏色中控台 (Global Color Tokens)
+     ========================================= */
+
+  /* 核心品牌色 (Primary) */
+  --primary: #260c25;
+  --primary-hover: #40133e;
+  --primary-50: #fdf4fd; 
+
+  /* 介面與版面 (Surface & Content) */
+  --surface-base: #f5f4ee; /* 畫布底色 (米白/燕麥色) */
+  --content-main: #0e151a; /* 主要文字 (深藍黑色) */
+
+  /* 狀態指示色 (Status Semantic Colors) */
+  --status-good-bg: #dcfce7;
+  --status-good-text: #166534;
+  --status-good-border: #22c55e;
+
+  --status-warn-bg: #fef9c3;
+  --status-warn-text: #854d0e;
+  --status-warn-border: #eab308;
+
+  --status-bad-bg: #fee2e2;
+  --status-bad-text: #991b1b;
+  --status-bad-border: #ef4444;
+}
+
 @layer utilities {
   .writing-vertical-rl {
     writing-mode: vertical-rl;

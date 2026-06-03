@@ -3185,7 +3185,8 @@
           "lower": 10.62,
           "upper": 19.1
         }
-      ]
+      ],
+      "enName": "dress"
     },
     {
       "id": "ai-cat-1",
@@ -6372,7 +6373,8 @@
           "lower": 7.29,
           "upper": 22.93
         }
-      ]
+      ],
+      "enName": "jacket"
     },
     {
       "id": "ai-cat-2",
@@ -9559,7 +9561,8 @@
           "lower": 24.2,
           "upper": 33.57
         }
-      ]
+      ],
+      "enName": "shirt"
     },
     {
       "id": "ai-cat-3",
@@ -12746,7 +12749,8 @@
           "lower": 1.88,
           "upper": 11.09
         }
-      ]
+      ],
+      "enName": "suit"
     },
     {
       "id": "ai-cat-4",
@@ -15933,7 +15937,8 @@
           "lower": 2.04,
           "upper": 11.5
         }
-      ]
+      ],
+      "enName": "sweater"
     },
     {
       "id": "ai-cat-5",
@@ -19120,7 +19125,8 @@
           "lower": 10.56,
           "upper": 19.53
         }
-      ]
+      ],
+      "enName": "vest"
     },
     {
       "id": "ai-col-0",
@@ -22307,7 +22313,8 @@
           "lower": 18.72,
           "upper": 30.85
         }
-      ]
+      ],
+      "enName": "black"
     },
     {
       "id": "ai-col-1",
@@ -25494,7 +25501,8 @@
           "lower": 10.37,
           "upper": 18.88
         }
-      ]
+      ],
+      "enName": "blue"
     },
     {
       "id": "ai-col-2",
@@ -28681,7 +28689,8 @@
           "lower": 2.4,
           "upper": 11.72
         }
-      ]
+      ],
+      "enName": "brown"
     },
     {
       "id": "ai-col-3",
@@ -31868,7 +31877,8 @@
           "lower": -2.44,
           "upper": 5.86
         }
-      ]
+      ],
+      "enName": "cyan"
     },
     {
       "id": "ai-col-4",
@@ -35055,7 +35065,8 @@
           "lower": 6.53,
           "upper": 14.92
         }
-      ]
+      ],
+      "enName": "gray"
     },
     {
       "id": "ai-col-5",
@@ -38242,7 +38253,8 @@
           "lower": 0.85,
           "upper": 9.16
         }
-      ]
+      ],
+      "enName": "green"
     },
     {
       "id": "ai-col-6",
@@ -41429,7 +41441,8 @@
           "lower": -0.91,
           "upper": 7.4
         }
-      ]
+      ],
+      "enName": "orange"
     },
     {
       "id": "ai-col-7",
@@ -44616,7 +44629,8 @@
           "lower": 2.45,
           "upper": 10.79
         }
-      ]
+      ],
+      "enName": "pink"
     },
     {
       "id": "ai-col-8",
@@ -47803,7 +47817,8 @@
           "lower": -1.42,
           "upper": 6.88
         }
-      ]
+      ],
+      "enName": "purple"
     },
     {
       "id": "ai-col-9",
@@ -50990,7 +51005,8 @@
           "lower": 2.5,
           "upper": 10.89
         }
-      ]
+      ],
+      "enName": "red"
     },
     {
       "id": "ai-col-10",
@@ -54177,7 +54193,8 @@
           "lower": 14.32,
           "upper": 23.51
         }
-      ]
+      ],
+      "enName": "white"
     },
     {
       "id": "ai-col-11",
@@ -57364,7 +57381,8 @@
           "lower": -0.35,
           "upper": 7.97
         }
-      ]
+      ],
+      "enName": "yellow"
     },
     {
       "id": "ai-m-1",
@@ -57382,7 +57400,8 @@
         70,
         85,
         98
-      ]
+      ],
+      "enName": "recycled cotton"
     },
     {
       "id": "ai-m-2",
@@ -57400,7 +57419,8 @@
         60,
         80,
         88
-      ]
+      ],
+      "enName": "breathable linen"
     },
     {
       "id": "ai-m-3",
@@ -57418,7 +57438,8 @@
         82,
         85,
         85
-      ]
+      ],
+      "enName": "water resistant"
     },
     {
       "id": "ai-m-4",
@@ -57436,7 +57457,8 @@
         68,
         70,
         72
-      ]
+      ],
+      "enName": "heavy denim"
     },
     {
       "id": "ai-m-5",
@@ -57454,7 +57476,8 @@
         62,
         64,
         65
-      ]
+      ],
+      "enName": "faux leather"
     },
     {
       "id": "ai-m-6",
@@ -57472,7 +57495,8 @@
         58,
         56,
         55
-      ]
+      ],
+      "enName": "lace"
     },
     {
       "id": "ai-m-7",
@@ -57490,7 +57514,8 @@
         45,
         47,
         48
-      ]
+      ],
+      "enName": "sheer mesh"
     },
     {
       "id": "ai-m-8",
@@ -57508,7 +57533,8 @@
         55,
         50,
         45
-      ]
+      ],
+      "enName": "velvet"
     },
     {
       "id": "ai-m-9",
@@ -57526,7 +57552,8 @@
         40,
         38,
         35
-      ]
+      ],
+      "enName": "sequin"
     },
     {
       "id": "ai-m-10",
@@ -57544,7 +57571,8 @@
         40,
         35,
         30
-      ]
+      ],
+      "enName": "粗花呢"
     },
     {
       "id": "ai-p-1",
@@ -57562,7 +57590,8 @@
         88,
         89,
         90
-      ]
+      ],
+      "enName": "solid simple"
     },
     {
       "id": "ai-p-2",
@@ -57580,7 +57609,8 @@
         75,
         80,
         85
-      ]
+      ],
+      "enName": "tie-dye"
     },
     {
       "id": "ai-p-3",
@@ -57598,7 +57628,8 @@
         72,
         70,
         70
-      ]
+      ],
+      "enName": "vintage plaid"
     },
     {
       "id": "ai-p-4",
@@ -57616,7 +57647,8 @@
         62,
         64,
         65
-      ]
+      ],
+      "enName": "floral"
     },
     {
       "id": "ai-p-5",
@@ -57634,7 +57666,8 @@
         55,
         56,
         58
-      ]
+      ],
+      "enName": "paisley"
     },
     {
       "id": "ai-p-6",
@@ -57652,7 +57685,8 @@
         65,
         60,
         55
-      ]
+      ],
+      "enName": "large logo"
     },
     {
       "id": "ai-p-7",
@@ -57670,7 +57704,8 @@
         45,
         43,
         42
-      ]
+      ],
+      "enName": "leopard print"
     },
     {
       "id": "ai-p-8",
@@ -57688,7 +57723,8 @@
         42,
         40,
         38
-      ]
+      ],
+      "enName": "vertical stripes"
     },
     {
       "id": "ai-p-9",
@@ -57706,7 +57742,8 @@
         38,
         35,
         32
-      ]
+      ],
+      "enName": "houndstooth"
     },
     {
       "id": "ai-d-1",
@@ -57724,7 +57761,8 @@
         85,
         90,
         94
-      ]
+      ],
+      "enName": "cargo pockets"
     },
     {
       "id": "ai-d-2",
@@ -57742,7 +57780,8 @@
         65,
         75,
         86
-      ]
+      ],
+      "enName": "drawstring ruched"
     },
     {
       "id": "ai-d-3",
@@ -57760,7 +57799,8 @@
         72,
         74,
         75
-      ]
+      ],
+      "enName": "asymmetrical"
     },
     {
       "id": "ai-d-4",
@@ -57778,7 +57818,8 @@
         55,
         60,
         62
-      ]
+      ],
+      "enName": "halter"
     },
     {
       "id": "ai-d-5",
@@ -57796,7 +57837,8 @@
         70,
         65,
         60
-      ]
+      ],
+      "enName": "exposed zipper"
     },
     {
       "id": "ai-d-6",
@@ -57814,7 +57856,8 @@
         45,
         48,
         50
-      ]
+      ],
+      "enName": "cutout design"
     },
     {
       "id": "ai-d-7",
@@ -57832,7 +57875,8 @@
         45,
         42,
         40
-      ]
+      ],
+      "enName": "exaggerated shoulder pads"
     },
     {
       "id": "ai-d-8",
@@ -57850,7 +57894,8 @@
         40,
         38,
         35
-      ]
+      ],
+      "enName": "distressed"
     },
     {
       "id": "ai-d-9",
@@ -57868,7 +57913,8 @@
         35,
         32,
         30
-      ]
+      ],
+      "enName": "pearl embellished"
     },
     {
       "name": "Oversize",
@@ -57880,7 +57926,8 @@
         "upper": 20
       },
       "timeline": [],
-      "score": 15.882285963381127
+      "score": 15.882285963381127,
+      "enName": "oversize"
     },
     {
       "name": "修身",
@@ -57892,7 +57939,8 @@
         "upper": 15
       },
       "timeline": [],
-      "score": 16.33935465851446
+      "score": 16.33935465851446,
+      "enName": "slim fit"
     },
     {
       "name": "短版",
@@ -57904,7 +57952,8 @@
         "upper": 18
       },
       "timeline": [],
-      "score": 17.278632396057688
+      "score": 17.278632396057688,
+      "enName": "cropped"
     },
     {
       "name": "Y2K",
@@ -57916,7 +57965,8 @@
         "upper": 22
       },
       "timeline": [],
-      "score": 17.37569492288292
+      "score": 17.37569492288292,
+      "enName": "Y2K"
     },
     {
       "name": "極簡",
@@ -57928,7 +57978,8 @@
         "upper": 16
       },
       "timeline": [],
-      "score": 17.825077405925555
+      "score": 17.825077405925555,
+      "enName": "minimalist"
     },
     {
       "name": "復古",
@@ -57940,7 +57991,8 @@
         "upper": 19
       },
       "timeline": [],
-      "score": 16.226754542937734
+      "score": 16.226754542937734,
+      "enName": "vintage"
     }
   ],
   "historical_stable_combinations": [
@@ -57994,7 +58046,7 @@
       "fitScore": "9.6",
       "competitorScore": "7.6",
       "salesVolume": 6096,
-      "estPrice": 1595,
+      "estPrice": 1279.388554081425,
       "estFixedCost": 11892,
       "estVariableCost": 464
     },
@@ -58048,7 +58100,7 @@
       "fitScore": "8.2",
       "competitorScore": "6.6",
       "salesVolume": 9273,
-      "estPrice": 2539,
+      "estPrice": 1557.8365934087058,
       "estFixedCost": 13565,
       "estVariableCost": 433
     },
@@ -58102,7 +58154,7 @@
       "fitScore": "7.2",
       "competitorScore": "4.5",
       "salesVolume": 5154,
-      "estPrice": 1180,
+      "estPrice": 1112.684782223403,
       "estFixedCost": 32061,
       "estVariableCost": 189
     },
@@ -58156,7 +58208,7 @@
       "fitScore": "9.3",
       "competitorScore": "5.3",
       "salesVolume": 6766,
-      "estPrice": 512,
+      "estPrice": 1990.9185446897923,
       "estFixedCost": 44202,
       "estVariableCost": 397
     },
@@ -58210,7 +58262,7 @@
       "fitScore": "8.4",
       "competitorScore": "6.1",
       "salesVolume": 8642,
-      "estPrice": 2753,
+      "estPrice": 879.339421503081,
       "estFixedCost": 21679,
       "estVariableCost": 375
     },
@@ -58264,7 +58316,7 @@
       "fitScore": "8.6",
       "competitorScore": "6.9",
       "salesVolume": 1089,
-      "estPrice": 999,
+      "estPrice": 702.2837543747563,
       "estFixedCost": 47052,
       "estVariableCost": 317
     },
@@ -58318,7 +58370,7 @@
       "fitScore": "9.6",
       "competitorScore": "7.8",
       "salesVolume": 5802,
-      "estPrice": 1395,
+      "estPrice": 674.1650657160499,
       "estFixedCost": 46485,
       "estVariableCost": 197
     },
@@ -58372,7 +58424,7 @@
       "fitScore": "8.6",
       "competitorScore": "4.2",
       "salesVolume": 2264,
-      "estPrice": 2840,
+      "estPrice": 920.2415769793645,
       "estFixedCost": 46184,
       "estVariableCost": 449
     },
@@ -58426,7 +58478,7 @@
       "fitScore": "8.1",
       "competitorScore": "7.6",
       "salesVolume": 6404,
-      "estPrice": 2520,
+      "estPrice": 506.46513185654135,
       "estFixedCost": 12377,
       "estVariableCost": 464
     },
@@ -58480,7 +58532,7 @@
       "fitScore": "9.2",
       "competitorScore": "5.3",
       "salesVolume": 9213,
-      "estPrice": 2946,
+      "estPrice": 778.5406098745832,
       "estFixedCost": 14274,
       "estVariableCost": 215
     },
@@ -58534,7 +58586,7 @@
       "fitScore": "7.7",
       "competitorScore": "5.5",
       "salesVolume": 8982,
-      "estPrice": 888,
+      "estPrice": 701.3627803174932,
       "estFixedCost": 44411,
       "estVariableCost": 347
     },
@@ -58588,7 +58640,7 @@
       "fitScore": "8.6",
       "competitorScore": "4.6",
       "salesVolume": 4247,
-      "estPrice": 743,
+      "estPrice": 370.13583225478345,
       "estFixedCost": 23105,
       "estVariableCost": 498
     },
@@ -58642,7 +58694,7 @@
       "fitScore": "7.0",
       "competitorScore": "6.0",
       "salesVolume": 4321,
-      "estPrice": 839,
+      "estPrice": 534.7336933954377,
       "estFixedCost": 39344,
       "estVariableCost": 325
     },
@@ -58696,7 +58748,7 @@
       "fitScore": "7.3",
       "competitorScore": "6.5",
       "salesVolume": 1712,
-      "estPrice": 1178,
+      "estPrice": 1112.684782223403,
       "estFixedCost": 36640,
       "estVariableCost": 171
     },
@@ -58750,7 +58802,7 @@
       "fitScore": "7.4",
       "competitorScore": "5.5",
       "salesVolume": 7683,
-      "estPrice": 1667,
+      "estPrice": 460.45732465444837,
       "estFixedCost": 19459,
       "estVariableCost": 334
     },
@@ -58804,7 +58856,7 @@
       "fitScore": "8.4",
       "competitorScore": "4.2",
       "salesVolume": 6171,
-      "estPrice": 1694,
+      "estPrice": 323.995373886565,
       "estFixedCost": 19558,
       "estVariableCost": 289
     },
@@ -58858,7 +58910,7 @@
       "fitScore": "8.8",
       "competitorScore": "4.3",
       "salesVolume": 5075,
-      "estPrice": 914,
+      "estPrice": 1643.2948029861795,
       "estFixedCost": 15939,
       "estVariableCost": 156
     },
@@ -58912,7 +58964,7 @@
       "fitScore": "9.8",
       "competitorScore": "4.6",
       "salesVolume": 8144,
-      "estPrice": 941,
+      "estPrice": 3550.579526065141,
       "estFixedCost": 25215,
       "estVariableCost": 442
     },
@@ -58966,7 +59018,7 @@
       "fitScore": "8.7",
       "competitorScore": "7.4",
       "salesVolume": 4598,
-      "estPrice": 1376,
+      "estPrice": 1112.684782223403,
       "estFixedCost": 46472,
       "estVariableCost": 220
     },
@@ -59020,7 +59072,7 @@
       "fitScore": "9.1",
       "competitorScore": "7.5",
       "salesVolume": 2403,
-      "estPrice": 978,
+      "estPrice": 587.230461619735,
       "estFixedCost": 11490,
       "estVariableCost": 160
     },
@@ -59074,7 +59126,7 @@
       "fitScore": "8.9",
       "competitorScore": "6.8",
       "salesVolume": 8367,
-      "estPrice": 2127,
+      "estPrice": 527.9021953971131,
       "estFixedCost": 14779,
       "estVariableCost": 192
     },
@@ -59128,7 +59180,7 @@
       "fitScore": "7.5",
       "competitorScore": "7.8",
       "salesVolume": 4790,
-      "estPrice": 712,
+      "estPrice": 702.2837543747563,
       "estFixedCost": 30582,
       "estVariableCost": 266
     },
@@ -59182,7 +59234,7 @@
       "fitScore": "9.4",
       "competitorScore": "4.3",
       "salesVolume": 2646,
-      "estPrice": 1685,
+      "estPrice": 1438.5358810771982,
       "estFixedCost": 16081,
       "estVariableCost": 215
     },
@@ -59236,7 +59288,7 @@
       "fitScore": "8.2",
       "competitorScore": "4.8",
       "salesVolume": 1510,
-      "estPrice": 2816,
+      "estPrice": 821.829708702484,
       "estFixedCost": 17124,
       "estVariableCost": 224
     },
@@ -59290,7 +59342,7 @@
       "fitScore": "7.6",
       "competitorScore": "6.5",
       "salesVolume": 9912,
-      "estPrice": 1802,
+      "estPrice": 309.5756846898099,
       "estFixedCost": 13513,
       "estVariableCost": 157
     },
@@ -59344,7 +59396,7 @@
       "fitScore": "8.8",
       "competitorScore": "5.8",
       "salesVolume": 3192,
-      "estPrice": 2881,
+      "estPrice": 557.6129388219398,
       "estFixedCost": 10714,
       "estVariableCost": 357
     },
@@ -59398,7 +59450,7 @@
       "fitScore": "9.6",
       "competitorScore": "4.3",
       "salesVolume": 3193,
-      "estPrice": 2349,
+      "estPrice": 1466.134857200238,
       "estFixedCost": 30265,
       "estVariableCost": 395
     },
@@ -59452,7 +59504,7 @@
       "fitScore": "7.6",
       "competitorScore": "8.5",
       "salesVolume": 1970,
-      "estPrice": 1821,
+      "estPrice": 1639.5002099228216,
       "estFixedCost": 45366,
       "estVariableCost": 255
     },
@@ -59506,7 +59558,7 @@
       "fitScore": "7.2",
       "competitorScore": "8.5",
       "salesVolume": 6263,
-      "estPrice": 1309,
+      "estPrice": 1480.040559787221,
       "estFixedCost": 40373,
       "estVariableCost": 472
     },
@@ -59560,7 +59612,7 @@
       "fitScore": "7.8",
       "competitorScore": "4.9",
       "salesVolume": 2789,
-      "estPrice": 1402,
+      "estPrice": 484.91517029502563,
       "estFixedCost": 46783,
       "estVariableCost": 191
     },
@@ -59614,7 +59666,7 @@
       "fitScore": "8.2",
       "competitorScore": "8.4",
       "salesVolume": 9282,
-      "estPrice": 700,
+      "estPrice": 945.6874132063242,
       "estFixedCost": 19801,
       "estVariableCost": 187
     },
@@ -59668,7 +59720,7 @@
       "fitScore": "8.2",
       "competitorScore": "7.8",
       "salesVolume": 3937,
-      "estPrice": 2334,
+      "estPrice": 641.0687550817955,
       "estFixedCost": 38995,
       "estVariableCost": 275
     },
@@ -59722,7 +59774,7 @@
       "fitScore": "9.2",
       "competitorScore": "7.7",
       "salesVolume": 8536,
-      "estPrice": 2990,
+      "estPrice": 993.4385192252636,
       "estFixedCost": 26607,
       "estVariableCost": 504
     },
@@ -59776,7 +59828,7 @@
       "fitScore": "7.5",
       "competitorScore": "6.7",
       "salesVolume": 9602,
-      "estPrice": 1603,
+      "estPrice": 1112.684782223403,
       "estFixedCost": 38302,
       "estVariableCost": 396
     },
@@ -59830,7 +59882,7 @@
       "fitScore": "7.4",
       "competitorScore": "4.9",
       "salesVolume": 8351,
-      "estPrice": 2207,
+      "estPrice": 1632.0145465823684,
       "estFixedCost": 36168,
       "estVariableCost": 154
     },
@@ -59884,7 +59936,7 @@
       "fitScore": "8.4",
       "competitorScore": "8.8",
       "salesVolume": 5318,
-      "estPrice": 2096,
+      "estPrice": 1094.3374745636631,
       "estFixedCost": 28322,
       "estVariableCost": 319
     },
@@ -59938,7 +59990,7 @@
       "fitScore": "8.4",
       "competitorScore": "4.2",
       "salesVolume": 3282,
-      "estPrice": 1717,
+      "estPrice": 1231.7331387654713,
       "estFixedCost": 25294,
       "estVariableCost": 439
     },
@@ -59992,7 +60044,7 @@
       "fitScore": "7.3",
       "competitorScore": "7.9",
       "salesVolume": 7753,
-      "estPrice": 1814,
+      "estPrice": 731.264011143919,
       "estFixedCost": 39063,
       "estVariableCost": 360
     },
@@ -60046,7 +60098,7 @@
       "fitScore": "9.2",
       "competitorScore": "7.8",
       "salesVolume": 7753,
-      "estPrice": 1565,
+      "estPrice": 1279.388554081425,
       "estFixedCost": 29947,
       "estVariableCost": 171
     },
@@ -60100,7 +60152,7 @@
       "fitScore": "7.5",
       "competitorScore": "4.4",
       "salesVolume": 4985,
-      "estPrice": 1884,
+      "estPrice": 1076.9600986637893,
       "estFixedCost": 24026,
       "estVariableCost": 468
     },
@@ -60154,7 +60206,7 @@
       "fitScore": "8.2",
       "competitorScore": "4.4",
       "salesVolume": 9278,
-      "estPrice": 2436,
+      "estPrice": 437.2451883684395,
       "estFixedCost": 10925,
       "estVariableCost": 219
     },
@@ -60208,7 +60260,7 @@
       "fitScore": "7.4",
       "competitorScore": "5.7",
       "salesVolume": 7612,
-      "estPrice": 2843,
+      "estPrice": 804.5929924413417,
       "estFixedCost": 46129,
       "estVariableCost": 361
     },
@@ -60262,7 +60314,7 @@
       "fitScore": "7.5",
       "competitorScore": "8.0",
       "salesVolume": 8205,
-      "estPrice": 879,
+      "estPrice": 3550.579526065141,
       "estFixedCost": 37930,
       "estVariableCost": 484
     },
@@ -60316,7 +60368,7 @@
       "fitScore": "9.6",
       "competitorScore": "8.7",
       "salesVolume": 1781,
-      "estPrice": 2464,
+      "estPrice": 668.2977180471523,
       "estFixedCost": 14844,
       "estVariableCost": 542
     },
@@ -60370,7 +60422,7 @@
       "fitScore": "7.5",
       "competitorScore": "9.0",
       "salesVolume": 9659,
-      "estPrice": 2402,
+      "estPrice": 456.53587906038825,
       "estFixedCost": 18648,
       "estVariableCost": 429
     },
@@ -60424,7 +60476,7 @@
       "fitScore": "8.2",
       "competitorScore": "8.2",
       "salesVolume": 7981,
-      "estPrice": 1577,
+      "estPrice": 1457.2755101138978,
       "estFixedCost": 10888,
       "estVariableCost": 376
     },
@@ -60478,7 +60530,7 @@
       "fitScore": "7.3",
       "competitorScore": "7.0",
       "salesVolume": 6059,
-      "estPrice": 539,
+      "estPrice": 649.492216612685,
       "estFixedCost": 19911,
       "estVariableCost": 391
     },
@@ -60532,7 +60584,7 @@
       "fitScore": "8.3",
       "competitorScore": "7.6",
       "salesVolume": 9856,
-      "estPrice": 2591,
+      "estPrice": 699.100779368967,
       "estFixedCost": 49634,
       "estVariableCost": 157
     },
@@ -60586,7 +60638,7 @@
       "fitScore": "8.5",
       "competitorScore": "8.8",
       "salesVolume": 9815,
-      "estPrice": 2800,
+      "estPrice": 807.7872326644589,
       "estFixedCost": 31221,
       "estVariableCost": 186
     },
@@ -60640,7 +60692,7 @@
       "fitScore": "9.7",
       "competitorScore": "6.8",
       "salesVolume": 8226,
-      "estPrice": 2261,
+      "estPrice": 1225.1863900707185,
       "estFixedCost": 36388,
       "estVariableCost": 292
     }

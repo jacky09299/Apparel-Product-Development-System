@@ -108,7 +108,7 @@ const OverlayChartPanel = ({ elements }) => {
   return (
     <div className="w-full flex flex-col relative mt-2">
       <div className="flex justify-end mb-2 absolute right-0 top-[-25px] z-10">
-        <label className="flex items-center text-xs font-bold text-[#4b5563] cursor-pointer hover:text-[#111827] bg-[#f8fafc] px-2 py-1 rounded shadow-sm border border-[#e5e7eb]">
+        <label className="flex items-center text-xs font-bold text-[#4b5563] cursor-pointer hover:text-content-main bg-[#f8fafc] px-2 py-1 rounded shadow-sm border border-[#e5e7eb]">
           <input type="checkbox" checked={showInterval} onChange={e => setShowInterval(e.target.checked)} className="mr-1.5 cursor-pointer" />
           顯示所有區間
         </label>
@@ -267,7 +267,7 @@ export function BrandFitMatrix({
 
   useEffect(() => {
     if (historicalCombos.length === 0) {
-      fetch(import.meta.env.BASE_URL + 'db.json')
+      fetch(import.meta.env.BASE_URL + 'db.json?v=' + Date.now())
         .then(res => res.json())
         .then(dbData => {
           if (dbData.historical_stable_combinations) {
@@ -279,7 +279,7 @@ export function BrandFitMatrix({
   }, [historicalCombos.length]);
 
   const handleAutoFillDemo = () => {
-    fetch(import.meta.env.BASE_URL + 'db.json')
+    fetch(import.meta.env.BASE_URL + 'db.json?v=' + Date.now())
       .then(res => res.json())
       .then(dbData => {
         const aiData = dbData.ai_trend_elements || [];
@@ -751,8 +751,8 @@ export function BrandFitMatrix({
         <div className="p-4 overflow-x-auto">
           <div className="flex justify-between items-end mb-4">
             <div>
-              <h3 className="font-bold text-[#111827]">
-                AI 流行元素預測系統匯入 {isReadOnly && <span className="text-[#dc2626]">(預覽模式)</span>}
+              <h3 className="font-bold text-content-main">
+                AI 流行元素預測系統匯入 {isReadOnly && <span className="text-status-bad-text">(預覽模式)</span>}
               </h3>
               <p className="text-[#6b7280] text-xs mt-1">
                 {isReadOnly 
@@ -769,7 +769,7 @@ export function BrandFitMatrix({
               <button 
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${selectedCategory === cat ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`}
+                className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${selectedCategory === cat ? 'border-primary text-primary' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`}
               >
                 {cat}
               </button>
@@ -827,7 +827,7 @@ export function BrandFitMatrix({
                       </td>
                     )}
                     <td className="border border-[#d1d5db] p-2 text-center font-bold text-[#6b7280]" style={tdDropStyle}>{idx + 1}</td>
-                    <td className="border border-[#d1d5db] p-2 font-medium text-[#111827] px-6" style={tdDropStyle}>
+                    <td className="border border-[#d1d5db] p-2 font-medium text-content-main px-6" style={tdDropStyle}>
                       {el.name}
                       {el.score === '人工新增' && <span className="ml-2 text-xs bg-[#f3f4f6] text-[#6b7280] px-1 py-0.5 rounded">人工新增</span>}
                     </td>
@@ -837,11 +837,11 @@ export function BrandFitMatrix({
                         checked={checkedElements.has(el.id)} 
                         onChange={() => toggleCheckElement(el.id)}
                         disabled={isReadOnly}
-                        className="w-4 h-4 text-[#2563eb] rounded border-[#d1d5db] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-4 h-4 text-primary rounded border-[#d1d5db] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </td>
                     <td className="border border-[#d1d5db] p-2 text-center" style={tdDropStyle}>
-                      <span className={el.score === '人工新增' ? 'text-[#6b7280] text-xs' : 'bg-[#fef3c7] text-[#92400e] px-2 py-0.5 rounded font-bold'}>
+                      <span className={el.score === '人工新增' ? 'text-[#6b7280] text-xs' : 'text-content-main font-bold'}>
                         {el.score}
                       </span>
                     </td>
@@ -886,7 +886,7 @@ export function BrandFitMatrix({
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input 
                     type="checkbox" 
-                    className="w-4 h-4 text-[#2563eb] rounded border-[#d1d5db] focus:ring-[#2563eb]"
+                    className="w-4 h-4 text-primary rounded border-[#d1d5db] focus:ring-primary"
                     checked={overlayMode}
                     onChange={(e) => {
                       setOverlayMode(e.target.checked);
@@ -903,12 +903,12 @@ export function BrandFitMatrix({
           </div>
           {!isReadOnly ? (
             <div className="flex items-center gap-6 w-max mt-6 pt-4 border-t border-[#d1d5db]">
-              <button onClick={submitPhase1TrendAnalyst} className="bg-[#2563eb] text-white px-6 py-2 rounded shadow-sm hover:bg-[#1d4ed8]">確認選取並送出全部</button>
+              <button onClick={submitPhase1TrendAnalyst} className="bg-primary text-white px-6 py-2 rounded shadow-sm hover:bg-[#1d4ed8]">確認選取並送出全部</button>
               <span className="text-sm text-[#4b5563]">已選取 {checkedElements.size} 個元素</span>
             </div>
           ) : (
             currentRole === '趨勢分析師' && trendAnalystSubmitted && phase === 1 && (
-              <div className="mt-6 pt-4 border-t border-[#d1d5db] text-[#059669] font-bold">
+              <div className="mt-6 pt-4 border-t border-[#d1d5db] text-status-good-text font-bold">
                 您已成功送出預測清單！請等待商品企劃完成品牌需求設定，即可進入下一階段。
               </div>
             )
@@ -928,7 +928,7 @@ export function BrandFitMatrix({
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
             </div>
-            <h3 className="text-lg font-bold text-[#111827] mb-2">無存取權限</h3>
+            <h3 className="text-lg font-bold text-content-main mb-2">無存取權限</h3>
             <p className="text-sm text-center">品牌需求設定僅開放給「商品企劃」操作與檢視。<br/>其他職位請直接進行您的「部門契合度評估」，或等待「最終決策總表」解鎖。</p>
           </div>
         );
@@ -937,7 +937,7 @@ export function BrandFitMatrix({
       const isReadOnly = currentRole !== '商品企劃' || phase > 1 || plannerSubmitted;
       return (
         <div className="p-4 overflow-x-auto">
-          <h3 className="font-bold text-[#111827] mb-4">建立品牌需求與權重</h3>
+          <h3 className="font-bold text-content-main mb-4">建立品牌需求與權重</h3>
           <table className="border-collapse border border-[#d1d5db] mb-4 text-sm w-max">
             <thead>
               <tr className="bg-[#f3f4f6]">
@@ -954,7 +954,7 @@ export function BrandFitMatrix({
                   <td className="border border-[#d1d5db] p-2 text-center px-4">{req.weight}</td>
                   <td className="border border-[#d1d5db] p-2 px-4">{req.role}</td>
                   <td className="border border-[#d1d5db] p-2 text-center px-4">
-                    {!isReadOnly && <button onClick={() => removeRequirement(req.id)} className="text-red-600 hover:underline">刪除</button>}
+                    {!isReadOnly && <button onClick={() => removeRequirement(req.id)} className="text-status-bad-text hover:underline">刪除</button>}
                   </td>
                 </tr>
               ))}
@@ -985,10 +985,10 @@ export function BrandFitMatrix({
           )}
 
           {!isReadOnly ? (
-            <button onClick={submitPhase1Planner} className="bg-[#2563eb] text-white px-4 py-2 rounded shadow-sm hover:bg-[#1d4ed8]">送出需求設定</button>
+            <button onClick={submitPhase1Planner} className="bg-primary text-white px-4 py-2 rounded shadow-sm hover:bg-[#1d4ed8]">送出需求設定</button>
           ) : (
             currentRole === '商品企劃' && plannerSubmitted && phase === 1 && (
-              <div className="mt-4 p-4 border border-[#d1d5db] bg-[#f9fafb] text-[#059669] font-bold inline-block">
+              <div className="mt-4 p-4 border border-[#d1d5db] bg-[#f9fafb] text-status-good-text font-bold inline-block">
                 您已成功送出品牌需求！請等待趨勢分析師完成流行元素挑選，即可進入下一階段。
               </div>
             )
@@ -1005,7 +1005,7 @@ export function BrandFitMatrix({
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
           </div>
-          <h3 className="text-lg font-bold text-[#111827] mb-2">評估階段尚未開始</h3>
+          <h3 className="text-lg font-bold text-content-main mb-2">評估階段尚未開始</h3>
           <p className="text-sm">請等待「趨勢分析師」與「商品企劃」完成前置設定作業。</p>
         </div>
       );
@@ -1051,16 +1051,16 @@ export function BrandFitMatrix({
             <tr>
               <th className="border border-[#d1d5db] bg-[#f3f4f6] p-2 text-left px-4">品牌需求條件</th>
               {elements.map(el => (
-                <th key={el.id} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center text-[#111827] px-4">
+                <th key={el.id} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center text-content-main px-4">
                   <div className="flex flex-col items-center justify-center gap-1">
                     <span className="font-bold">{el.name}</span>
                     <div className="flex flex-wrap items-center justify-center gap-1">
                       {el.isTrend && el.isBasic ? (
-                        <span className="text-[10px] bg-purple-100 text-purple-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">熱門+長青</span>
+                        <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">熱門+長青</span>
                       ) : el.isTrend ? (
-                        <span className="text-[10px] bg-blue-100 text-blue-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">AI趨勢</span>
+                        <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">AI趨勢</span>
                       ) : el.isBasic ? (
-                        <span className="text-[10px] bg-green-100 text-green-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
+                        <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
                       ) : null}
                     </div>
                   </div>
@@ -1082,15 +1082,15 @@ export function BrandFitMatrix({
                   {elements.map(el => {
                     const state = matrixState[req.id]?.[el.id] || '-';
                     let cellBg = 'bg-white';
-                    if (state === 'X') cellBg = 'bg-[#fee2e2]';
-                    if (state === 'O') cellBg = 'bg-[#fef3c7]';
+                    if (state === 'X') cellBg = 'bg-status-bad-bg text-status-bad-text font-bold';
+                    if (state === 'O') cellBg = 'bg-status-good-bg text-status-good-text font-bold';
 
                     return (
                       <td key={`${req.id}-${el.id}`} className={`border border-[#d1d5db] p-1 text-center ${cellBg} px-2`}>
                         <select 
                           value={state}
                           onChange={(e) => handleCellChange(req.id, el.id, e.target.value)}
-                          className="w-full h-full p-1 bg-transparent border border-[#d1d5db] rounded text-center cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#2563eb]"
+                          className="w-full h-full p-1 bg-transparent border border-[#d1d5db] rounded text-center cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary"
                         >
                           <option value="-">- (一般)</option>
                           <option value="O">O (高度滿足)</option>
@@ -1110,7 +1110,7 @@ export function BrandFitMatrix({
           </tbody>
         </table>
         <div className="mt-4">
-          <button onClick={submitPhase2Evaluation} className="bg-[#2563eb] text-white px-4 py-2 rounded shadow-sm hover:bg-[#1d4ed8]">送出我的評估結果</button>
+          <button onClick={submitPhase2Evaluation} className="bg-primary text-white px-4 py-2 rounded shadow-sm hover:bg-[#1d4ed8]">送出我的評估結果</button>
         </div>
       </div>
     );
@@ -1126,7 +1126,7 @@ export function BrandFitMatrix({
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </div>
-          <h3 className="text-lg font-bold text-[#111827] mb-2">總表尚未解鎖</h3>
+          <h3 className="text-lg font-bold text-content-main mb-2">總表尚未解鎖</h3>
           <p className="text-sm">必須等待所有相關部門完成「契合度評估」後，最終決策總表才會開放。</p>
         </div>
       );
@@ -1167,25 +1167,25 @@ export function BrandFitMatrix({
 
     return (
       <div className="p-4 overflow-x-auto">
-        <div className="mb-4 text-[#4b5563] text-sm bg-green-50 border border-green-200 p-3 rounded w-max">
-          <strong className="text-green-700">總表已解鎖：</strong> 所有部門皆已完成評估，現可於商品企劃會議中討論以下結果。
+        <div className="mb-4 text-[#4b5563] text-sm bg-status-good-bg border border-status-good-border p-3 rounded w-max">
+          <strong className="text-status-good-text">總表已解鎖：</strong> 所有部門皆已完成評估，現可於商品企劃會議中討論以下結果。
         </div>
 
         <div className="mb-4 flex gap-4 items-center bg-white p-3 border border-[#d1d5db] rounded shadow-sm w-max">
-          <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-[#111827]">
-            <input type="checkbox" checked={hideEliminated} onChange={e => setHideEliminated(e.target.checked)} className="w-4 h-4 text-[#2563eb]" />
+          <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-content-main">
+            <input type="checkbox" checked={hideEliminated} onChange={e => setHideEliminated(e.target.checked)} className="w-4 h-4 text-primary" />
             隱藏淘汰元素
           </label>
-          <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-[#111827]">
+          <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-content-main">
             <input type="checkbox" checked={hideDetails} onChange={e => {
               setHideDetails(e.target.checked);
               if (!e.target.checked) setIsVertical(false);
-            }} className="w-4 h-4 text-[#2563eb]" />
+            }} className="w-4 h-4 text-primary" />
             隱藏需求和表格細節 (只留最後分數)
           </label>
           {hideDetails && (
-            <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-[#111827] ml-4 border-l pl-4 border-[#d1d5db]">
-              <input type="checkbox" checked={isVertical} onChange={e => setIsVertical(e.target.checked)} className="w-4 h-4 text-[#2563eb]" />
+            <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-content-main ml-4 border-l pl-4 border-[#d1d5db]">
+              <input type="checkbox" checked={isVertical} onChange={e => setIsVertical(e.target.checked)} className="w-4 h-4 text-primary" />
               轉為直式清單
             </label>
           )}
@@ -1198,14 +1198,14 @@ export function BrandFitMatrix({
                 <th className="border border-[#d1d5db] p-2 px-4 text-left">分類</th>
                 <th className="border border-[#d1d5db] p-2 px-4 text-left">元素名稱</th>
                 <th className="border border-[#d1d5db] p-2 px-4 cursor-pointer hover:bg-[#e5e7eb] transition-colors" onClick={() => setSortBy('analyst')}>
-                  分析師順序 {sortBy === 'analyst' && <span className="text-[#2563eb]">↓</span>}
+                  分析師順序 {sortBy === 'analyst' && <span className="text-primary">↓</span>}
                 </th>
                 <th className="border border-[#d1d5db] p-2 px-4 cursor-pointer hover:bg-[#e5e7eb] transition-colors" onClick={() => setSortBy('trend')}>
-                  流行度預測中位數 (+6個月) {sortBy === 'trend' && <span className="text-[#2563eb]">↓</span>}
+                  流行度預測中位數 (+6個月) {sortBy === 'trend' && <span className="text-primary">↓</span>}
                 </th>
                 <th className="border border-[#d1d5db] p-2 px-4 text-center">區間 (+/-)</th>
                 <th className="border border-[#d1d5db] p-2 px-4 cursor-pointer hover:bg-[#e5e7eb] transition-colors" onClick={() => setSortBy('fit')}>
-                  品牌契合度 {sortBy === 'fit' && <span className="text-[#2563eb]">↓</span>}
+                  品牌契合度 {sortBy === 'fit' && <span className="text-primary">↓</span>}
                 </th>
                 <th className="border border-[#d1d5db] p-2 px-4">狀態</th>
               </tr>
@@ -1218,13 +1218,13 @@ export function BrandFitMatrix({
                 return (
                 <tr key={el.id} className="hover:bg-[#f9fafb]">
                   <td className="border border-[#d1d5db] p-2 px-4">{el.category}</td>
-                  <td className="border border-[#d1d5db] p-2 px-4 font-bold text-[#111827]">{el.name}</td>
+                  <td className="border border-[#d1d5db] p-2 px-4 font-bold text-content-main">{el.name}</td>
                   <td className="border border-[#d1d5db] p-2 px-4 text-center text-[#6b7280]">#{el.originalIndex + 1}</td>
-                  <td className="border border-[#d1d5db] p-2 px-4 text-center bg-[#fef3c7] text-[#92400e] font-semibold">{el.trendScore}</td>
+                  <td className="border border-[#d1d5db] p-2 px-4 text-center text-content-main font-bold bg-white">{el.trendScore}</td>
                   <td className="border border-[#d1d5db] p-2 px-4 text-center text-[#6b7280] font-medium">{el.interval && typeof el.trendScore === 'number' ? `+${(el.interval[1] - el.trendScore).toFixed(2)} / -${(el.trendScore - el.interval[0]).toFixed(2)}` : '-'}</td>
-                  <td className="border border-[#d1d5db] p-2 px-4 text-center bg-[#ecfdf5] text-[#059669] font-bold">{el.fitScore}</td>
+                  <td className="border border-[#d1d5db] p-2 px-4 text-center bg-status-good-bg text-status-good-text font-bold">{el.fitScore}</td>
                   <td className="border border-[#d1d5db] p-2 px-4 text-center">
-                    {el.isEliminated ? <span className="text-[#dc2626] font-bold">淘汰</span> : <span className="text-[#059669]">保留</span>}
+                    {el.isEliminated ? <span className="text-status-bad-text font-bold">淘汰</span> : <span className="text-status-good-text">保留</span>}
                   </td>
                 </tr>
               );})}
@@ -1238,9 +1238,9 @@ export function BrandFitMatrix({
                 <th className="border border-[#d1d5db] bg-[#f3f4f6] p-2 text-right text-[#4b5563] text-xs">排序依據</th>
                 <th colSpan={displayElements.length} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-left">
                   <div className="flex gap-2">
-                    <button onClick={() => setSortBy('analyst')} className={`px-2 py-1 rounded text-xs font-semibold ${sortBy === 'analyst' ? 'bg-[#2563eb] text-white' : 'bg-[#e5e7eb] text-[#374151] hover:bg-[#d1d5db]'}`}>分析師順序</button>
-                    <button onClick={() => setSortBy('trend')} className={`px-2 py-1 rounded text-xs font-semibold ${sortBy === 'trend' ? 'bg-[#2563eb] text-white' : 'bg-[#e5e7eb] text-[#374151] hover:bg-[#d1d5db]'}`}>流行度預測中位數</button>
-                    <button onClick={() => setSortBy('fit')} className={`px-2 py-1 rounded text-xs font-semibold ${sortBy === 'fit' ? 'bg-[#2563eb] text-white' : 'bg-[#e5e7eb] text-[#374151] hover:bg-[#d1d5db]'}`}>品牌契合度</button>
+                    <button onClick={() => setSortBy('analyst')} className={`px-2 py-1 rounded text-xs font-semibold ${sortBy === 'analyst' ? 'bg-primary text-white' : 'bg-[#e5e7eb] text-[#374151] hover:bg-[#d1d5db]'}`}>分析師順序</button>
+                    <button onClick={() => setSortBy('trend')} className={`px-2 py-1 rounded text-xs font-semibold ${sortBy === 'trend' ? 'bg-primary text-white' : 'bg-[#e5e7eb] text-[#374151] hover:bg-[#d1d5db]'}`}>流行度預測中位數</button>
+                    <button onClick={() => setSortBy('fit')} className={`px-2 py-1 rounded text-xs font-semibold ${sortBy === 'fit' ? 'bg-primary text-white' : 'bg-[#e5e7eb] text-[#374151] hover:bg-[#d1d5db]'}`}>品牌契合度</button>
                   </div>
                 </th>
                 <th className="border border-[#d1d5db] bg-[#f3f4f6] p-2"></th>
@@ -1272,16 +1272,16 @@ export function BrandFitMatrix({
               <tr>
                 <th colSpan="3" className="border border-[#d1d5db] bg-[#f3f4f6] p-2 text-right">元素名稱</th>
                 {displayElements.map(el => (
-                  <th key={el.id} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center text-[#111827] px-4 min-w-[80px]">
+                  <th key={el.id} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center text-content-main px-4 min-w-[80px]">
                     <div className="flex flex-col items-center justify-center gap-1">
                       <span className="font-bold">{el.name}</span>
                       <div className="flex flex-wrap items-center justify-center gap-1">
                         {el.isTrend && el.isBasic ? (
-                          <span className="text-[10px] bg-purple-100 text-purple-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">熱門+長青</span>
+                          <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">熱門+長青</span>
                         ) : el.isTrend ? (
-                          <span className="text-[10px] bg-blue-100 text-blue-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">AI趨勢</span>
+                          <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">AI趨勢</span>
                         ) : el.isBasic ? (
-                          <span className="text-[10px] bg-green-100 text-green-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
+                          <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
                         ) : null}
                       </div>
                     </div>
@@ -1308,13 +1308,13 @@ export function BrandFitMatrix({
                   return (
                     <th 
                       key={`trend-${el.id}`} 
-                      className="border border-[#d1d5db] bg-[#fef3c7] p-2 text-center cursor-pointer hover:bg-[#fde68a] transition-colors min-w-[100px]"
+                      className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center cursor-pointer hover:bg-[#f3f4f6] transition-colors min-w-[100px]"
                       onDoubleClick={() => handleDoubleClick(el)}
                       title="點擊兩下放大趨勢圖"
                     >
                       <div className="flex flex-col items-center gap-0.5">
-                        <span className="text-[#92400e] font-bold text-sm">{!isNaN(safeTrendScore) ? safeTrendScore.toFixed(1) : 0}</span>
-                        {spreadUp !== null && spreadUp !== "NaN" && <span className="text-[#b45309] text-[11px] font-medium leading-tight mt-1">+{spreadUp}<br/>-{spreadDown}</span>}
+                        <span className="text-content-main font-bold text-sm">{!isNaN(safeTrendScore) ? safeTrendScore.toFixed(1) : 0}</span>
+                        {spreadUp !== null && spreadUp !== "NaN" && <span className="text-[#6b7280] text-[11px] font-medium leading-tight mt-1">+{spreadUp}<br/>-{spreadDown}</span>}
                       </div>
                     </th>
                   );
@@ -1332,8 +1332,8 @@ export function BrandFitMatrix({
                   </>
                 )}
                 {displayElements.map(el => (
-                  <th key={`fit-${el.id}`} className="border border-[#d1d5db] bg-[#ecfdf5] p-2 text-center text-[#059669] font-bold">
-                    {el.isEliminated ? <span className="text-[#dc2626]">淘汰</span> : el.fitScore}
+                  <th key={`fit-${el.id}`} className="border border-[#d1d5db] bg-status-good-bg p-2 text-center text-status-good-text font-bold">
+                    {el.isEliminated ? <span className="text-status-bad-text">淘汰</span> : el.fitScore}
                   </th>
                 ))}
                 <th className="border border-[#d1d5db] bg-[#f3f4f6] p-2 w-20"></th>
@@ -1358,8 +1358,8 @@ export function BrandFitMatrix({
                     {displayElements.map(el => {
                       const state = matrixState[req.id]?.[el.id] || '-';
                       let cellBg = 'bg-white';
-                      if (state === 'X') cellBg = 'bg-[#fee2e2]';
-                      if (state === 'O') cellBg = 'bg-[#fef3c7]';
+                      if (state === 'X') cellBg = 'bg-status-bad-bg text-status-bad-text font-bold';
+                      if (state === 'O') cellBg = 'bg-status-good-bg text-status-good-text font-bold';
 
                       return (
                         <td key={`${req.id}-${el.id}`} className={`border border-[#d1d5db] p-2 text-center ${cellBg} font-medium text-[#374151]`}>
@@ -1405,16 +1405,16 @@ export function BrandFitMatrix({
       {subStep === 1 && (
         <div className="flex border-b border-[#d1d5db] bg-[#f9fafb] px-4 pt-2 shrink-0 overflow-x-auto gap-1 items-center">
           <div className="flex gap-1 flex-1">
-            {canViewTrends && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'trends' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('trends')}>流行元素預測</button>}
-            {canViewRequirements && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'requirements' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('requirements')}>品牌需求與權重</button>}
-            {canViewEvaluation && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'evaluation' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('evaluation')}>部門契合度評估</button>}
-            {canViewSummary && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'summary' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('summary')}>最終決策總表</button>}
+            {canViewTrends && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'trends' ? 'border-primary text-primary' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('trends')}>流行元素預測</button>}
+            {canViewRequirements && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'requirements' ? 'border-primary text-primary' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('requirements')}>品牌需求與權重</button>}
+            {canViewEvaluation && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'evaluation' ? 'border-primary text-primary' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('evaluation')}>部門契合度評估</button>}
+            {canViewSummary && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'summary' ? 'border-primary text-primary' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('summary')}>最終決策總表</button>}
           </div>
           
           <div className="flex items-center gap-4 pb-2 pr-4">
             <button 
               onClick={handleAutoFillDemo}
-              className="bg-red-100 text-red-600 border border-red-300 px-3 py-1 rounded-full text-xs font-bold hover:bg-red-200 transition-colors shadow-sm whitespace-nowrap"
+              className="bg-status-bad-bg text-status-bad-text border border-status-bad-border px-3 py-1 rounded-full text-xs font-bold hover:bg-status-bad-bg transition-colors shadow-sm whitespace-nowrap"
             >
               ⚡ DEMO: 一鍵完成所有簽核
             </button>

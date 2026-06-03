@@ -5,13 +5,10 @@ async function run() {
   const prep = JSON.parse(fs.readFileSync('./public/preprocessor.json'));
   const session = await ort.InferenceSession.create('./public/price_model.onnx');
   
-  const nameTokens = new BigInt64Array(20).fill(1n);
+  const nameTokens = new BigInt64Array(20).fill(0n);
   const nameMask = new Uint8Array(20).fill(1);
-  nameTokens[0] = 0n; nameMask[0] = 0; // Empty
-  
-  const descTokens = new BigInt64Array(100).fill(1n);
+  const descTokens = new BigInt64Array(100).fill(0n);
   const descMask = new Uint8Array(100).fill(1);
-  descTokens[0] = 0n; descMask[0] = 0;
   
   const brandId = new BigInt64Array([BigInt(prep.brands['Nike'] || 0)]);
   const c1Id = new BigInt64Array([BigInt(prep.cat1s['Women'] || 0)]);
@@ -34,6 +31,6 @@ async function run() {
   };
   
   const results = await session.run(feeds);
-  console.log(Math.expm1(results.output.data[0]));
+  console.log("Empty Output:", Math.expm1(results.output.data[0]));
 }
 run();
