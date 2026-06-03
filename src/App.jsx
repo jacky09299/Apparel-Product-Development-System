@@ -88,6 +88,7 @@ function Dashboard({ onStepChange }) {
 function App() {
   const [currentRole, setCurrentRole] = useStickyState(null, 'erp2_currentRole');
   const [currentStep, setCurrentStep] = useStickyState(0, 'erp2_currentStep_v3');
+  const [subStep, setSubStep] = useStickyState(1, 'erp2_subStep'); // 1 = Matrix, 2 = BasicStyle
 
   // Matrix Global State
   const [phase, setPhase] = useStickyState(1, 'erp2_phase');
@@ -101,6 +102,8 @@ function App() {
 
   const [requirements, setRequirements] = useStickyState(initialRequirements, 'erp2_reqs');
   const [elements, setElements] = useStickyState(initialElements, 'erp2_elems');
+  const [basicDecisions, setBasicDecisions] = useStickyState({}, 'erp2_basicDecisions');
+  const [historicalCombos, setHistoricalCombos] = useStickyState([], 'erp2_historicalCombos');
 
   const [matrixState, setMatrixState] = useStickyState(() => {
     const initial = {};
@@ -120,7 +123,10 @@ function App() {
     evalSubmissions, setEvalSubmissions,
     matrixState, setMatrixState,
     requirements, setRequirements,
-    elements, setElements
+    elements, setElements,
+    basicDecisions, setBasicDecisions,
+    historicalCombos, setHistoricalCombos,
+    setSubStep
   };
 
   if (!currentRole) {
@@ -128,7 +134,7 @@ function App() {
       <div className="min-h-screen bg-[#f3f4f6] flex items-center justify-center p-4">
         <div className="bg-white p-8 border border-[#d1d5db] shadow-md w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="text-xl font-bold text-[#111827]">FASHION ERP SYSTEM</h1>
+            <h1 className="text-xl font-bold text-[#111827]">Apparel Product Development System</h1>
             <p className="text-sm text-[#6b7280] mt-1">請選擇您的職位以登入系統</p>
           </div>
           <div className="space-y-3">
@@ -151,7 +157,7 @@ function App() {
   const renderContent = () => {
     switch (currentStep) {
       case 0: return <Dashboard onStepChange={setCurrentStep} />;
-      case 1: return <BrandFitMatrix {...matrixProps} />;
+      case 1: return <BrandFitMatrix {...matrixProps} subStep={subStep} />;
       case 2: return <Step2SetupEvent />;
       case 3: return <Step3Dashboard />;
       case 4: return <Step4Designer />;
@@ -166,7 +172,7 @@ function App() {
       <header className="h-12 bg-[#2563eb] text-white flex items-center px-4 shrink-0 shadow z-10">
         <div className="flex items-center gap-4">
           <span className="font-bold text-sm tracking-wide cursor-pointer" onClick={() => setCurrentStep(0)}>
-            FASHION ERP SYSTEM
+            Apparel Product Development System
           </span>
           <span className="text-xs bg-[#1d4ed8] px-2 py-0.5 rounded">
             生產區 (Production)
@@ -194,6 +200,33 @@ function App() {
               {currentStep === 3 && "最終決定開發計畫"}
               {currentStep > 3 && `步驟 ${currentStep}`}
             </span>
+            
+            {currentStep === 1 && (
+              <div className="flex items-center ml-6 gap-2 bg-[#f3f4f6] p-1 rounded">
+                <button 
+                  onClick={() => setSubStep(1)}
+                  className={`px-3 py-1 text-xs rounded font-bold ${subStep === 1 ? 'bg-white text-[#2563eb] shadow-sm' : 'text-[#6b7280] hover:text-[#374151]'}`}
+                >
+                  品牌契合度評估矩陣
+                </button>
+                {phase >= 3 && (
+                  <button 
+                    onClick={() => setSubStep(2)}
+                    className={`px-3 py-1 text-xs rounded font-bold ${subStep === 2 ? 'bg-white text-[#2563eb] shadow-sm' : 'text-[#6b7280] hover:text-[#374151]'}`}
+                  >
+                    基礎款決策
+                  </button>
+                )}
+                {phase >= 4 && (
+                  <button 
+                    onClick={() => setSubStep(3)}
+                    className={`px-3 py-1 text-xs rounded font-bold ${subStep === 3 ? 'bg-white text-[#2563eb] shadow-sm' : 'text-[#6b7280] hover:text-[#374151]'}`}
+                  >
+                    流行款決策
+                  </button>
+                )}
+              </div>
+            )}
           </>
         )}
         
@@ -209,13 +242,15 @@ function App() {
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 overflow-y-auto bg-[#f3f4f6]">
+      <div className="flex-1 min-h-0 bg-[#f3f4f6] flex flex-col">
         {currentStep !== 0 ? (
-          <div className="p-4 h-full">
+          <div className="p-4 flex-1 min-h-0 flex flex-col">
             {renderContent()}
           </div>
         ) : (
-          renderContent()
+          <div className="flex-1 overflow-y-auto">
+            {renderContent()}
+          </div>
         )}
       </div>
     </div>

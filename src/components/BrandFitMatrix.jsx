@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { BasicStyleDecision } from './BasicStyleDecision';
+import { TrendyStyleDecision } from './TrendyStyleDecision';
 
 const CATEGORY_ORDER = ['品項', '主色', '面料', '圖騰印花', '細節設計'];
 
@@ -243,7 +245,11 @@ export function BrandFitMatrix({
   evalSubmissions, setEvalSubmissions,
   matrixState, setMatrixState,
   requirements, setRequirements,
-  elements, setElements
+  elements, setElements,
+  basicDecisions, setBasicDecisions,
+  historicalCombos, setHistoricalCombos,
+  setSubStep,
+  subStep
 }) {
   const [activeTab, setActiveTab] = useState('trends');
   const [newReq, setNewReq] = useState({ name: '', weight: 1, role: '設計師' });
@@ -258,6 +264,195 @@ export function BrandFitMatrix({
   
   const [overlayMode, setOverlayMode] = useState(false);
   const [overlayElements, setOverlayElements] = useState([]);
+
+  useEffect(() => {
+    if (historicalCombos.length === 0) {
+      fetch(import.meta.env.BASE_URL + 'db.json')
+        .then(res => res.json())
+        .then(dbData => {
+          if (dbData.historical_stable_combinations) {
+            setHistoricalCombos(dbData.historical_stable_combinations);
+          }
+        })
+        .catch(err => console.error('Failed to load historical combos:', err));
+    }
+  }, [historicalCombos.length]);
+
+  const handleAutoFillDemo = () => {
+    fetch(import.meta.env.BASE_URL + 'db.json')
+      .then(res => res.json())
+      .then(dbData => {
+        const aiData = dbData.ai_trend_elements || [];
+        const combos = dbData.historical_stable_combinations || [];
+        setHistoricalCombos(combos);
+        
+        const sorted = aiData.sort((a, b) => b.score - a.score);
+        // Extract unique elements from historical combos
+        const basicElementsMap = new Map();
+        combos.forEach(combo => {
+          combo.elements.forEach(el => {
+            if (!basicElementsMap.has(el.name)) {
+              basicElementsMap.set(el.name, {
+                id: el.id,
+                category: el.category,
+                name: el.name,
+                isBasic: true
+              });
+            }
+          });
+        });
+
+        const top30 = sorted.slice(0, 30).map(item => ({
+          id: item.id,
+          category: item.category,
+          name: item.name,
+          trendScore: item.score,
+          interval: item.interval,
+          timeline: item.timeline || [],
+          isTrend: true
+        }));
+        
+        // Merge AI elements and basic elements
+        const mergedMap = new Map();
+        
+        // First add basic elements
+        Array.from(basicElementsMap.values()).forEach(el => {
+          mergedMap.set(el.name, el);
+        });
+        
+        // Then add AI elements (merging tags if overlap)
+        top30.forEach(el => {
+          if (mergedMap.has(el.name)) {
+            const existing = mergedMap.get(el.name);
+            existing.isTrend = true;
+            existing.trendScore = el.trendScore;
+            existing.interval = el.interval;
+            existing.timeline = el.timeline;
+          } else {
+            mergedMap.set(el.name, el);
+          }
+        });
+        
+        const mergedArray = Array.from(mergedMap.values());
+        
+        // Define category order
+        const CATEGORY_ORDER = ['品項', '主色', '配色', '面料', '圖騰印花', '細節設計'];
+        
+        // Sort by category first, then by score (basics without score go to bottom of category)
+        mergedArray.sort((a, b) => {
+          const idxA = CATEGORY_ORDER.indexOf(a.category);
+          const idxB = CATEGORY_ORDER.indexOf(b.category);
+          if (idxA !== idxB) {
+            return (idxA !== -1 ? idxA : 99) - (idxB !== -1 ? idxB : 99);
+          }
+          return (b.trendScore || 0) - (a.trendScore || 0);
+        });
+
+        const finalElements = mergedArray.map(item => ({
+          ...item,
+          id: item.id || `el-${Math.random()}`
+        }));
+        
+        setElements(finalElements);
+        setCheckedElements(new Set(finalElements.map(e => e.id)));
+        const mockRequirements = [
+          { id: 'req-1', role: '設計師', name: '符合復古色調', weight: 5 },
+          { id: 'req-2', role: '設計師', name: '具備懷舊印花或紋理', weight: 4 },
+          { id: 'req-3', role: '設計師', name: '具備復古五金或立體細節', weight: 4 },
+          { id: 'req-4', role: '設計師', name: '具備秋冬保暖性', weight: 5 },
+          { id: 'req-5', role: '設計師', name: '適合多層次穿搭', weight: 3 },
+          { id: 'req-6', role: '採購', name: '布料取得容易', weight: 4 },
+          { id: 'req-7', role: '採購', name: '五金/配件成本合理', weight: 3 },
+          { id: 'req-8', role: '數據分析師', name: '近三年秋冬未曾大量使用', weight: 3 }
+        ];
+        
+        setRequirements(mockRequirements);
+        
+        const newState = {};
+        mockRequirements.forEach(req => {
+          newState[req.id] = {};
+          finalElements.forEach(el => {
+            let val = '-';
+            const name = el.name;
+            const cat = el.category;
+            
+            if (req.id === 'req-1') { 
+              if (cat === '主色' || cat === '配色') {
+                if (['焦糖棕', '酒紅', '墨綠', '芥末黃', '櫻桃紅', '大地色'].some(k => name.includes(k))) val = 'O';
+                else if (['螢光綠', '亮粉紅', '金屬', '霓虹'].some(k => name.includes(k))) val = 'X';
+                else val = '-';
+              } else val = '-';
+            }
+            else if (req.id === 'req-2') { 
+              if (cat === '圖騰印花') {
+                if (['復古格紋', '千鳥格', '變形蟲', '波卡圓點'].some(k => name.includes(k))) val = 'O';
+                else if (['大面積文字Logo', '賽博龐克', '3D漸層', '渲染/紮染'].some(k => name.includes(k))) val = 'X';
+                else val = '-';
+              } else val = '-';
+            }
+            else if (req.id === 'req-3') { 
+              if (cat === '細節設計') {
+                if (['工裝大口袋', '古銅五金', '燈芯絨拼接', '抽繩抓皺'].some(k => name.includes(k))) val = 'O';
+                else if (['無縫膠條', '反光條', '螢光拉鍊', '鏤空剪裁', '金屬拉鍊外露'].some(k => name.includes(k))) val = 'X';
+                else val = '-';
+              } else val = '-';
+            }
+            else if (req.id === 'req-4') { 
+              if (cat === '面料') {
+                if (['羊毛', '粗花呢', '絲絨', '重磅丹寧'].some(k => name.includes(k))) val = 'O';
+                else if (['透明薄紗', '高透氣亞麻', '冰絲'].some(k => name.includes(k))) val = 'X';
+                else val = '-';
+              }
+              else if (cat === '品項') {
+                if (['大衣', '毛衣', '長褲', '高領', '針織'].some(k => name.includes(k))) val = 'O';
+                else if (['細肩帶', '超短褲', '平口', '短袖', '背心'].some(k => name.includes(k))) val = 'X';
+                else val = '-';
+              }
+              else val = '-';
+            }
+            else if (req.id === 'req-5') { 
+              if (cat === '品項') {
+                if (['背心', '針織衫', '襯衫', '開襟衫', '大衣'].some(k => name.includes(k))) val = 'O';
+                else if (['連身裙', '緊身洋裝'].some(k => name.includes(k))) val = 'X';
+                else val = '-';
+              } else val = '-';
+            }
+            else if (req.id === 'req-6') { 
+              if (cat === '面料') {
+                if (['環保再生棉', '聚酯纖維', '丹寧'].some(k => name.includes(k))) val = 'O';
+                else if (['真絲', '訂製緹花', '特殊毛料'].some(k => name.includes(k))) val = 'X';
+                else val = '-';
+              } else val = 'O'; 
+            }
+            else if (req.id === 'req-7') { 
+              if (cat === '細節設計') {
+                if (['手工刺繡', '水鑽', '珍珠鑲嵌'].some(k => name.includes(k))) val = 'X';
+                else if (['特殊金屬扣', '皮革'].some(k => name.includes(k))) val = '-';
+                else val = 'O';
+              } else val = 'O'; 
+            }
+            else if (req.id === 'req-8') { 
+              if (['黑', '白', '標準T-shirt', '素色簡約', '環保再生棉'].some(k => name === k)) val = 'X';
+              else val = 'O';
+            }
+            
+            newState[req.id][el.id] = val;
+          });
+        });
+        setMatrixState(newState);
+
+        setTrendAnalystSubmitted(true);
+        setPlannerSubmitted(true);
+        setEvalSubmissions({
+          '設計師': true,
+          '數據分析師': true,
+          '採購': true
+        });
+        setPhase(3);
+        setActiveTab('summary');
+      });
+  };
+
 
   const [draggableRowIdx, setDraggableRowIdx] = useState(null);
 
@@ -280,9 +475,10 @@ export function BrandFitMatrix({
   };
   const [sortBy, setSortBy] = useState('analyst'); 
 
+
   useEffect(() => {
     if (!aiLoaded) {
-      fetch('/ai_predictions.json')
+      fetch(import.meta.env.BASE_URL + 'ai_predictions.json')
         .then(res => res.json())
         .then(data => {
           const sorted = data.sort((a, b) => b.score - a.score);
@@ -540,7 +736,7 @@ export function BrandFitMatrix({
           <div className="flex justify-between items-end mb-4">
             <div>
               <h3 className="font-bold text-[#111827]">
-                步驟 1.1：AI 流行元素預測系統匯入 {isReadOnly && <span className="text-[#dc2626]">(預覽模式)</span>}
+                AI 流行元素預測系統匯入 {isReadOnly && <span className="text-[#dc2626]">(預覽模式)</span>}
               </h3>
               <p className="text-[#6b7280] text-xs mt-1">
                 {isReadOnly 
@@ -725,7 +921,7 @@ export function BrandFitMatrix({
       const isReadOnly = currentRole !== '商品企劃' || phase > 1 || plannerSubmitted;
       return (
         <div className="p-4 overflow-x-auto">
-          <h3 className="font-bold text-[#111827] mb-4">步驟 1.1：建立品牌需求與權重</h3>
+          <h3 className="font-bold text-[#111827] mb-4">建立品牌需求與權重</h3>
           <table className="border-collapse border border-[#d1d5db] mb-4 text-sm w-max">
             <thead>
               <tr className="bg-[#f3f4f6]">
@@ -824,9 +1020,7 @@ export function BrandFitMatrix({
 
     return (
       <div className="p-4 overflow-x-auto">
-        <div className="mb-4 text-[#4b5563] text-sm bg-yellow-50 border border-yellow-200 p-3 rounded w-max">
-          <strong className="text-yellow-700">注意：</strong> 為了避免影響判斷，您目前只能看到屬於「{currentRole}」的評估項目，且**權重已被隱藏**。
-        </div>
+
         <table className="border-collapse border border-[#d1d5db] text-sm w-max">
           <thead>
             <tr>
@@ -841,8 +1035,19 @@ export function BrandFitMatrix({
             <tr>
               <th className="border border-[#d1d5db] bg-[#f3f4f6] p-2 text-left px-4">品牌需求條件</th>
               {elements.map(el => (
-                <th key={el.id} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center font-bold text-[#111827] px-4">
-                  {el.name}
+                <th key={el.id} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center text-[#111827] px-4">
+                  <div className="flex flex-col items-center justify-center gap-1">
+                    <span className="font-bold">{el.name}</span>
+                    <div className="flex flex-wrap items-center justify-center gap-1">
+                      {el.isTrend && el.isBasic ? (
+                        <span className="text-[10px] bg-purple-100 text-purple-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">熱門+長青</span>
+                      ) : el.isTrend ? (
+                        <span className="text-[10px] bg-blue-100 text-blue-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">AI趨勢</span>
+                      ) : el.isBasic ? (
+                        <span className="text-[10px] bg-green-100 text-green-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
+                      ) : null}
+                    </div>
+                  </div>
                 </th>
               ))}
               <th className="border border-[#d1d5db] bg-[#f3f4f6] p-2 text-center px-4">負責職位</th>
@@ -1051,8 +1256,19 @@ export function BrandFitMatrix({
               <tr>
                 <th colSpan="3" className="border border-[#d1d5db] bg-[#f3f4f6] p-2 text-right">元素名稱</th>
                 {displayElements.map(el => (
-                  <th key={el.id} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center font-bold text-[#111827] px-4 min-w-[80px]">
-                    {el.name}
+                  <th key={el.id} className="border border-[#d1d5db] bg-[#f9fafb] p-2 text-center text-[#111827] px-4 min-w-[80px]">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="font-bold">{el.name}</span>
+                      <div className="flex flex-wrap items-center justify-center gap-1">
+                        {el.isTrend && el.isBasic ? (
+                          <span className="text-[10px] bg-purple-100 text-purple-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">熱門+長青</span>
+                        ) : el.isTrend ? (
+                          <span className="text-[10px] bg-blue-100 text-blue-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">AI趨勢</span>
+                        ) : el.isBasic ? (
+                          <span className="text-[10px] bg-green-100 text-green-700 px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
+                        ) : null}
+                      </div>
+                    </div>
                   </th>
                 ))}
                 <th className="border border-[#d1d5db] bg-[#f3f4f6] p-2 text-center px-4">負責職位</th>
@@ -1142,6 +1358,7 @@ export function BrandFitMatrix({
   const canViewTrends = currentRole === '趨勢分析師' || currentRole === '設計師' || currentRole === '高階主管' || (currentRole === '商品企劃' && plannerSubmitted) || phase > 1;
   const canViewRequirements = currentRole === '商品企劃';
   const canViewEvaluation = phase >= 2;
+
   const canViewSummary = phase === 3;
 
   useEffect(() => {
@@ -1158,31 +1375,60 @@ export function BrandFitMatrix({
 
   return (
     <div className="bg-white border border-[#d1d5db] shadow-sm flex flex-col relative h-full">
-      <div className="p-4 border-b border-[#d1d5db] bg-[#f9fafb] flex justify-between items-center shrink-0">
-        <div>
-          <h2 className="text-lg font-bold text-[#111827]">品牌契合度評估矩陣 (Step 1)</h2>
-          <p className="text-[#6b7280] mt-1 text-xs">依據權限與目前階段，顯示不同表單與視圖。</p>
+      {subStep === 1 && (
+        <div className="flex border-b border-[#d1d5db] bg-[#f9fafb] px-4 pt-2 shrink-0 overflow-x-auto gap-1 items-center">
+          <div className="flex gap-1 flex-1">
+            {canViewTrends && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'trends' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('trends')}>流行元素預測</button>}
+            {canViewRequirements && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'requirements' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('requirements')}>品牌需求與權重</button>}
+            {canViewEvaluation && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'evaluation' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('evaluation')}>部門契合度評估</button>}
+            {canViewSummary && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'summary' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('summary')}>最終決策總表</button>}
+          </div>
+          
+          <div className="flex items-center gap-4 pb-2 pr-4">
+            <button 
+              onClick={handleAutoFillDemo}
+              className="bg-red-100 text-red-600 border border-red-300 px-3 py-1 rounded-full text-xs font-bold hover:bg-red-200 transition-colors shadow-sm whitespace-nowrap"
+            >
+              ⚡ DEMO: 一鍵完成所有簽核
+            </button>
+            <span className="bg-[#e5e7eb] text-[#374151] px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">
+              進度: 階段 {phase}/3
+            </span>
+          </div>
         </div>
-        <div>
-          <span className="bg-[#e5e7eb] text-[#374151] px-3 py-1 rounded-full text-xs font-semibold">
-            目前流程進度: 階段 {phase}/3
-          </span>
+      )}
+
+      {subStep === 1 && (
+        <div className="flex-1 overflow-y-auto">
+          {activeTab === 'trends' && renderTrends()}
+          {activeTab === 'requirements' && renderRequirements()}
+          {activeTab === 'evaluation' && renderEvaluation()}
+          {activeTab === 'summary' && renderSummary()}
         </div>
-      </div>
+      )}
 
-      <div className="flex border-b border-[#d1d5db] bg-[#f9fafb] px-4 pt-2 shrink-0 overflow-x-auto gap-1">
-        {canViewTrends && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'trends' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('trends')}>流行元素預測</button>}
-        {canViewRequirements && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'requirements' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('requirements')}>品牌需求與權重</button>}
-        {canViewEvaluation && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'evaluation' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('evaluation')}>部門契合度評估</button>}
-        {canViewSummary && <button className={`px-4 py-2 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'summary' ? 'border-[#2563eb] text-[#2563eb]' : 'border-transparent text-[#6b7280] hover:text-[#374151]'}`} onClick={() => setActiveTab('summary')}>最終決策總表</button>}
-      </div>
-      <div className="flex-1 overflow-y-auto">
-        {activeTab === 'trends' && renderTrends()}
-        {activeTab === 'requirements' && renderRequirements()}
-        {activeTab === 'evaluation' && renderEvaluation()}
-        {activeTab === 'summary' && renderSummary()}
-      </div>
+      {subStep === 2 && (
+        <div className="flex-1 p-4 min-h-0 flex flex-col bg-[#f3f4f6]">
+          <BasicStyleDecision 
+            elements={elements} 
+            matrixState={matrixState} 
+            requirements={requirements} 
+            historicalCombos={historicalCombos} 
+            basicDecisions={basicDecisions} 
+            setBasicDecisions={setBasicDecisions} 
+            onSubmit={() => {
+              if (phase < 4) setPhase(4);
+              setSubStep(3);
+            }}
+          />
+        </div>
+      )}
 
+      {subStep === 3 && (
+        <div className="flex-1 p-4 min-h-0 flex flex-col bg-[#f3f4f6]">
+          <TrendyStyleDecision />
+        </div>
+      )}
     </div>
   );
 }
