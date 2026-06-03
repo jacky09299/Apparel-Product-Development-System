@@ -57869,128 +57869,251 @@
         32,
         30
       ]
+    },
+    {
+      "name": "Oversize",
+      "category": "版型",
+      "trendScore": 9.5,
+      "interval": {
+        "median": 15,
+        "lower": 12,
+        "upper": 20
+      },
+      "timeline": [],
+      "score": 15.882285963381127
+    },
+    {
+      "name": "修身",
+      "category": "版型",
+      "trendScore": 7.2,
+      "interval": {
+        "median": 10,
+        "lower": 8,
+        "upper": 15
+      },
+      "timeline": [],
+      "score": 16.33935465851446
+    },
+    {
+      "name": "短版",
+      "category": "版型",
+      "trendScore": 8.8,
+      "interval": {
+        "median": 13,
+        "lower": 10,
+        "upper": 18
+      },
+      "timeline": [],
+      "score": 17.278632396057688
+    },
+    {
+      "name": "Y2K",
+      "category": "風格",
+      "trendScore": 9.8,
+      "interval": {
+        "median": 16,
+        "lower": 13,
+        "upper": 22
+      },
+      "timeline": [],
+      "score": 17.37569492288292
+    },
+    {
+      "name": "極簡",
+      "category": "風格",
+      "trendScore": 8.5,
+      "interval": {
+        "median": 12,
+        "lower": 10,
+        "upper": 16
+      },
+      "timeline": [],
+      "score": 17.825077405925555
+    },
+    {
+      "name": "復古",
+      "category": "風格",
+      "trendScore": 9,
+      "interval": {
+        "median": 14,
+        "lower": 11,
+        "upper": 19
+      },
+      "timeline": [],
+      "score": 16.226754542937734
     }
   ],
   "historical_stable_combinations": [
     {
       "id": "hc-1",
-      "name": "極簡白丹寧夾克",
+      "name": "甜美風焦糖棕抓皺短版西裝外套",
       "elements": [
         {
           "id": "b-item-1",
           "category": "品項",
-          "name": "丹寧夾克"
+          "name": "西裝外套"
         },
         {
           "id": "b-color-1",
           "category": "主色",
-          "name": "白"
+          "name": "焦糖棕"
         },
         {
-          "id": "b-fabric-1",
+          "id": "b-pal-1",
+          "category": "配色",
+          "name": "撞色"
+        },
+        {
+          "id": "b-fab-1",
           "category": "面料",
-          "name": "法蘭絨"
+          "name": "尼龍"
         },
         {
-          "id": "b-pattern-1",
+          "id": "b-pat-1",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "幾何"
         },
         {
-          "id": "b-detail-1",
+          "id": "b-det-1",
           "category": "細節設計",
-          "name": "翻領"
+          "name": "抓皺"
+        },
+        {
+          "id": "b-fit-1",
+          "category": "版型",
+          "name": "短版"
+        },
+        {
+          "id": "b-sty-1",
+          "category": "風格",
+          "name": "甜美"
         }
       ],
-      "estCost": 410,
-      "estPrice": 554,
-      "estSales": 2808,
-      "estRoi": 1.61,
-      "estFixedCost": 75653,
-      "estVariableCost": 185
+      "trendScore": "7.6",
+      "roiScore": "9.0",
+      "fitScore": "9.6",
+      "competitorScore": "7.6",
+      "salesVolume": 6096,
+      "estPrice": 1595,
+      "estFixedCost": 11892,
+      "estVariableCost": 464
     },
     {
       "id": "hc-2",
-      "name": "極簡黑西裝外套",
+      "name": "街頭風霧霾藍流蘇高腰長褲",
       "elements": [
         {
           "id": "b-item-2",
           "category": "品項",
-          "name": "西裝外套"
+          "name": "長褲"
         },
         {
           "id": "b-color-2",
           "category": "主色",
-          "name": "黑"
+          "name": "霧霾藍"
         },
         {
-          "id": "b-fabric-2",
+          "id": "b-pal-2",
+          "category": "配色",
+          "name": "撞色"
+        },
+        {
+          "id": "b-fab-2",
           "category": "面料",
-          "name": "絲絨"
+          "name": "尼龍"
         },
         {
-          "id": "b-pattern-2",
+          "id": "b-pat-2",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "無印花"
         },
         {
-          "id": "b-detail-2",
+          "id": "b-det-2",
           "category": "細節設計",
-          "name": "抽繩"
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-2",
+          "category": "版型",
+          "name": "高腰"
+        },
+        {
+          "id": "b-sty-2",
+          "category": "風格",
+          "name": "街頭"
         }
       ],
-      "estCost": 243,
-      "estPrice": 771,
-      "estSales": 3686,
-      "estRoi": 2.78,
-      "estFixedCost": 39757,
-      "estVariableCost": 193
+      "trendScore": "5.3",
+      "roiScore": "7.9",
+      "fitScore": "8.2",
+      "competitorScore": "6.6",
+      "salesVolume": 9273,
+      "estPrice": 2539,
+      "estFixedCost": 13565,
+      "estVariableCost": 433
     },
     {
       "id": "hc-3",
-      "name": "經典軍綠標準T-shirt",
+      "name": "休閒風橄欖綠鏤空落地背心",
       "elements": [
         {
           "id": "b-item-3",
           "category": "品項",
-          "name": "標準T-shirt"
+          "name": "背心"
         },
         {
           "id": "b-color-3",
           "category": "主色",
-          "name": "軍綠"
+          "name": "橄欖綠"
         },
         {
-          "id": "b-fabric-3",
+          "id": "b-pal-3",
+          "category": "配色",
+          "name": "同色系"
+        },
+        {
+          "id": "b-fab-3",
           "category": "面料",
           "name": "聚酯纖維"
         },
         {
-          "id": "b-pattern-3",
+          "id": "b-pat-3",
           "category": "圖騰印花",
-          "name": "格紋"
+          "name": "字母"
         },
         {
-          "id": "b-detail-3",
+          "id": "b-det-3",
           "category": "細節設計",
-          "name": "抽繩"
+          "name": "鏤空"
+        },
+        {
+          "id": "b-fit-3",
+          "category": "版型",
+          "name": "落地"
+        },
+        {
+          "id": "b-sty-3",
+          "category": "風格",
+          "name": "休閒"
         }
       ],
-      "estCost": 416,
-      "estPrice": 461,
-      "estSales": 761,
-      "estRoi": 0.52,
-      "estFixedCost": 55539,
-      "estVariableCost": 231
+      "trendScore": "5.7",
+      "roiScore": "8.4",
+      "fitScore": "7.2",
+      "competitorScore": "4.5",
+      "salesVolume": 5154,
+      "estPrice": 1180,
+      "estFixedCost": 32061,
+      "estVariableCost": 189
     },
     {
       "id": "hc-4",
-      "name": "極簡白襯衫",
+      "name": "極簡風白流蘇落地洋裝",
       "elements": [
         {
           "id": "b-item-4",
           "category": "品項",
-          "name": "襯衫"
+          "name": "洋裝"
         },
         {
           "id": "b-color-4",
@@ -57998,73 +58121,107 @@
           "name": "白"
         },
         {
-          "id": "b-fabric-4",
+          "id": "b-pal-4",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-4",
           "category": "面料",
-          "name": "羊毛"
+          "name": "牛仔"
         },
         {
-          "id": "b-pattern-4",
+          "id": "b-pat-4",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "字母"
         },
         {
-          "id": "b-detail-4",
+          "id": "b-det-4",
           "category": "細節設計",
-          "name": "雙排扣"
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-4",
+          "category": "版型",
+          "name": "落地"
+        },
+        {
+          "id": "b-sty-4",
+          "category": "風格",
+          "name": "極簡"
         }
       ],
-      "estCost": 359,
-      "estPrice": 685,
-      "estSales": 3867,
-      "estRoi": 0.94,
-      "estFixedCost": 38923,
-      "estVariableCost": 343
+      "trendScore": "5.2",
+      "roiScore": "8.5",
+      "fitScore": "9.3",
+      "competitorScore": "5.3",
+      "salesVolume": 6766,
+      "estPrice": 512,
+      "estFixedCost": 44202,
+      "estVariableCost": 397
     },
     {
       "id": "hc-5",
-      "name": "極簡黑開襟衫",
+      "name": "甜美風霧霾藍抓皺短版T恤",
       "elements": [
         {
           "id": "b-item-5",
           "category": "品項",
-          "name": "開襟衫"
+          "name": "T恤"
         },
         {
           "id": "b-color-5",
           "category": "主色",
-          "name": "黑"
+          "name": "霧霾藍"
         },
         {
-          "id": "b-fabric-5",
+          "id": "b-pal-5",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-5",
           "category": "面料",
-          "name": "一般單寧"
+          "name": "燈芯絨"
         },
         {
-          "id": "b-pattern-5",
+          "id": "b-pat-5",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "幾何"
         },
         {
-          "id": "b-detail-5",
+          "id": "b-det-5",
           "category": "細節設計",
-          "name": "工裝大口袋"
+          "name": "抓皺"
+        },
+        {
+          "id": "b-fit-5",
+          "category": "版型",
+          "name": "短版"
+        },
+        {
+          "id": "b-sty-5",
+          "category": "風格",
+          "name": "甜美"
         }
       ],
-      "estCost": 443,
-      "estPrice": 1643,
-      "estSales": 3150,
-      "estRoi": 2.86,
-      "estFixedCost": 46520,
-      "estVariableCost": 411
+      "trendScore": "5.6",
+      "roiScore": "8.0",
+      "fitScore": "8.4",
+      "competitorScore": "6.1",
+      "salesVolume": 8642,
+      "estPrice": 2753,
+      "estFixedCost": 21679,
+      "estVariableCost": 375
     },
     {
       "id": "hc-6",
-      "name": "經典卡其標準T-shirt",
+      "name": "波西米亞風卡其排扣高腰T恤",
       "elements": [
         {
           "id": "b-item-6",
           "category": "品項",
-          "name": "標準T-shirt"
+          "name": "T恤"
         },
         {
           "id": "b-color-6",
@@ -58072,100 +58229,161 @@
           "name": "卡其"
         },
         {
-          "id": "b-fabric-6",
-          "category": "面料",
-          "name": "一般單寧"
+          "id": "b-pal-6",
+          "category": "配色",
+          "name": "雙色拼接"
         },
         {
-          "id": "b-detail-6",
+          "id": "b-fab-6",
+          "category": "面料",
+          "name": "牛仔"
+        },
+        {
+          "id": "b-pat-6",
+          "category": "圖騰印花",
+          "name": "格紋"
+        },
+        {
+          "id": "b-det-6",
           "category": "細節設計",
-          "name": "抽繩"
+          "name": "排扣"
+        },
+        {
+          "id": "b-fit-6",
+          "category": "版型",
+          "name": "高腰"
+        },
+        {
+          "id": "b-sty-6",
+          "category": "風格",
+          "name": "波西米亞"
         }
       ],
-      "estCost": 439,
-      "estPrice": 857,
-      "estSales": 709,
-      "estRoi": 0.66,
-      "estFixedCost": 61364,
-      "estVariableCost": 429
+      "trendScore": "5.7",
+      "roiScore": "7.7",
+      "fitScore": "8.6",
+      "competitorScore": "6.9",
+      "salesVolume": 1089,
+      "estPrice": 999,
+      "estFixedCost": 47052,
+      "estVariableCost": 317
     },
     {
       "id": "hc-7",
-      "name": "復古焦糖棕襯衫",
+      "name": "波西米亞風櫻花粉寬鬆短裙",
       "elements": [
         {
           "id": "b-item-7",
           "category": "品項",
-          "name": "襯衫"
+          "name": "短裙"
         },
         {
           "id": "b-color-7",
           "category": "主色",
-          "name": "焦糖棕"
+          "name": "櫻花粉"
         },
         {
-          "id": "b-fabric-7",
+          "id": "b-pal-7",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-7",
           "category": "面料",
-          "name": "聚酯纖維"
+          "name": "尼龍"
         },
         {
-          "id": "b-pattern-7",
+          "id": "b-pat-7",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "格紋"
         },
         {
-          "id": "b-detail-7",
+          "id": "b-det-7",
           "category": "細節設計",
-          "name": "工裝大口袋"
+          "name": "無特殊細節"
+        },
+        {
+          "id": "b-fit-7",
+          "category": "版型",
+          "name": "寬鬆"
+        },
+        {
+          "id": "b-sty-7",
+          "category": "風格",
+          "name": "波西米亞"
         }
       ],
-      "estCost": 388,
-      "estPrice": 1256,
-      "estSales": 2035,
-      "estRoi": 1.77,
-      "estFixedCost": 69791,
-      "estVariableCost": 419
+      "trendScore": "5.9",
+      "roiScore": "6.3",
+      "fitScore": "9.6",
+      "competitorScore": "7.8",
+      "salesVolume": 5802,
+      "estPrice": 1395,
+      "estFixedCost": 46485,
+      "estVariableCost": 197
     },
     {
       "id": "hc-8",
-      "name": "經典海軍藍丹寧夾克",
+      "name": "復古風黑抓皺緊身飛行外套",
       "elements": [
         {
           "id": "b-item-8",
           "category": "品項",
-          "name": "丹寧夾克"
+          "name": "飛行外套"
         },
         {
           "id": "b-color-8",
           "category": "主色",
-          "name": "海軍藍"
+          "name": "黑"
         },
         {
-          "id": "b-fabric-8",
+          "id": "b-pal-8",
+          "category": "配色",
+          "name": "雙色拼接"
+        },
+        {
+          "id": "b-fab-8",
           "category": "面料",
-          "name": "一般單寧"
+          "name": "針織"
         },
         {
-          "id": "b-pattern-8",
+          "id": "b-pat-8",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "豹紋"
+        },
+        {
+          "id": "b-det-8",
+          "category": "細節設計",
+          "name": "抓皺"
+        },
+        {
+          "id": "b-fit-8",
+          "category": "版型",
+          "name": "緊身"
+        },
+        {
+          "id": "b-sty-8",
+          "category": "風格",
+          "name": "復古"
         }
       ],
-      "estCost": 271,
-      "estPrice": 787,
-      "estSales": 632,
-      "estRoi": 1.61,
-      "estFixedCost": 66390,
-      "estVariableCost": 197
+      "trendScore": "7.1",
+      "roiScore": "6.1",
+      "fitScore": "8.6",
+      "competitorScore": "4.2",
+      "salesVolume": 2264,
+      "estPrice": 2840,
+      "estFixedCost": 46184,
+      "estVariableCost": 449
     },
     {
       "id": "hc-9",
-      "name": "復古焦糖棕毛衣",
+      "name": "復古風焦糖棕綁帶直筒背心",
       "elements": [
         {
           "id": "b-item-9",
           "category": "品項",
-          "name": "毛衣"
+          "name": "背心"
         },
         {
           "id": "b-color-9",
@@ -58173,122 +58391,215 @@
           "name": "焦糖棕"
         },
         {
-          "id": "b-fabric-9",
-          "category": "面料",
-          "name": "燈芯絨"
+          "id": "b-pal-9",
+          "category": "配色",
+          "name": "素色"
         },
         {
-          "id": "b-pattern-9",
+          "id": "b-fab-9",
+          "category": "面料",
+          "name": "蕾絲"
+        },
+        {
+          "id": "b-pat-9",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "無印花"
+        },
+        {
+          "id": "b-det-9",
+          "category": "細節設計",
+          "name": "綁帶"
+        },
+        {
+          "id": "b-fit-9",
+          "category": "版型",
+          "name": "直筒"
+        },
+        {
+          "id": "b-sty-9",
+          "category": "風格",
+          "name": "復古"
         }
       ],
-      "estCost": 179,
-      "estPrice": 1307,
-      "estSales": 2207,
-      "estRoi": 2.64,
-      "estFixedCost": 71626,
-      "estVariableCost": 327
+      "trendScore": "8.7",
+      "roiScore": "6.2",
+      "fitScore": "8.1",
+      "competitorScore": "7.6",
+      "salesVolume": 6404,
+      "estPrice": 2520,
+      "estFixedCost": 12377,
+      "estVariableCost": 464
     },
     {
       "id": "hc-10",
-      "name": "極簡灰丹寧夾克",
+      "name": "工裝風米色排扣高腰外套",
       "elements": [
         {
           "id": "b-item-10",
           "category": "品項",
-          "name": "丹寧夾克"
+          "name": "外套"
         },
         {
           "id": "b-color-10",
           "category": "主色",
-          "name": "灰"
+          "name": "米色"
         },
         {
-          "id": "b-fabric-10",
+          "id": "b-pal-10",
+          "category": "配色",
+          "name": "素色"
+        },
+        {
+          "id": "b-fab-10",
           "category": "面料",
-          "name": "聚酯纖維"
+          "name": "絲綢"
         },
         {
-          "id": "b-pattern-10",
+          "id": "b-pat-10",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "波點"
+        },
+        {
+          "id": "b-det-10",
+          "category": "細節設計",
+          "name": "排扣"
+        },
+        {
+          "id": "b-fit-10",
+          "category": "版型",
+          "name": "高腰"
+        },
+        {
+          "id": "b-sty-10",
+          "category": "風格",
+          "name": "工裝"
         }
       ],
-      "estCost": 265,
-      "estPrice": 1310,
-      "estSales": 1986,
-      "estRoi": 1.83,
-      "estFixedCost": 51434,
-      "estVariableCost": 437
+      "trendScore": "6.1",
+      "roiScore": "7.6",
+      "fitScore": "9.2",
+      "competitorScore": "5.3",
+      "salesVolume": 9213,
+      "estPrice": 2946,
+      "estFixedCost": 14274,
+      "estVariableCost": 215
     },
     {
       "id": "hc-11",
-      "name": "經典海軍藍西裝外套",
+      "name": "復古風橄欖綠綁帶緊身T恤",
       "elements": [
         {
           "id": "b-item-11",
           "category": "品項",
-          "name": "西裝外套"
+          "name": "T恤"
         },
         {
           "id": "b-color-11",
           "category": "主色",
-          "name": "海軍藍"
+          "name": "橄欖綠"
         },
         {
-          "id": "b-fabric-11",
+          "id": "b-pal-11",
+          "category": "配色",
+          "name": "雙色拼接"
+        },
+        {
+          "id": "b-fab-11",
           "category": "面料",
-          "name": "燈芯絨"
+          "name": "亞麻"
+        },
+        {
+          "id": "b-pat-11",
+          "category": "圖騰印花",
+          "name": "波點"
+        },
+        {
+          "id": "b-det-11",
+          "category": "細節設計",
+          "name": "綁帶"
+        },
+        {
+          "id": "b-fit-11",
+          "category": "版型",
+          "name": "緊身"
+        },
+        {
+          "id": "b-sty-11",
+          "category": "風格",
+          "name": "復古"
         }
       ],
-      "estCost": 358,
-      "estPrice": 1070,
-      "estSales": 4450,
-      "estRoi": 1.9,
-      "estFixedCost": 51692,
-      "estVariableCost": 357
+      "trendScore": "8.6",
+      "roiScore": "7.0",
+      "fitScore": "7.7",
+      "competitorScore": "5.5",
+      "salesVolume": 8982,
+      "estPrice": 888,
+      "estFixedCost": 44411,
+      "estVariableCost": 347
     },
     {
       "id": "hc-12",
-      "name": "極簡白長褲",
+      "name": "運動風米色鏤空高腰背心",
       "elements": [
         {
           "id": "b-item-12",
           "category": "品項",
-          "name": "長褲"
+          "name": "背心"
         },
         {
           "id": "b-color-12",
           "category": "主色",
-          "name": "白"
+          "name": "米色"
         },
         {
-          "id": "b-fabric-12",
+          "id": "b-pal-12",
+          "category": "配色",
+          "name": "同色系"
+        },
+        {
+          "id": "b-fab-12",
           "category": "面料",
-          "name": "燈芯絨"
+          "name": "皮革"
         },
         {
-          "id": "b-pattern-12",
+          "id": "b-pat-12",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "碎花"
+        },
+        {
+          "id": "b-det-12",
+          "category": "細節設計",
+          "name": "鏤空"
+        },
+        {
+          "id": "b-fit-12",
+          "category": "版型",
+          "name": "高腰"
+        },
+        {
+          "id": "b-sty-12",
+          "category": "風格",
+          "name": "運動"
         }
       ],
-      "estCost": 181,
-      "estPrice": 635,
-      "estSales": 4104,
-      "estRoi": 0.91,
-      "estFixedCost": 57267,
-      "estVariableCost": 318
+      "trendScore": "6.4",
+      "roiScore": "9.4",
+      "fitScore": "8.6",
+      "competitorScore": "4.6",
+      "salesVolume": 4247,
+      "estPrice": 743,
+      "estFixedCost": 23105,
+      "estVariableCost": 498
     },
     {
       "id": "hc-13",
-      "name": "復古焦糖棕帽T",
+      "name": "工裝風焦糖棕荷葉邊落地短裙",
       "elements": [
         {
           "id": "b-item-13",
           "category": "品項",
-          "name": "帽T"
+          "name": "短裙"
         },
         {
           "id": "b-color-13",
@@ -58296,26 +58607,48 @@
           "name": "焦糖棕"
         },
         {
-          "id": "b-fabric-13",
-          "category": "面料",
-          "name": "聚酯纖維"
+          "id": "b-pal-13",
+          "category": "配色",
+          "name": "雙色拼接"
         },
         {
-          "id": "b-pattern-13",
+          "id": "b-fab-13",
+          "category": "面料",
+          "name": "亞麻"
+        },
+        {
+          "id": "b-pat-13",
           "category": "圖騰印花",
-          "name": "素色簡約"
+          "name": "千鳥格"
+        },
+        {
+          "id": "b-det-13",
+          "category": "細節設計",
+          "name": "荷葉邊"
+        },
+        {
+          "id": "b-fit-13",
+          "category": "版型",
+          "name": "落地"
+        },
+        {
+          "id": "b-sty-13",
+          "category": "風格",
+          "name": "工裝"
         }
       ],
-      "estCost": 345,
-      "estPrice": 1315,
-      "estSales": 3418,
-      "estRoi": 2.89,
-      "estFixedCost": 30656,
-      "estVariableCost": 329
+      "trendScore": "5.4",
+      "roiScore": "8.3",
+      "fitScore": "7.0",
+      "competitorScore": "6.0",
+      "salesVolume": 4321,
+      "estPrice": 839,
+      "estFixedCost": 39344,
+      "estVariableCost": 325
     },
     {
       "id": "hc-14",
-      "name": "極簡灰背心",
+      "name": "甜美風焦糖棕抽繩緊身背心",
       "elements": [
         {
           "id": "b-item-14",
@@ -58325,534 +58658,866 @@
         {
           "id": "b-color-14",
           "category": "主色",
-          "name": "灰"
+          "name": "焦糖棕"
         },
         {
-          "id": "b-fabric-14",
+          "id": "b-pal-14",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-14",
           "category": "面料",
-          "name": "法蘭絨"
+          "name": "雪紡"
         },
         {
-          "id": "b-pattern-14",
+          "id": "b-pat-14",
           "category": "圖騰印花",
-          "name": "波卡圓點"
+          "name": "碎花"
         },
         {
-          "id": "b-detail-14",
+          "id": "b-det-14",
           "category": "細節設計",
           "name": "抽繩"
+        },
+        {
+          "id": "b-fit-14",
+          "category": "版型",
+          "name": "緊身"
+        },
+        {
+          "id": "b-sty-14",
+          "category": "風格",
+          "name": "甜美"
         }
       ],
-      "estCost": 355,
-      "estPrice": 1391,
-      "estSales": 3944,
-      "estRoi": 2.86,
-      "estFixedCost": 49205,
-      "estVariableCost": 348
+      "trendScore": "6.6",
+      "roiScore": "6.7",
+      "fitScore": "7.3",
+      "competitorScore": "6.5",
+      "salesVolume": 1712,
+      "estPrice": 1178,
+      "estFixedCost": 36640,
+      "estVariableCost": 171
     },
     {
       "id": "hc-15",
-      "name": "復古酒紅大衣",
+      "name": "工裝風米色流蘇Oversize衛衣",
       "elements": [
         {
           "id": "b-item-15",
           "category": "品項",
-          "name": "大衣"
+          "name": "衛衣"
         },
         {
           "id": "b-color-15",
           "category": "主色",
-          "name": "酒紅"
+          "name": "米色"
         },
         {
-          "id": "b-fabric-15",
-          "category": "面料",
-          "name": "燈芯絨"
+          "id": "b-pal-15",
+          "category": "配色",
+          "name": "單一色"
         },
         {
-          "id": "b-pattern-15",
-          "category": "圖騰印花",
-          "name": "波卡圓點"
-        },
-        {
-          "id": "b-detail-15",
-          "category": "細節設計",
-          "name": "雙排扣"
-        }
-      ],
-      "estCost": 396,
-      "estPrice": 831,
-      "estSales": 2257,
-      "estRoi": 0.9,
-      "estFixedCost": 47912,
-      "estVariableCost": 416
-    },
-    {
-      "id": "hc-16",
-      "name": "極簡黑標準T-shirt",
-      "elements": [
-        {
-          "id": "b-item-16",
-          "category": "品項",
-          "name": "標準T-shirt"
-        },
-        {
-          "id": "b-color-16",
-          "category": "主色",
-          "name": "黑"
-        },
-        {
-          "id": "b-fabric-16",
-          "category": "面料",
-          "name": "羊毛"
-        },
-        {
-          "id": "b-pattern-16",
-          "category": "圖騰印花",
-          "name": "格紋"
-        },
-        {
-          "id": "b-detail-16",
-          "category": "細節設計",
-          "name": "高領"
-        }
-      ],
-      "estCost": 446,
-      "estPrice": 671,
-      "estSales": 975,
-      "estRoi": 1.25,
-      "estFixedCost": 71747,
-      "estVariableCost": 224
-    },
-    {
-      "id": "hc-17",
-      "name": "經典卡其大衣",
-      "elements": [
-        {
-          "id": "b-item-17",
-          "category": "品項",
-          "name": "大衣"
-        },
-        {
-          "id": "b-color-17",
-          "category": "主色",
-          "name": "卡其"
-        },
-        {
-          "id": "b-fabric-17",
-          "category": "面料",
-          "name": "法蘭絨"
-        }
-      ],
-      "estCost": 314,
-      "estPrice": 1043,
-      "estSales": 927,
-      "estRoi": 1.55,
-      "estFixedCost": 56609,
-      "estVariableCost": 348
-    },
-    {
-      "id": "hc-new-0",
-      "name": "潮流丹寧工裝寬褲",
-      "elements": [
-        {
-          "id": "i-new-0",
-          "category": "品項",
-          "name": "寬褲"
-        },
-        {
-          "id": "c-new-0",
-          "category": "主色",
-          "name": "迷彩"
-        },
-        {
-          "id": "m-new-0",
-          "category": "面料",
-          "name": "防潑水科技材質"
-        },
-        {
-          "id": "p-new-0",
-          "category": "圖騰印花",
-          "name": "無"
-        }
-      ],
-      "estCost": 313,
-      "estPrice": 1316,
-      "estSales": 2538,
-      "estRoi": 1.87,
-      "estFixedCost": 47913,
-      "estVariableCost": 439
-    },
-    {
-      "id": "hc-19",
-      "name": "極簡白背心",
-      "elements": [
-        {
-          "id": "b-item-19",
-          "category": "品項",
-          "name": "背心"
-        },
-        {
-          "id": "b-color-19",
-          "category": "主色",
-          "name": "白"
-        },
-        {
-          "id": "b-fabric-19",
-          "category": "面料",
-          "name": "法蘭絨"
-        }
-      ],
-      "estCost": 173,
-      "estPrice": 1351,
-      "estSales": 1714,
-      "estRoi": 2.63,
-      "estFixedCost": 58233,
-      "estVariableCost": 338
-    },
-    {
-      "id": "hc-new-1",
-      "name": "都會機能防水風衣",
-      "elements": [
-        {
-          "id": "i-new-1",
-          "category": "品項",
-          "name": "風衣"
-        },
-        {
-          "id": "c-new-1",
-          "category": "主色",
-          "name": "迷彩"
-        },
-        {
-          "id": "m-new-1",
-          "category": "面料",
-          "name": "防潑水科技材質"
-        },
-        {
-          "id": "p-new-1",
-          "category": "圖騰印花",
-          "name": "無"
-        }
-      ],
-      "estCost": 288,
-      "estPrice": 1049,
-      "estSales": 787,
-      "estRoi": 1.5,
-      "estFixedCost": 54871,
-      "estVariableCost": 350
-    },
-    {
-      "id": "hc-new-2",
-      "name": "極簡美學針織背心",
-      "elements": [
-        {
-          "id": "i-new-2",
-          "category": "品項",
-          "name": "背心"
-        },
-        {
-          "id": "c-new-2",
-          "category": "主色",
-          "name": "迷彩"
-        },
-        {
-          "id": "m-new-2",
-          "category": "面料",
-          "name": "防潑水科技材質"
-        },
-        {
-          "id": "p-new-2",
-          "category": "圖騰印花",
-          "name": "無"
-        }
-      ],
-      "estCost": 389,
-      "estPrice": 841,
-      "estSales": 4166,
-      "estRoi": 0.93,
-      "estFixedCost": 60391,
-      "estVariableCost": 421
-    },
-    {
-      "id": "hc-new-3",
-      "name": "慵懶風垂墜感襯衫",
-      "elements": [
-        {
-          "id": "i-new-3",
-          "category": "品項",
-          "name": "襯衫"
-        },
-        {
-          "id": "c-new-3",
-          "category": "主色",
-          "name": "迷彩"
-        },
-        {
-          "id": "m-new-3",
-          "category": "面料",
-          "name": "防潑水科技材質"
-        },
-        {
-          "id": "p-new-3",
-          "category": "圖騰印花",
-          "name": "無"
-        }
-      ],
-      "estCost": 154,
-      "estPrice": 1615,
-      "estSales": 1652,
-      "estRoi": 2.8,
-      "estFixedCost": 35617,
-      "estVariableCost": 404
-    },
-    {
-      "id": "hc-23",
-      "name": "極簡黑帽T",
-      "elements": [
-        {
-          "id": "b-item-23",
-          "category": "品項",
-          "name": "帽T"
-        },
-        {
-          "id": "b-color-23",
-          "category": "主色",
-          "name": "黑"
-        },
-        {
-          "id": "b-fabric-23",
-          "category": "面料",
-          "name": "一般單寧"
-        },
-        {
-          "id": "b-pattern-23",
-          "category": "圖騰印花",
-          "name": "波卡圓點"
-        }
-      ],
-      "estCost": 199,
-      "estPrice": 703,
-      "estSales": 4180,
-      "estRoi": 2.82,
-      "estFixedCost": 34063,
-      "estVariableCost": 176
-    },
-    {
-      "id": "hc-24",
-      "name": "經典卡其毛衣",
-      "elements": [
-        {
-          "id": "b-item-24",
-          "category": "品項",
-          "name": "毛衣"
-        },
-        {
-          "id": "b-color-24",
-          "category": "主色",
-          "name": "卡其"
-        },
-        {
-          "id": "b-fabric-24",
-          "category": "面料",
-          "name": "羊毛"
-        },
-        {
-          "id": "b-pattern-24",
-          "category": "圖騰印花",
-          "name": "格紋"
-        }
-      ],
-      "estCost": 226,
-      "estPrice": 629,
-      "estSales": 2168,
-      "estRoi": 0.89,
-      "estFixedCost": 36750,
-      "estVariableCost": 315
-    },
-    {
-      "id": "hc-new-4",
-      "name": "運動休閒縮口長褲",
-      "elements": [
-        {
-          "id": "i-new-4",
-          "category": "品項",
-          "name": "長褲"
-        },
-        {
-          "id": "c-new-4",
-          "category": "主色",
-          "name": "迷彩"
-        },
-        {
-          "id": "m-new-4",
-          "category": "面料",
-          "name": "防潑水科技材質"
-        },
-        {
-          "id": "p-new-4",
-          "category": "圖騰印花",
-          "name": "無"
-        }
-      ],
-      "estCost": 249,
-      "estPrice": 795,
-      "estSales": 911,
-      "estRoi": 0.79,
-      "estFixedCost": 41276,
-      "estVariableCost": 398
-    },
-    {
-      "id": "hc-26",
-      "name": "極簡黑背心",
-      "elements": [
-        {
-          "id": "b-item-26",
-          "category": "品項",
-          "name": "背心"
-        },
-        {
-          "id": "b-color-26",
-          "category": "主色",
-          "name": "黑"
-        },
-        {
-          "id": "b-fabric-26",
-          "category": "面料",
-          "name": "聚酯纖維"
-        },
-        {
-          "id": "b-pattern-26",
-          "category": "圖騰印花",
-          "name": "素色簡約"
-        },
-        {
-          "id": "b-detail-26",
-          "category": "細節設計",
-          "name": "隱形拉鍊"
-        }
-      ],
-      "estCost": 387,
-      "estPrice": 881,
-      "estSales": 2631,
-      "estRoi": 0.94,
-      "estFixedCost": 35544,
-      "estVariableCost": 441
-    },
-    {
-      "id": "hc-27",
-      "name": "經典海軍藍帽T",
-      "elements": [
-        {
-          "id": "b-item-27",
-          "category": "品項",
-          "name": "帽T"
-        },
-        {
-          "id": "b-color-27",
-          "category": "主色",
-          "name": "海軍藍"
-        },
-        {
-          "id": "b-fabric-27",
+          "id": "b-fab-15",
           "category": "面料",
           "name": "純棉"
         },
         {
-          "id": "b-pattern-27",
-          "category": "圖騰印花",
-          "name": "素色簡約"
-        },
-        {
-          "id": "b-detail-27",
-          "category": "細節設計",
-          "name": "金屬鈕扣"
-        }
-      ],
-      "estCost": 271,
-      "estPrice": 1207,
-      "estSales": 2372,
-      "estRoi": 2.67,
-      "estFixedCost": 64442,
-      "estVariableCost": 302
-    },
-    {
-      "id": "hc-new-5",
-      "name": "復古水洗老爺褲",
-      "elements": [
-        {
-          "id": "i-new-5",
-          "category": "品項",
-          "name": "爺褲"
-        },
-        {
-          "id": "c-new-5",
-          "category": "主色",
-          "name": "迷彩"
-        },
-        {
-          "id": "m-new-5",
-          "category": "面料",
-          "name": "防潑水科技材質"
-        },
-        {
-          "id": "p-new-5",
-          "category": "圖騰印花",
-          "name": "無"
-        }
-      ],
-      "estCost": 254,
-      "estPrice": 831,
-      "estSales": 842,
-      "estRoi": 0.75,
-      "estFixedCost": 48860,
-      "estVariableCost": 416
-    },
-    {
-      "id": "hc-29",
-      "name": "經典卡其帽T",
-      "elements": [
-        {
-          "id": "b-item-29",
-          "category": "品項",
-          "name": "帽T"
-        },
-        {
-          "id": "b-color-29",
-          "category": "主色",
-          "name": "卡其"
-        },
-        {
-          "id": "b-fabric-29",
-          "category": "面料",
-          "name": "聚酯纖維"
-        },
-        {
-          "id": "b-pattern-29",
+          "id": "b-pat-15",
           "category": "圖騰印花",
           "name": "條紋"
         },
         {
-          "id": "b-detail-29",
+          "id": "b-det-15",
           "category": "細節設計",
-          "name": "翻領"
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-15",
+          "category": "版型",
+          "name": "Oversize"
+        },
+        {
+          "id": "b-sty-15",
+          "category": "風格",
+          "name": "工裝"
         }
       ],
-      "estCost": 383,
-      "estPrice": 371,
-      "estSales": 4240,
-      "estRoi": 0.91,
-      "estFixedCost": 36945,
-      "estVariableCost": 186
+      "trendScore": "5.2",
+      "roiScore": "8.2",
+      "fitScore": "7.4",
+      "competitorScore": "5.5",
+      "salesVolume": 7683,
+      "estPrice": 1667,
+      "estFixedCost": 19459,
+      "estVariableCost": 334
+    },
+    {
+      "id": "hc-16",
+      "name": "運動風霧霾藍抽繩短版衛衣",
+      "elements": [
+        {
+          "id": "b-item-16",
+          "category": "品項",
+          "name": "衛衣"
+        },
+        {
+          "id": "b-color-16",
+          "category": "主色",
+          "name": "霧霾藍"
+        },
+        {
+          "id": "b-pal-16",
+          "category": "配色",
+          "name": "素色"
+        },
+        {
+          "id": "b-fab-16",
+          "category": "面料",
+          "name": "純棉"
+        },
+        {
+          "id": "b-pat-16",
+          "category": "圖騰印花",
+          "name": "千鳥格"
+        },
+        {
+          "id": "b-det-16",
+          "category": "細節設計",
+          "name": "抽繩"
+        },
+        {
+          "id": "b-fit-16",
+          "category": "版型",
+          "name": "短版"
+        },
+        {
+          "id": "b-sty-16",
+          "category": "風格",
+          "name": "運動"
+        }
+      ],
+      "trendScore": "8.3",
+      "roiScore": "8.4",
+      "fitScore": "8.4",
+      "competitorScore": "4.2",
+      "salesVolume": 6171,
+      "estPrice": 1694,
+      "estFixedCost": 19558,
+      "estVariableCost": 289
+    },
+    {
+      "id": "hc-17",
+      "name": "街頭風霧霾藍排扣正常版型寬褲",
+      "elements": [
+        {
+          "id": "b-item-17",
+          "category": "品項",
+          "name": "寬褲"
+        },
+        {
+          "id": "b-color-17",
+          "category": "主色",
+          "name": "霧霾藍"
+        },
+        {
+          "id": "b-pal-17",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-17",
+          "category": "面料",
+          "name": "針織"
+        },
+        {
+          "id": "b-pat-17",
+          "category": "圖騰印花",
+          "name": "波點"
+        },
+        {
+          "id": "b-det-17",
+          "category": "細節設計",
+          "name": "排扣"
+        },
+        {
+          "id": "b-fit-17",
+          "category": "版型",
+          "name": "正常版型"
+        },
+        {
+          "id": "b-sty-17",
+          "category": "風格",
+          "name": "街頭"
+        }
+      ],
+      "trendScore": "5.4",
+      "roiScore": "8.9",
+      "fitScore": "8.8",
+      "competitorScore": "4.3",
+      "salesVolume": 5075,
+      "estPrice": 914,
+      "estFixedCost": 15939,
+      "estVariableCost": 156
+    },
+    {
+      "id": "hc-18",
+      "name": "波西米亞風海軍藍排扣高腰大衣",
+      "elements": [
+        {
+          "id": "b-item-18",
+          "category": "品項",
+          "name": "大衣"
+        },
+        {
+          "id": "b-color-18",
+          "category": "主色",
+          "name": "海軍藍"
+        },
+        {
+          "id": "b-pal-18",
+          "category": "配色",
+          "name": "素色"
+        },
+        {
+          "id": "b-fab-18",
+          "category": "面料",
+          "name": "羊毛"
+        },
+        {
+          "id": "b-pat-18",
+          "category": "圖騰印花",
+          "name": "幾何"
+        },
+        {
+          "id": "b-det-18",
+          "category": "細節設計",
+          "name": "排扣"
+        },
+        {
+          "id": "b-fit-18",
+          "category": "版型",
+          "name": "高腰"
+        },
+        {
+          "id": "b-sty-18",
+          "category": "風格",
+          "name": "波西米亞"
+        }
+      ],
+      "trendScore": "7.1",
+      "roiScore": "6.3",
+      "fitScore": "9.8",
+      "competitorScore": "4.6",
+      "salesVolume": 8144,
+      "estPrice": 941,
+      "estFixedCost": 25215,
+      "estVariableCost": 442
+    },
+    {
+      "id": "hc-19",
+      "name": "甜美風霧霾藍抓皺正常版型衛衣",
+      "elements": [
+        {
+          "id": "b-item-19",
+          "category": "品項",
+          "name": "衛衣"
+        },
+        {
+          "id": "b-color-19",
+          "category": "主色",
+          "name": "霧霾藍"
+        },
+        {
+          "id": "b-pal-19",
+          "category": "配色",
+          "name": "漸層"
+        },
+        {
+          "id": "b-fab-19",
+          "category": "面料",
+          "name": "絲綢"
+        },
+        {
+          "id": "b-pat-19",
+          "category": "圖騰印花",
+          "name": "字母"
+        },
+        {
+          "id": "b-det-19",
+          "category": "細節設計",
+          "name": "抓皺"
+        },
+        {
+          "id": "b-fit-19",
+          "category": "版型",
+          "name": "正常版型"
+        },
+        {
+          "id": "b-sty-19",
+          "category": "風格",
+          "name": "甜美"
+        }
+      ],
+      "trendScore": "7.4",
+      "roiScore": "7.8",
+      "fitScore": "8.7",
+      "competitorScore": "7.4",
+      "salesVolume": 4598,
+      "estPrice": 1376,
+      "estFixedCost": 46472,
+      "estVariableCost": 220
+    },
+    {
+      "id": "hc-20",
+      "name": "休閒風米色流蘇寬鬆針織衫",
+      "elements": [
+        {
+          "id": "b-item-20",
+          "category": "品項",
+          "name": "針織衫"
+        },
+        {
+          "id": "b-color-20",
+          "category": "主色",
+          "name": "米色"
+        },
+        {
+          "id": "b-pal-20",
+          "category": "配色",
+          "name": "拼接"
+        },
+        {
+          "id": "b-fab-20",
+          "category": "面料",
+          "name": "絲綢"
+        },
+        {
+          "id": "b-pat-20",
+          "category": "圖騰印花",
+          "name": "幾何"
+        },
+        {
+          "id": "b-det-20",
+          "category": "細節設計",
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-20",
+          "category": "版型",
+          "name": "寬鬆"
+        },
+        {
+          "id": "b-sty-20",
+          "category": "風格",
+          "name": "休閒"
+        }
+      ],
+      "trendScore": "8.5",
+      "roiScore": "9.5",
+      "fitScore": "9.1",
+      "competitorScore": "7.5",
+      "salesVolume": 2403,
+      "estPrice": 978,
+      "estFixedCost": 11490,
+      "estVariableCost": 160
+    },
+    {
+      "id": "hc-21",
+      "name": "運動風櫻花粉精緻刺繡直筒飛行外套",
+      "elements": [
+        {
+          "id": "b-item-21",
+          "category": "品項",
+          "name": "飛行外套"
+        },
+        {
+          "id": "b-color-21",
+          "category": "主色",
+          "name": "櫻花粉"
+        },
+        {
+          "id": "b-pal-21",
+          "category": "配色",
+          "name": "同色系"
+        },
+        {
+          "id": "b-fab-21",
+          "category": "面料",
+          "name": "亞麻"
+        },
+        {
+          "id": "b-pat-21",
+          "category": "圖騰印花",
+          "name": "碎花"
+        },
+        {
+          "id": "b-det-21",
+          "category": "細節設計",
+          "name": "精緻刺繡"
+        },
+        {
+          "id": "b-fit-21",
+          "category": "版型",
+          "name": "直筒"
+        },
+        {
+          "id": "b-sty-21",
+          "category": "風格",
+          "name": "運動"
+        }
+      ],
+      "trendScore": "5.5",
+      "roiScore": "6.9",
+      "fitScore": "8.9",
+      "competitorScore": "6.8",
+      "salesVolume": 8367,
+      "estPrice": 2127,
+      "estFixedCost": 14779,
+      "estVariableCost": 192
+    },
+    {
+      "id": "hc-22",
+      "name": "甜美風白排扣落地T恤",
+      "elements": [
+        {
+          "id": "b-item-22",
+          "category": "品項",
+          "name": "T恤"
+        },
+        {
+          "id": "b-color-22",
+          "category": "主色",
+          "name": "白"
+        },
+        {
+          "id": "b-pal-22",
+          "category": "配色",
+          "name": "對比色"
+        },
+        {
+          "id": "b-fab-22",
+          "category": "面料",
+          "name": "牛仔"
+        },
+        {
+          "id": "b-pat-22",
+          "category": "圖騰印花",
+          "name": "無印花"
+        },
+        {
+          "id": "b-det-22",
+          "category": "細節設計",
+          "name": "排扣"
+        },
+        {
+          "id": "b-fit-22",
+          "category": "版型",
+          "name": "落地"
+        },
+        {
+          "id": "b-sty-22",
+          "category": "風格",
+          "name": "甜美"
+        }
+      ],
+      "trendScore": "5.9",
+      "roiScore": "7.0",
+      "fitScore": "7.5",
+      "competitorScore": "7.8",
+      "salesVolume": 4790,
+      "estPrice": 712,
+      "estFixedCost": 30582,
+      "estVariableCost": 266
+    },
+    {
+      "id": "hc-23",
+      "name": "正裝風白大口袋Oversize西裝外套",
+      "elements": [
+        {
+          "id": "b-item-23",
+          "category": "品項",
+          "name": "西裝外套"
+        },
+        {
+          "id": "b-color-23",
+          "category": "主色",
+          "name": "白"
+        },
+        {
+          "id": "b-pal-23",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-23",
+          "category": "面料",
+          "name": "燈芯絨"
+        },
+        {
+          "id": "b-pat-23",
+          "category": "圖騰印花",
+          "name": "千鳥格"
+        },
+        {
+          "id": "b-det-23",
+          "category": "細節設計",
+          "name": "大口袋"
+        },
+        {
+          "id": "b-fit-23",
+          "category": "版型",
+          "name": "Oversize"
+        },
+        {
+          "id": "b-sty-23",
+          "category": "風格",
+          "name": "正裝"
+        }
+      ],
+      "trendScore": "5.4",
+      "roiScore": "9.0",
+      "fitScore": "9.4",
+      "competitorScore": "4.3",
+      "salesVolume": 2646,
+      "estPrice": 1685,
+      "estFixedCost": 16081,
+      "estVariableCost": 215
+    },
+    {
+      "id": "hc-24",
+      "name": "波西米亞風櫻花粉鏤空傘狀洋裝",
+      "elements": [
+        {
+          "id": "b-item-24",
+          "category": "品項",
+          "name": "洋裝"
+        },
+        {
+          "id": "b-color-24",
+          "category": "主色",
+          "name": "櫻花粉"
+        },
+        {
+          "id": "b-pal-24",
+          "category": "配色",
+          "name": "漸層"
+        },
+        {
+          "id": "b-fab-24",
+          "category": "面料",
+          "name": "純棉"
+        },
+        {
+          "id": "b-pat-24",
+          "category": "圖騰印花",
+          "name": "條紋"
+        },
+        {
+          "id": "b-det-24",
+          "category": "細節設計",
+          "name": "鏤空"
+        },
+        {
+          "id": "b-fit-24",
+          "category": "版型",
+          "name": "傘狀"
+        },
+        {
+          "id": "b-sty-24",
+          "category": "風格",
+          "name": "波西米亞"
+        }
+      ],
+      "trendScore": "5.2",
+      "roiScore": "8.2",
+      "fitScore": "8.2",
+      "competitorScore": "4.8",
+      "salesVolume": 1510,
+      "estPrice": 2816,
+      "estFixedCost": 17124,
+      "estVariableCost": 224
+    },
+    {
+      "id": "hc-25",
+      "name": "運動風橄欖綠金屬拉鍊落地衛衣",
+      "elements": [
+        {
+          "id": "b-item-25",
+          "category": "品項",
+          "name": "衛衣"
+        },
+        {
+          "id": "b-color-25",
+          "category": "主色",
+          "name": "橄欖綠"
+        },
+        {
+          "id": "b-pal-25",
+          "category": "配色",
+          "name": "同色系"
+        },
+        {
+          "id": "b-fab-25",
+          "category": "面料",
+          "name": "聚酯纖維"
+        },
+        {
+          "id": "b-pat-25",
+          "category": "圖騰印花",
+          "name": "幾何"
+        },
+        {
+          "id": "b-det-25",
+          "category": "細節設計",
+          "name": "金屬拉鍊"
+        },
+        {
+          "id": "b-fit-25",
+          "category": "版型",
+          "name": "落地"
+        },
+        {
+          "id": "b-sty-25",
+          "category": "風格",
+          "name": "運動"
+        }
+      ],
+      "trendScore": "8.9",
+      "roiScore": "6.7",
+      "fitScore": "7.6",
+      "competitorScore": "6.5",
+      "salesVolume": 9912,
+      "estPrice": 1802,
+      "estFixedCost": 13513,
+      "estVariableCost": 157
+    },
+    {
+      "id": "hc-26",
+      "name": "工裝風酒紅流蘇短版毛衣",
+      "elements": [
+        {
+          "id": "b-item-26",
+          "category": "品項",
+          "name": "毛衣"
+        },
+        {
+          "id": "b-color-26",
+          "category": "主色",
+          "name": "酒紅"
+        },
+        {
+          "id": "b-pal-26",
+          "category": "配色",
+          "name": "雙色拼接"
+        },
+        {
+          "id": "b-fab-26",
+          "category": "面料",
+          "name": "針織"
+        },
+        {
+          "id": "b-pat-26",
+          "category": "圖騰印花",
+          "name": "塗鴉"
+        },
+        {
+          "id": "b-det-26",
+          "category": "細節設計",
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-26",
+          "category": "版型",
+          "name": "短版"
+        },
+        {
+          "id": "b-sty-26",
+          "category": "風格",
+          "name": "工裝"
+        }
+      ],
+      "trendScore": "6.8",
+      "roiScore": "6.5",
+      "fitScore": "8.8",
+      "competitorScore": "5.8",
+      "salesVolume": 3192,
+      "estPrice": 2881,
+      "estFixedCost": 10714,
+      "estVariableCost": 357
+    },
+    {
+      "id": "hc-27",
+      "name": "Y2K風灰精緻刺繡緊身飛行外套",
+      "elements": [
+        {
+          "id": "b-item-27",
+          "category": "品項",
+          "name": "飛行外套"
+        },
+        {
+          "id": "b-color-27",
+          "category": "主色",
+          "name": "灰"
+        },
+        {
+          "id": "b-pal-27",
+          "category": "配色",
+          "name": "素色"
+        },
+        {
+          "id": "b-fab-27",
+          "category": "面料",
+          "name": "皮革"
+        },
+        {
+          "id": "b-pat-27",
+          "category": "圖騰印花",
+          "name": "千鳥格"
+        },
+        {
+          "id": "b-det-27",
+          "category": "細節設計",
+          "name": "精緻刺繡"
+        },
+        {
+          "id": "b-fit-27",
+          "category": "版型",
+          "name": "緊身"
+        },
+        {
+          "id": "b-sty-27",
+          "category": "風格",
+          "name": "Y2K"
+        }
+      ],
+      "trendScore": "8.3",
+      "roiScore": "8.7",
+      "fitScore": "9.6",
+      "competitorScore": "4.3",
+      "salesVolume": 3193,
+      "estPrice": 2349,
+      "estFixedCost": 30265,
+      "estVariableCost": 395
+    },
+    {
+      "id": "hc-28",
+      "name": "Y2K風霧霾藍流蘇正常版型衛衣",
+      "elements": [
+        {
+          "id": "b-item-28",
+          "category": "品項",
+          "name": "衛衣"
+        },
+        {
+          "id": "b-color-28",
+          "category": "主色",
+          "name": "霧霾藍"
+        },
+        {
+          "id": "b-pal-28",
+          "category": "配色",
+          "name": "漸層"
+        },
+        {
+          "id": "b-fab-28",
+          "category": "面料",
+          "name": "聚酯纖維"
+        },
+        {
+          "id": "b-pat-28",
+          "category": "圖騰印花",
+          "name": "波點"
+        },
+        {
+          "id": "b-det-28",
+          "category": "細節設計",
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-28",
+          "category": "版型",
+          "name": "正常版型"
+        },
+        {
+          "id": "b-sty-28",
+          "category": "風格",
+          "name": "Y2K"
+        }
+      ],
+      "trendScore": "7.6",
+      "roiScore": "8.2",
+      "fitScore": "7.6",
+      "competitorScore": "8.5",
+      "salesVolume": 1970,
+      "estPrice": 1821,
+      "estFixedCost": 45366,
+      "estVariableCost": 255
+    },
+    {
+      "id": "hc-29",
+      "name": "Y2K風米色排扣Oversize背心",
+      "elements": [
+        {
+          "id": "b-item-29",
+          "category": "品項",
+          "name": "背心"
+        },
+        {
+          "id": "b-color-29",
+          "category": "主色",
+          "name": "米色"
+        },
+        {
+          "id": "b-pal-29",
+          "category": "配色",
+          "name": "同色系"
+        },
+        {
+          "id": "b-fab-29",
+          "category": "面料",
+          "name": "針織"
+        },
+        {
+          "id": "b-pat-29",
+          "category": "圖騰印花",
+          "name": "格紋"
+        },
+        {
+          "id": "b-det-29",
+          "category": "細節設計",
+          "name": "排扣"
+        },
+        {
+          "id": "b-fit-29",
+          "category": "版型",
+          "name": "Oversize"
+        },
+        {
+          "id": "b-sty-29",
+          "category": "風格",
+          "name": "Y2K"
+        }
+      ],
+      "trendScore": "6.6",
+      "roiScore": "8.6",
+      "fitScore": "7.2",
+      "competitorScore": "8.5",
+      "salesVolume": 6263,
+      "estPrice": 1309,
+      "estFixedCost": 40373,
+      "estVariableCost": 472
     },
     {
       "id": "hc-30",
-      "name": "復古焦糖棕大衣",
+      "name": "波西米亞風焦糖棕大口袋高腰襯衫",
       "elements": [
         {
           "id": "b-item-30",
           "category": "品項",
-          "name": "大衣"
+          "name": "襯衫"
         },
         {
           "id": "b-color-30",
@@ -58860,22 +59525,1124 @@
           "name": "焦糖棕"
         },
         {
-          "id": "b-fabric-30",
-          "category": "面料",
-          "name": "絲絨"
+          "id": "b-pal-30",
+          "category": "配色",
+          "name": "漸層"
         },
         {
-          "id": "b-pattern-30",
+          "id": "b-fab-30",
+          "category": "面料",
+          "name": "燈芯絨"
+        },
+        {
+          "id": "b-pat-30",
           "category": "圖騰印花",
-          "name": "條紋"
+          "name": "字母"
+        },
+        {
+          "id": "b-det-30",
+          "category": "細節設計",
+          "name": "大口袋"
+        },
+        {
+          "id": "b-fit-30",
+          "category": "版型",
+          "name": "高腰"
+        },
+        {
+          "id": "b-sty-30",
+          "category": "風格",
+          "name": "波西米亞"
         }
       ],
-      "estCost": 433,
-      "estPrice": 651,
-      "estSales": 3441,
-      "estRoi": 2.54,
-      "estFixedCost": 71633,
-      "estVariableCost": 163
+      "trendScore": "7.8",
+      "roiScore": "9.3",
+      "fitScore": "7.8",
+      "competitorScore": "4.9",
+      "salesVolume": 2789,
+      "estPrice": 1402,
+      "estFixedCost": 46783,
+      "estVariableCost": 191
+    },
+    {
+      "id": "hc-31",
+      "name": "正裝風灰流蘇正常版型洋裝",
+      "elements": [
+        {
+          "id": "b-item-31",
+          "category": "品項",
+          "name": "洋裝"
+        },
+        {
+          "id": "b-color-31",
+          "category": "主色",
+          "name": "灰"
+        },
+        {
+          "id": "b-pal-31",
+          "category": "配色",
+          "name": "對比色"
+        },
+        {
+          "id": "b-fab-31",
+          "category": "面料",
+          "name": "牛仔"
+        },
+        {
+          "id": "b-pat-31",
+          "category": "圖騰印花",
+          "name": "無印花"
+        },
+        {
+          "id": "b-det-31",
+          "category": "細節設計",
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-31",
+          "category": "版型",
+          "name": "正常版型"
+        },
+        {
+          "id": "b-sty-31",
+          "category": "風格",
+          "name": "正裝"
+        }
+      ],
+      "trendScore": "8.4",
+      "roiScore": "6.7",
+      "fitScore": "8.2",
+      "competitorScore": "8.4",
+      "salesVolume": 9282,
+      "estPrice": 700,
+      "estFixedCost": 19801,
+      "estVariableCost": 187
+    },
+    {
+      "id": "hc-32",
+      "name": "工裝風芥末黃鏤空修身短裙",
+      "elements": [
+        {
+          "id": "b-item-32",
+          "category": "品項",
+          "name": "短裙"
+        },
+        {
+          "id": "b-color-32",
+          "category": "主色",
+          "name": "芥末黃"
+        },
+        {
+          "id": "b-pal-32",
+          "category": "配色",
+          "name": "對比色"
+        },
+        {
+          "id": "b-fab-32",
+          "category": "面料",
+          "name": "蕾絲"
+        },
+        {
+          "id": "b-pat-32",
+          "category": "圖騰印花",
+          "name": "塗鴉"
+        },
+        {
+          "id": "b-det-32",
+          "category": "細節設計",
+          "name": "鏤空"
+        },
+        {
+          "id": "b-fit-32",
+          "category": "版型",
+          "name": "修身"
+        },
+        {
+          "id": "b-sty-32",
+          "category": "風格",
+          "name": "工裝"
+        }
+      ],
+      "trendScore": "8.6",
+      "roiScore": "6.4",
+      "fitScore": "8.2",
+      "competitorScore": "7.8",
+      "salesVolume": 3937,
+      "estPrice": 2334,
+      "estFixedCost": 38995,
+      "estVariableCost": 275
+    },
+    {
+      "id": "hc-33",
+      "name": "Y2K風白流蘇寬鬆針織衫",
+      "elements": [
+        {
+          "id": "b-item-33",
+          "category": "品項",
+          "name": "針織衫"
+        },
+        {
+          "id": "b-color-33",
+          "category": "主色",
+          "name": "白"
+        },
+        {
+          "id": "b-pal-33",
+          "category": "配色",
+          "name": "素色"
+        },
+        {
+          "id": "b-fab-33",
+          "category": "面料",
+          "name": "燈芯絨"
+        },
+        {
+          "id": "b-pat-33",
+          "category": "圖騰印花",
+          "name": "條紋"
+        },
+        {
+          "id": "b-det-33",
+          "category": "細節設計",
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-33",
+          "category": "版型",
+          "name": "寬鬆"
+        },
+        {
+          "id": "b-sty-33",
+          "category": "風格",
+          "name": "Y2K"
+        }
+      ],
+      "trendScore": "8.8",
+      "roiScore": "7.2",
+      "fitScore": "9.2",
+      "competitorScore": "7.7",
+      "salesVolume": 8536,
+      "estPrice": 2990,
+      "estFixedCost": 26607,
+      "estVariableCost": 504
+    },
+    {
+      "id": "hc-34",
+      "name": "波西米亞風芥末黃大口袋落地毛衣",
+      "elements": [
+        {
+          "id": "b-item-34",
+          "category": "品項",
+          "name": "毛衣"
+        },
+        {
+          "id": "b-color-34",
+          "category": "主色",
+          "name": "芥末黃"
+        },
+        {
+          "id": "b-pal-34",
+          "category": "配色",
+          "name": "漸層"
+        },
+        {
+          "id": "b-fab-34",
+          "category": "面料",
+          "name": "蕾絲"
+        },
+        {
+          "id": "b-pat-34",
+          "category": "圖騰印花",
+          "name": "幾何"
+        },
+        {
+          "id": "b-det-34",
+          "category": "細節設計",
+          "name": "大口袋"
+        },
+        {
+          "id": "b-fit-34",
+          "category": "版型",
+          "name": "落地"
+        },
+        {
+          "id": "b-sty-34",
+          "category": "風格",
+          "name": "波西米亞"
+        }
+      ],
+      "trendScore": "5.2",
+      "roiScore": "6.7",
+      "fitScore": "7.5",
+      "competitorScore": "6.7",
+      "salesVolume": 9602,
+      "estPrice": 1603,
+      "estFixedCost": 38302,
+      "estVariableCost": 396
+    },
+    {
+      "id": "hc-35",
+      "name": "極簡風米色傘狀針織衫",
+      "elements": [
+        {
+          "id": "b-item-35",
+          "category": "品項",
+          "name": "針織衫"
+        },
+        {
+          "id": "b-color-35",
+          "category": "主色",
+          "name": "米色"
+        },
+        {
+          "id": "b-pal-35",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-35",
+          "category": "面料",
+          "name": "雪紡"
+        },
+        {
+          "id": "b-pat-35",
+          "category": "圖騰印花",
+          "name": "碎花"
+        },
+        {
+          "id": "b-det-35",
+          "category": "細節設計",
+          "name": "無特殊細節"
+        },
+        {
+          "id": "b-fit-35",
+          "category": "版型",
+          "name": "傘狀"
+        },
+        {
+          "id": "b-sty-35",
+          "category": "風格",
+          "name": "極簡"
+        }
+      ],
+      "trendScore": "5.6",
+      "roiScore": "6.2",
+      "fitScore": "7.4",
+      "competitorScore": "4.9",
+      "salesVolume": 8351,
+      "estPrice": 2207,
+      "estFixedCost": 36168,
+      "estVariableCost": 154
+    },
+    {
+      "id": "hc-36",
+      "name": "甜美風酒紅排扣傘狀毛衣",
+      "elements": [
+        {
+          "id": "b-item-36",
+          "category": "品項",
+          "name": "毛衣"
+        },
+        {
+          "id": "b-color-36",
+          "category": "主色",
+          "name": "酒紅"
+        },
+        {
+          "id": "b-pal-36",
+          "category": "配色",
+          "name": "同色系"
+        },
+        {
+          "id": "b-fab-36",
+          "category": "面料",
+          "name": "針織"
+        },
+        {
+          "id": "b-pat-36",
+          "category": "圖騰印花",
+          "name": "無印花"
+        },
+        {
+          "id": "b-det-36",
+          "category": "細節設計",
+          "name": "排扣"
+        },
+        {
+          "id": "b-fit-36",
+          "category": "版型",
+          "name": "傘狀"
+        },
+        {
+          "id": "b-sty-36",
+          "category": "風格",
+          "name": "甜美"
+        }
+      ],
+      "trendScore": "7.7",
+      "roiScore": "8.1",
+      "fitScore": "8.4",
+      "competitorScore": "8.8",
+      "salesVolume": 5318,
+      "estPrice": 2096,
+      "estFixedCost": 28322,
+      "estVariableCost": 319
+    },
+    {
+      "id": "hc-37",
+      "name": "休閒風酒紅墊肩短版外套",
+      "elements": [
+        {
+          "id": "b-item-37",
+          "category": "品項",
+          "name": "外套"
+        },
+        {
+          "id": "b-color-37",
+          "category": "主色",
+          "name": "酒紅"
+        },
+        {
+          "id": "b-pal-37",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-37",
+          "category": "面料",
+          "name": "皮革"
+        },
+        {
+          "id": "b-pat-37",
+          "category": "圖騰印花",
+          "name": "碎花"
+        },
+        {
+          "id": "b-det-37",
+          "category": "細節設計",
+          "name": "墊肩"
+        },
+        {
+          "id": "b-fit-37",
+          "category": "版型",
+          "name": "短版"
+        },
+        {
+          "id": "b-sty-37",
+          "category": "風格",
+          "name": "休閒"
+        }
+      ],
+      "trendScore": "5.9",
+      "roiScore": "6.1",
+      "fitScore": "8.4",
+      "competitorScore": "4.2",
+      "salesVolume": 3282,
+      "estPrice": 1717,
+      "estFixedCost": 25294,
+      "estVariableCost": 439
+    },
+    {
+      "id": "hc-38",
+      "name": "工裝風灰綁帶修身背心",
+      "elements": [
+        {
+          "id": "b-item-38",
+          "category": "品項",
+          "name": "背心"
+        },
+        {
+          "id": "b-color-38",
+          "category": "主色",
+          "name": "灰"
+        },
+        {
+          "id": "b-pal-38",
+          "category": "配色",
+          "name": "同色系"
+        },
+        {
+          "id": "b-fab-38",
+          "category": "面料",
+          "name": "尼龍"
+        },
+        {
+          "id": "b-pat-38",
+          "category": "圖騰印花",
+          "name": "塗鴉"
+        },
+        {
+          "id": "b-det-38",
+          "category": "細節設計",
+          "name": "綁帶"
+        },
+        {
+          "id": "b-fit-38",
+          "category": "版型",
+          "name": "修身"
+        },
+        {
+          "id": "b-sty-38",
+          "category": "風格",
+          "name": "工裝"
+        }
+      ],
+      "trendScore": "5.2",
+      "roiScore": "9.2",
+      "fitScore": "7.3",
+      "competitorScore": "7.9",
+      "salesVolume": 7753,
+      "estPrice": 1814,
+      "estFixedCost": 39063,
+      "estVariableCost": 360
+    },
+    {
+      "id": "hc-39",
+      "name": "正裝風海軍藍抽繩緊身西裝外套",
+      "elements": [
+        {
+          "id": "b-item-39",
+          "category": "品項",
+          "name": "西裝外套"
+        },
+        {
+          "id": "b-color-39",
+          "category": "主色",
+          "name": "海軍藍"
+        },
+        {
+          "id": "b-pal-39",
+          "category": "配色",
+          "name": "雙色拼接"
+        },
+        {
+          "id": "b-fab-39",
+          "category": "面料",
+          "name": "羊毛"
+        },
+        {
+          "id": "b-pat-39",
+          "category": "圖騰印花",
+          "name": "塗鴉"
+        },
+        {
+          "id": "b-det-39",
+          "category": "細節設計",
+          "name": "抽繩"
+        },
+        {
+          "id": "b-fit-39",
+          "category": "版型",
+          "name": "緊身"
+        },
+        {
+          "id": "b-sty-39",
+          "category": "風格",
+          "name": "正裝"
+        }
+      ],
+      "trendScore": "6.8",
+      "roiScore": "9.0",
+      "fitScore": "9.2",
+      "competitorScore": "7.8",
+      "salesVolume": 7753,
+      "estPrice": 1565,
+      "estFixedCost": 29947,
+      "estVariableCost": 171
+    },
+    {
+      "id": "hc-40",
+      "name": "Y2K風酒紅流蘇Oversize針織衫",
+      "elements": [
+        {
+          "id": "b-item-40",
+          "category": "品項",
+          "name": "針織衫"
+        },
+        {
+          "id": "b-color-40",
+          "category": "主色",
+          "name": "酒紅"
+        },
+        {
+          "id": "b-pal-40",
+          "category": "配色",
+          "name": "拼接"
+        },
+        {
+          "id": "b-fab-40",
+          "category": "面料",
+          "name": "純棉"
+        },
+        {
+          "id": "b-pat-40",
+          "category": "圖騰印花",
+          "name": "幾何"
+        },
+        {
+          "id": "b-det-40",
+          "category": "細節設計",
+          "name": "流蘇"
+        },
+        {
+          "id": "b-fit-40",
+          "category": "版型",
+          "name": "Oversize"
+        },
+        {
+          "id": "b-sty-40",
+          "category": "風格",
+          "name": "Y2K"
+        }
+      ],
+      "trendScore": "6.6",
+      "roiScore": "8.2",
+      "fitScore": "7.5",
+      "competitorScore": "4.4",
+      "salesVolume": 4985,
+      "estPrice": 1884,
+      "estFixedCost": 24026,
+      "estVariableCost": 468
+    },
+    {
+      "id": "hc-41",
+      "name": "運動風霧霾藍大口袋短版T恤",
+      "elements": [
+        {
+          "id": "b-item-41",
+          "category": "品項",
+          "name": "T恤"
+        },
+        {
+          "id": "b-color-41",
+          "category": "主色",
+          "name": "霧霾藍"
+        },
+        {
+          "id": "b-pal-41",
+          "category": "配色",
+          "name": "漸層"
+        },
+        {
+          "id": "b-fab-41",
+          "category": "面料",
+          "name": "羊毛"
+        },
+        {
+          "id": "b-pat-41",
+          "category": "圖騰印花",
+          "name": "豹紋"
+        },
+        {
+          "id": "b-det-41",
+          "category": "細節設計",
+          "name": "大口袋"
+        },
+        {
+          "id": "b-fit-41",
+          "category": "版型",
+          "name": "短版"
+        },
+        {
+          "id": "b-sty-41",
+          "category": "風格",
+          "name": "運動"
+        }
+      ],
+      "trendScore": "8.2",
+      "roiScore": "9.0",
+      "fitScore": "8.2",
+      "competitorScore": "4.4",
+      "salesVolume": 9278,
+      "estPrice": 2436,
+      "estFixedCost": 10925,
+      "estVariableCost": 219
+    },
+    {
+      "id": "hc-42",
+      "name": "工裝風卡其大口袋正常版型寬褲",
+      "elements": [
+        {
+          "id": "b-item-42",
+          "category": "品項",
+          "name": "寬褲"
+        },
+        {
+          "id": "b-color-42",
+          "category": "主色",
+          "name": "卡其"
+        },
+        {
+          "id": "b-pal-42",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-42",
+          "category": "面料",
+          "name": "皮革"
+        },
+        {
+          "id": "b-pat-42",
+          "category": "圖騰印花",
+          "name": "字母"
+        },
+        {
+          "id": "b-det-42",
+          "category": "細節設計",
+          "name": "大口袋"
+        },
+        {
+          "id": "b-fit-42",
+          "category": "版型",
+          "name": "正常版型"
+        },
+        {
+          "id": "b-sty-42",
+          "category": "風格",
+          "name": "工裝"
+        }
+      ],
+      "trendScore": "7.9",
+      "roiScore": "6.8",
+      "fitScore": "7.4",
+      "competitorScore": "5.7",
+      "salesVolume": 7612,
+      "estPrice": 2843,
+      "estFixedCost": 46129,
+      "estVariableCost": 361
+    },
+    {
+      "id": "hc-43",
+      "name": "波西米亞風櫻花粉綁帶正常版型大衣",
+      "elements": [
+        {
+          "id": "b-item-43",
+          "category": "品項",
+          "name": "大衣"
+        },
+        {
+          "id": "b-color-43",
+          "category": "主色",
+          "name": "櫻花粉"
+        },
+        {
+          "id": "b-pal-43",
+          "category": "配色",
+          "name": "素色"
+        },
+        {
+          "id": "b-fab-43",
+          "category": "面料",
+          "name": "羊毛"
+        },
+        {
+          "id": "b-pat-43",
+          "category": "圖騰印花",
+          "name": "千鳥格"
+        },
+        {
+          "id": "b-det-43",
+          "category": "細節設計",
+          "name": "綁帶"
+        },
+        {
+          "id": "b-fit-43",
+          "category": "版型",
+          "name": "正常版型"
+        },
+        {
+          "id": "b-sty-43",
+          "category": "風格",
+          "name": "波西米亞"
+        }
+      ],
+      "trendScore": "5.5",
+      "roiScore": "9.4",
+      "fitScore": "7.5",
+      "competitorScore": "8.0",
+      "salesVolume": 8205,
+      "estPrice": 879,
+      "estFixedCost": 37930,
+      "estVariableCost": 484
+    },
+    {
+      "id": "hc-44",
+      "name": "運動風米色精緻刺繡修身洋裝",
+      "elements": [
+        {
+          "id": "b-item-44",
+          "category": "品項",
+          "name": "洋裝"
+        },
+        {
+          "id": "b-color-44",
+          "category": "主色",
+          "name": "米色"
+        },
+        {
+          "id": "b-pal-44",
+          "category": "配色",
+          "name": "撞色"
+        },
+        {
+          "id": "b-fab-44",
+          "category": "面料",
+          "name": "皮革"
+        },
+        {
+          "id": "b-pat-44",
+          "category": "圖騰印花",
+          "name": "豹紋"
+        },
+        {
+          "id": "b-det-44",
+          "category": "細節設計",
+          "name": "精緻刺繡"
+        },
+        {
+          "id": "b-fit-44",
+          "category": "版型",
+          "name": "修身"
+        },
+        {
+          "id": "b-sty-44",
+          "category": "風格",
+          "name": "運動"
+        }
+      ],
+      "trendScore": "8.8",
+      "roiScore": "8.7",
+      "fitScore": "9.6",
+      "competitorScore": "8.7",
+      "salesVolume": 1781,
+      "estPrice": 2464,
+      "estFixedCost": 14844,
+      "estVariableCost": 542
+    },
+    {
+      "id": "hc-45",
+      "name": "工裝風黑寬鬆襯衫",
+      "elements": [
+        {
+          "id": "b-item-45",
+          "category": "品項",
+          "name": "襯衫"
+        },
+        {
+          "id": "b-color-45",
+          "category": "主色",
+          "name": "黑"
+        },
+        {
+          "id": "b-pal-45",
+          "category": "配色",
+          "name": "雙色拼接"
+        },
+        {
+          "id": "b-fab-45",
+          "category": "面料",
+          "name": "聚酯纖維"
+        },
+        {
+          "id": "b-pat-45",
+          "category": "圖騰印花",
+          "name": "字母"
+        },
+        {
+          "id": "b-det-45",
+          "category": "細節設計",
+          "name": "無特殊細節"
+        },
+        {
+          "id": "b-fit-45",
+          "category": "版型",
+          "name": "寬鬆"
+        },
+        {
+          "id": "b-sty-45",
+          "category": "風格",
+          "name": "工裝"
+        }
+      ],
+      "trendScore": "8.3",
+      "roiScore": "7.1",
+      "fitScore": "7.5",
+      "competitorScore": "9.0",
+      "salesVolume": 9659,
+      "estPrice": 2402,
+      "estFixedCost": 18648,
+      "estVariableCost": 429
+    },
+    {
+      "id": "hc-46",
+      "name": "極簡風海軍藍高腰T恤",
+      "elements": [
+        {
+          "id": "b-item-46",
+          "category": "品項",
+          "name": "T恤"
+        },
+        {
+          "id": "b-color-46",
+          "category": "主色",
+          "name": "海軍藍"
+        },
+        {
+          "id": "b-pal-46",
+          "category": "配色",
+          "name": "拼接"
+        },
+        {
+          "id": "b-fab-46",
+          "category": "面料",
+          "name": "亞麻"
+        },
+        {
+          "id": "b-pat-46",
+          "category": "圖騰印花",
+          "name": "格紋"
+        },
+        {
+          "id": "b-det-46",
+          "category": "細節設計",
+          "name": "無特殊細節"
+        },
+        {
+          "id": "b-fit-46",
+          "category": "版型",
+          "name": "高腰"
+        },
+        {
+          "id": "b-sty-46",
+          "category": "風格",
+          "name": "極簡"
+        }
+      ],
+      "trendScore": "7.4",
+      "roiScore": "6.1",
+      "fitScore": "8.2",
+      "competitorScore": "8.2",
+      "salesVolume": 7981,
+      "estPrice": 1577,
+      "estFixedCost": 10888,
+      "estVariableCost": 376
+    },
+    {
+      "id": "hc-47",
+      "name": "甜美風霧霾藍精緻刺繡傘狀長褲",
+      "elements": [
+        {
+          "id": "b-item-47",
+          "category": "品項",
+          "name": "長褲"
+        },
+        {
+          "id": "b-color-47",
+          "category": "主色",
+          "name": "霧霾藍"
+        },
+        {
+          "id": "b-pal-47",
+          "category": "配色",
+          "name": "素色"
+        },
+        {
+          "id": "b-fab-47",
+          "category": "面料",
+          "name": "純棉"
+        },
+        {
+          "id": "b-pat-47",
+          "category": "圖騰印花",
+          "name": "無印花"
+        },
+        {
+          "id": "b-det-47",
+          "category": "細節設計",
+          "name": "精緻刺繡"
+        },
+        {
+          "id": "b-fit-47",
+          "category": "版型",
+          "name": "傘狀"
+        },
+        {
+          "id": "b-sty-47",
+          "category": "風格",
+          "name": "甜美"
+        }
+      ],
+      "trendScore": "5.9",
+      "roiScore": "7.8",
+      "fitScore": "7.3",
+      "competitorScore": "7.0",
+      "salesVolume": 6059,
+      "estPrice": 539,
+      "estFixedCost": 19911,
+      "estVariableCost": 391
+    },
+    {
+      "id": "hc-48",
+      "name": "休閒風橄欖綠大口袋直筒寬褲",
+      "elements": [
+        {
+          "id": "b-item-48",
+          "category": "品項",
+          "name": "寬褲"
+        },
+        {
+          "id": "b-color-48",
+          "category": "主色",
+          "name": "橄欖綠"
+        },
+        {
+          "id": "b-pal-48",
+          "category": "配色",
+          "name": "單一色"
+        },
+        {
+          "id": "b-fab-48",
+          "category": "面料",
+          "name": "牛仔"
+        },
+        {
+          "id": "b-pat-48",
+          "category": "圖騰印花",
+          "name": "波點"
+        },
+        {
+          "id": "b-det-48",
+          "category": "細節設計",
+          "name": "大口袋"
+        },
+        {
+          "id": "b-fit-48",
+          "category": "版型",
+          "name": "直筒"
+        },
+        {
+          "id": "b-sty-48",
+          "category": "風格",
+          "name": "休閒"
+        }
+      ],
+      "trendScore": "7.4",
+      "roiScore": "7.8",
+      "fitScore": "8.3",
+      "competitorScore": "7.6",
+      "salesVolume": 9856,
+      "estPrice": 2591,
+      "estFixedCost": 49634,
+      "estVariableCost": 157
+    },
+    {
+      "id": "hc-49",
+      "name": "休閒風黑精緻刺繡落地長褲",
+      "elements": [
+        {
+          "id": "b-item-49",
+          "category": "品項",
+          "name": "長褲"
+        },
+        {
+          "id": "b-color-49",
+          "category": "主色",
+          "name": "黑"
+        },
+        {
+          "id": "b-pal-49",
+          "category": "配色",
+          "name": "同色系"
+        },
+        {
+          "id": "b-fab-49",
+          "category": "面料",
+          "name": "絲綢"
+        },
+        {
+          "id": "b-pat-49",
+          "category": "圖騰印花",
+          "name": "豹紋"
+        },
+        {
+          "id": "b-det-49",
+          "category": "細節設計",
+          "name": "精緻刺繡"
+        },
+        {
+          "id": "b-fit-49",
+          "category": "版型",
+          "name": "落地"
+        },
+        {
+          "id": "b-sty-49",
+          "category": "風格",
+          "name": "休閒"
+        }
+      ],
+      "trendScore": "6.4",
+      "roiScore": "6.2",
+      "fitScore": "8.5",
+      "competitorScore": "8.8",
+      "salesVolume": 9815,
+      "estPrice": 2800,
+      "estFixedCost": 31221,
+      "estVariableCost": 186
+    },
+    {
+      "id": "hc-50",
+      "name": "波西米亞風霧霾藍抓皺短版飛行外套",
+      "elements": [
+        {
+          "id": "b-item-50",
+          "category": "品項",
+          "name": "飛行外套"
+        },
+        {
+          "id": "b-color-50",
+          "category": "主色",
+          "name": "霧霾藍"
+        },
+        {
+          "id": "b-pal-50",
+          "category": "配色",
+          "name": "雙色拼接"
+        },
+        {
+          "id": "b-fab-50",
+          "category": "面料",
+          "name": "針織"
+        },
+        {
+          "id": "b-pat-50",
+          "category": "圖騰印花",
+          "name": "字母"
+        },
+        {
+          "id": "b-det-50",
+          "category": "細節設計",
+          "name": "抓皺"
+        },
+        {
+          "id": "b-fit-50",
+          "category": "版型",
+          "name": "短版"
+        },
+        {
+          "id": "b-sty-50",
+          "category": "風格",
+          "name": "波西米亞"
+        }
+      ],
+      "trendScore": "8.0",
+      "roiScore": "7.3",
+      "fitScore": "9.7",
+      "competitorScore": "6.8",
+      "salesVolume": 8226,
+      "estPrice": 2261,
+      "estFixedCost": 36388,
+      "estVariableCost": 292
     }
   ]
 }
