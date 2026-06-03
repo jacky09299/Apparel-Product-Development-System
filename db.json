@@ -57994,9 +57994,9 @@
       "fitScore": "9.6",
       "competitorScore": "7.6",
       "salesVolume": 6096,
-      "estPrice": 39.98089231504453,
+      "estPrice": 1279.388554081425,
       "estFixedCost": 11892,
-      "estVariableCost": 17.571771396560308
+      "estVariableCost": 464
     },
     {
       "id": "hc-2",
@@ -58048,9 +58048,9 @@
       "fitScore": "8.2",
       "competitorScore": "6.6",
       "salesVolume": 9273,
-      "estPrice": 48.682393544022055,
+      "estPrice": 1557.8365934087058,
       "estFixedCost": 13565,
-      "estVariableCost": 19.8462815829988
+      "estVariableCost": 433
     },
     {
       "id": "hc-3",
@@ -58102,9 +58102,9 @@
       "fitScore": "7.2",
       "competitorScore": "4.5",
       "salesVolume": 5154,
-      "estPrice": 34.77139944448135,
+      "estPrice": 1112.684782223403,
       "estFixedCost": 32061,
-      "estVariableCost": 14.639093500660252
+      "estVariableCost": 189
     },
     {
       "id": "hc-4",
@@ -58156,9 +58156,9 @@
       "fitScore": "9.3",
       "competitorScore": "5.3",
       "salesVolume": 6766,
-      "estPrice": 62.21620452155601,
+      "estPrice": 1990.9185446897923,
       "estFixedCost": 44202,
-      "estVariableCost": 35.918510995261265
+      "estVariableCost": 397
     },
     {
       "id": "hc-5",
@@ -58210,9 +58210,9 @@
       "fitScore": "8.4",
       "competitorScore": "6.1",
       "salesVolume": 8642,
-      "estPrice": 27.47935692197128,
+      "estPrice": 879.339421503081,
       "estFixedCost": 21679,
-      "estVariableCost": 13.787494892473255
+      "estVariableCost": 375
     },
     {
       "id": "hc-6",
@@ -58264,9 +58264,9 @@
       "fitScore": "8.6",
       "competitorScore": "6.9",
       "salesVolume": 1089,
-      "estPrice": 21.946367324211135,
+      "estPrice": 702.2837543747563,
       "estFixedCost": 47052,
-      "estVariableCost": 11.700627783932015
+      "estVariableCost": 317
     },
     {
       "id": "hc-7",
@@ -58318,9 +58318,9 @@
       "fitScore": "9.6",
       "competitorScore": "7.8",
       "salesVolume": 5802,
-      "estPrice": 21.06765830362656,
+      "estPrice": 674.1650657160499,
       "estFixedCost": 46485,
-      "estVariableCost": 10.865226288515139
+      "estVariableCost": 197
     },
     {
       "id": "hc-8",
@@ -58372,9 +58372,9 @@
       "fitScore": "8.6",
       "competitorScore": "4.2",
       "salesVolume": 2264,
-      "estPrice": 28.75754928060514,
+      "estPrice": 920.2415769793645,
       "estFixedCost": 46184,
-      "estVariableCost": 14.112533790034863
+      "estVariableCost": 449
     },
     {
       "id": "hc-9",
@@ -58426,9 +58426,9 @@
       "fitScore": "8.1",
       "competitorScore": "7.6",
       "salesVolume": 6404,
-      "estPrice": 15.827035370516917,
+      "estPrice": 506.46513185654135,
       "estFixedCost": 12377,
-      "estVariableCost": 6.374540575114486
+      "estVariableCost": 464
     },
     {
       "id": "hc-10",
@@ -58480,9 +58480,9 @@
       "fitScore": "9.2",
       "competitorScore": "5.3",
       "salesVolume": 9213,
-      "estPrice": 24.329394058580725,
+      "estPrice": 778.5406098745832,
       "estFixedCost": 14274,
-      "estVariableCost": 13.847643936859894
+      "estVariableCost": 215
     },
     {
       "id": "hc-11",
@@ -58534,9 +58534,9 @@
       "fitScore": "7.7",
       "competitorScore": "5.5",
       "salesVolume": 8982,
-      "estPrice": 21.91758688492166,
+      "estPrice": 701.3627803174932,
       "estFixedCost": 44411,
-      "estVariableCost": 11.941751772960105
+      "estVariableCost": 347
     },
     {
       "id": "hc-12",
@@ -58588,9 +58588,9 @@
       "fitScore": "8.6",
       "competitorScore": "4.6",
       "salesVolume": 4247,
-      "estPrice": 11.566744757961983,
+      "estPrice": 370.13583225478345,
       "estFixedCost": 23105,
-      "estVariableCost": 6.60596913120299
+      "estVariableCost": 498
     },
     {
       "id": "hc-13",
@@ -58642,9 +58642,9 @@
       "fitScore": "7.0",
       "competitorScore": "6.0",
       "salesVolume": 4321,
-      "estPrice": 16.71042791860743,
+      "estPrice": 534.7336933954377,
       "estFixedCost": 39344,
-      "estVariableCost": 9.596460851399554
+      "estVariableCost": 325
     },
     {
       "id": "hc-14",
@@ -58696,9 +58696,9 @@
       "fitScore": "7.3",
       "competitorScore": "6.5",
       "salesVolume": 1712,
-      "estPrice": 34.77139944448135,
+      "estPrice": 1112.684782223403,
       "estFixedCost": 36640,
-      "estVariableCost": 16.01125399798243
+      "estVariableCost": 171
     },
     {
       "id": "hc-15",
@@ -58750,9 +58750,9 @@
       "fitScore": "7.4",
       "competitorScore": "5.5",
       "salesVolume": 7683,
-      "estPrice": 14.389291395451512,
+      "estPrice": 460.45732465444837,
       "estFixedCost": 19459,
-      "estVariableCost": 6.5878993133211585
+      "estVariableCost": 334
     },
     {
       "id": "hc-16",
@@ -58804,9 +58804,9 @@
       "fitScore": "8.4",
       "competitorScore": "4.2",
       "salesVolume": 6171,
-      "estPrice": 10.124855433955156,
+      "estPrice": 323.995373886565,
       "estFixedCost": 19558,
-      "estVariableCost": 4.794675683661738
+      "estVariableCost": 289
     },
     {
       "id": "hc-17",
@@ -58858,9 +58858,9 @@
       "fitScore": "8.8",
       "competitorScore": "4.3",
       "salesVolume": 5075,
-      "estPrice": 51.35296259331811,
+      "estPrice": 1643.2948029861795,
       "estFixedCost": 15939,
-      "estVariableCost": 24.8189557059144
+      "estVariableCost": 156
     },
     {
       "id": "hc-18",
@@ -58912,9 +58912,9 @@
       "fitScore": "9.8",
       "competitorScore": "4.6",
       "salesVolume": 8144,
-      "estPrice": 110.95561018953566,
+      "estPrice": 3550.579526065141,
       "estFixedCost": 25215,
-      "estVariableCost": 65.62665521275952
+      "estVariableCost": 442
     },
     {
       "id": "hc-19",
@@ -58966,9 +58966,9 @@
       "fitScore": "8.7",
       "competitorScore": "7.4",
       "salesVolume": 4598,
-      "estPrice": 34.77139944448135,
+      "estPrice": 1112.684782223403,
       "estFixedCost": 46472,
-      "estVariableCost": 15.378480603727368
+      "estVariableCost": 220
     },
     {
       "id": "hc-20",
@@ -59020,9 +59020,9 @@
       "fitScore": "9.1",
       "competitorScore": "7.5",
       "salesVolume": 2403,
-      "estPrice": 18.35095192561672,
+      "estPrice": 587.230461619735,
       "estFixedCost": 11490,
-      "estVariableCost": 10.214103519187352
+      "estVariableCost": 160
     },
     {
       "id": "hc-21",
@@ -59074,9 +59074,9 @@
       "fitScore": "8.9",
       "competitorScore": "6.8",
       "salesVolume": 8367,
-      "estPrice": 16.496943606159785,
+      "estPrice": 527.9021953971131,
       "estFixedCost": 14779,
-      "estVariableCost": 7.129468088241062
+      "estVariableCost": 192
     },
     {
       "id": "hc-22",
@@ -59128,9 +59128,9 @@
       "fitScore": "7.5",
       "competitorScore": "7.8",
       "salesVolume": 4790,
-      "estPrice": 21.946367324211135,
+      "estPrice": 702.2837543747563,
       "estFixedCost": 30582,
-      "estVariableCost": 12.468323162460269
+      "estVariableCost": 266
     },
     {
       "id": "hc-23",
@@ -59182,9 +59182,9 @@
       "fitScore": "9.4",
       "competitorScore": "4.3",
       "salesVolume": 2646,
-      "estPrice": 44.95424628366244,
+      "estPrice": 1438.5358810771982,
       "estFixedCost": 16081,
-      "estVariableCost": 20.838958320197268
+      "estVariableCost": 215
     },
     {
       "id": "hc-24",
@@ -59236,9 +59236,9 @@
       "fitScore": "8.2",
       "competitorScore": "4.8",
       "salesVolume": 1510,
-      "estPrice": 25.682178396952626,
+      "estPrice": 821.829708702484,
       "estFixedCost": 17124,
-      "estVariableCost": 10.788836702000376
+      "estVariableCost": 224
     },
     {
       "id": "hc-25",
@@ -59290,9 +59290,9 @@
       "fitScore": "7.6",
       "competitorScore": "6.5",
       "salesVolume": 9912,
-      "estPrice": 9.67424014655656,
+      "estPrice": 309.5756846898099,
       "estFixedCost": 13513,
-      "estVariableCost": 5.299908026763367
+      "estVariableCost": 157
     },
     {
       "id": "hc-26",
@@ -59344,9 +59344,9 @@
       "fitScore": "8.8",
       "competitorScore": "5.8",
       "salesVolume": 3192,
-      "estPrice": 17.42540433818562,
+      "estPrice": 557.6129388219398,
       "estFixedCost": 10714,
-      "estVariableCost": 8.360148623837695
+      "estVariableCost": 357
     },
     {
       "id": "hc-27",
@@ -59398,9 +59398,9 @@
       "fitScore": "9.6",
       "competitorScore": "4.3",
       "salesVolume": 3193,
-      "estPrice": 45.81671428750744,
+      "estPrice": 1466.134857200238,
       "estFixedCost": 30265,
-      "estVariableCost": 23.15055790332263
+      "estVariableCost": 395
     },
     {
       "id": "hc-28",
@@ -59452,9 +59452,9 @@
       "fitScore": "7.6",
       "competitorScore": "8.5",
       "salesVolume": 1970,
-      "estPrice": 51.234381560088174,
+      "estPrice": 1639.5002099228216,
       "estFixedCost": 45366,
-      "estVariableCost": 20.9336570989423
+      "estVariableCost": 255
     },
     {
       "id": "hc-29",
@@ -59506,9 +59506,9 @@
       "fitScore": "7.2",
       "competitorScore": "8.5",
       "salesVolume": 6263,
-      "estPrice": 46.25126749335065,
+      "estPrice": 1480.040559787221,
       "estFixedCost": 40373,
-      "estVariableCost": 18.60980553079186
+      "estVariableCost": 472
     },
     {
       "id": "hc-30",
@@ -59560,9 +59560,9 @@
       "fitScore": "7.8",
       "competitorScore": "4.9",
       "salesVolume": 2789,
-      "estPrice": 15.153599071719551,
+      "estPrice": 484.91517029502563,
       "estFixedCost": 46783,
-      "estVariableCost": 6.576360238669732
+      "estVariableCost": 191
     },
     {
       "id": "hc-31",
@@ -59614,9 +59614,9 @@
       "fitScore": "8.2",
       "competitorScore": "8.4",
       "salesVolume": 9282,
-      "estPrice": 29.55273166269763,
+      "estPrice": 945.6874132063242,
       "estFixedCost": 19801,
-      "estVariableCost": 15.79566355004633
+      "estVariableCost": 187
     },
     {
       "id": "hc-32",
@@ -59668,9 +59668,9 @@
       "fitScore": "8.2",
       "competitorScore": "7.8",
       "salesVolume": 3937,
-      "estPrice": 20.03339859630611,
+      "estPrice": 641.0687550817955,
       "estFixedCost": 38995,
-      "estVariableCost": 10.960547033617233
+      "estVariableCost": 275
     },
     {
       "id": "hc-33",
@@ -59722,9 +59722,9 @@
       "fitScore": "9.2",
       "competitorScore": "7.7",
       "salesVolume": 8536,
-      "estPrice": 31.044953725789487,
+      "estPrice": 993.4385192252636,
       "estFixedCost": 26607,
-      "estVariableCost": 17.203209687043397
+      "estVariableCost": 504
     },
     {
       "id": "hc-34",
@@ -59776,9 +59776,9 @@
       "fitScore": "7.5",
       "competitorScore": "6.7",
       "salesVolume": 9602,
-      "estPrice": 34.77139944448135,
+      "estPrice": 1112.684782223403,
       "estFixedCost": 38302,
-      "estVariableCost": 20.21533649660683
+      "estVariableCost": 396
     },
     {
       "id": "hc-35",
@@ -59830,9 +59830,9 @@
       "fitScore": "7.4",
       "competitorScore": "4.9",
       "salesVolume": 8351,
-      "estPrice": 51.000454580699014,
+      "estPrice": 1632.0145465823684,
       "estFixedCost": 36168,
-      "estVariableCost": 29.251989658225433
+      "estVariableCost": 154
     },
     {
       "id": "hc-36",
@@ -59884,9 +59884,9 @@
       "fitScore": "8.4",
       "competitorScore": "8.8",
       "salesVolume": 5318,
-      "estPrice": 34.19804608011447,
+      "estPrice": 1094.3374745636631,
       "estFixedCost": 28322,
-      "estVariableCost": 19.658669632479473
+      "estVariableCost": 319
     },
     {
       "id": "hc-37",
@@ -59938,9 +59938,9 @@
       "fitScore": "8.4",
       "competitorScore": "4.2",
       "salesVolume": 3282,
-      "estPrice": 38.49166058642098,
+      "estPrice": 1231.7331387654713,
       "estFixedCost": 25294,
-      "estVariableCost": 15.75190076345669
+      "estVariableCost": 439
     },
     {
       "id": "hc-38",
@@ -59992,9 +59992,9 @@
       "fitScore": "7.3",
       "competitorScore": "7.9",
       "salesVolume": 7753,
-      "estPrice": 22.85200034824747,
+      "estPrice": 731.264011143919,
       "estFixedCost": 39063,
-      "estVariableCost": 10.129161362855037
+      "estVariableCost": 360
     },
     {
       "id": "hc-39",
@@ -60046,9 +60046,9 @@
       "fitScore": "9.2",
       "competitorScore": "7.8",
       "salesVolume": 7753,
-      "estPrice": 39.98089231504453,
+      "estPrice": 1279.388554081425,
       "estFixedCost": 29947,
-      "estVariableCost": 23.786576712061738
+      "estVariableCost": 171
     },
     {
       "id": "hc-40",
@@ -60100,9 +60100,9 @@
       "fitScore": "7.5",
       "competitorScore": "4.4",
       "salesVolume": 4985,
-      "estPrice": 33.655003083243415,
+      "estPrice": 1076.9600986637893,
       "estFixedCost": 24026,
-      "estVariableCost": 16.172386795875983
+      "estVariableCost": 468
     },
     {
       "id": "hc-41",
@@ -60154,9 +60154,9 @@
       "fitScore": "8.2",
       "competitorScore": "4.4",
       "salesVolume": 9278,
-      "estPrice": 13.663912136513735,
+      "estPrice": 437.2451883684395,
       "estFixedCost": 10925,
-      "estVariableCost": 7.108566718174329
+      "estVariableCost": 219
     },
     {
       "id": "hc-42",
@@ -60208,9 +60208,9 @@
       "fitScore": "7.4",
       "competitorScore": "5.7",
       "salesVolume": 7612,
-      "estPrice": 25.14353101379193,
+      "estPrice": 804.5929924413417,
       "estFixedCost": 46129,
-      "estVariableCost": 15.02079573086607
+      "estVariableCost": 361
     },
     {
       "id": "hc-43",
@@ -60262,9 +60262,9 @@
       "fitScore": "7.5",
       "competitorScore": "8.0",
       "salesVolume": 8205,
-      "estPrice": 110.95561018953566,
+      "estPrice": 3550.579526065141,
       "estFixedCost": 37930,
-      "estVariableCost": 45.960660967683495
+      "estVariableCost": 484
     },
     {
       "id": "hc-44",
@@ -60316,9 +60316,9 @@
       "fitScore": "9.6",
       "competitorScore": "8.7",
       "salesVolume": 1781,
-      "estPrice": 20.88430368897351,
+      "estPrice": 668.2977180471523,
       "estFixedCost": 14844,
-      "estVariableCost": 9.131039145687193
+      "estVariableCost": 542
     },
     {
       "id": "hc-45",
@@ -60370,9 +60370,9 @@
       "fitScore": "7.5",
       "competitorScore": "9.0",
       "salesVolume": 9659,
-      "estPrice": 14.266746220637133,
+      "estPrice": 456.53587906038825,
       "estFixedCost": 18648,
-      "estVariableCost": 7.877831714489703
+      "estVariableCost": 429
     },
     {
       "id": "hc-46",
@@ -60424,9 +60424,9 @@
       "fitScore": "8.2",
       "competitorScore": "8.2",
       "salesVolume": 7981,
-      "estPrice": 45.539859691059306,
+      "estPrice": 1457.2755101138978,
       "estFixedCost": 10888,
-      "estVariableCost": 22.46411569808593
+      "estVariableCost": 376
     },
     {
       "id": "hc-47",
@@ -60478,9 +60478,9 @@
       "fitScore": "7.3",
       "competitorScore": "7.0",
       "salesVolume": 6059,
-      "estPrice": 20.296631769146405,
+      "estPrice": 649.492216612685,
       "estFixedCost": 19911,
-      "estVariableCost": 9.003424694165531
+      "estVariableCost": 391
     },
     {
       "id": "hc-48",
@@ -60532,9 +60532,9 @@
       "fitScore": "8.3",
       "competitorScore": "7.6",
       "salesVolume": 9856,
-      "estPrice": 21.846899355280218,
+      "estPrice": 699.100779368967,
       "estFixedCost": 49634,
-      "estVariableCost": 13.047358557181418
+      "estVariableCost": 157
     },
     {
       "id": "hc-49",
@@ -60586,9 +60586,9 @@
       "fitScore": "8.5",
       "competitorScore": "8.8",
       "salesVolume": 9815,
-      "estPrice": 25.24335102076434,
+      "estPrice": 807.7872326644589,
       "estFixedCost": 31221,
-      "estVariableCost": 10.514303300521076
+      "estVariableCost": 186
     },
     {
       "id": "hc-50",
@@ -60640,9 +60640,9 @@
       "fitScore": "9.7",
       "competitorScore": "6.8",
       "salesVolume": 8226,
-      "estPrice": 38.287074689709954,
+      "estPrice": 1225.1863900707185,
       "estFixedCost": 36388,
-      "estVariableCost": 17.59112144946163
+      "estVariableCost": 292
     }
   ]
 }
