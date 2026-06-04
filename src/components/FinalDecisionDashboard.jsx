@@ -150,7 +150,7 @@ export function FinalDecisionDashboard({ savedStyles, setSavedStyles, onSubmit }
         <div>
           <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
             <BarChart3 className="w-6 h-6 text-primary" />
-            預測結果與最終開發計畫 (商品企劃)
+            預測結果與最終開發計畫
           </h2>
           <p className="text-sm text-gray-500 mt-1">從左側各活動中挑選最適合的「一個組合」加入右側決策總表，系統將動態計算競爭值。</p>
         </div>
