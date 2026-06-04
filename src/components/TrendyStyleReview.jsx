@@ -21,6 +21,23 @@ export function TrendyStyleReview({ savedStyles, setSavedStyles, onSubmit }) {
 
   const pendingCount = savedStyles.filter(s => !s.directToDev && !s.needsPrediction && !s.rejected).length;
 
+  const handleDemoFill = () => {
+    // We want to map based on the sorted styles order to make sense visually
+    const sortedIds = sortedStyles.map(s => s.id);
+    setSavedStyles(prev => prev.map(s => {
+      const index = sortedIds.indexOf(s.id);
+      if (index === -1) return s; // shouldn't happen
+      // Logic: 0 -> predict, 1 -> dev, 2 -> predict, 3 -> dev, 4 -> reject...
+      const decision = index === 0 ? 'predict' : index === 1 ? 'dev' : index === 2 ? 'predict' : index === 3 ? 'dev' : 'reject';
+      return {
+        ...s,
+        directToDev: decision === 'dev',
+        needsPrediction: decision === 'predict',
+        rejected: decision === 'reject'
+      };
+    }));
+  };
+
   return (
     <div className="flex flex-col h-full bg-gray-50 p-6 animate-in fade-in duration-200">
       <div className="mb-6 flex justify-between items-end">
@@ -36,6 +53,12 @@ export function TrendyStyleReview({ savedStyles, setSavedStyles, onSubmit }) {
             <span className="font-bold text-gray-700">待審核：</span>
             <span className={`font-mono ml-1 ${pendingCount > 0 ? 'text-red-500 font-bold' : 'text-gray-500'}`}>{pendingCount}</span> 款
           </div>
+          <button
+            onClick={handleDemoFill}
+            className="px-4 py-2 rounded-md font-bold text-sm bg-indigo-100 text-indigo-700 hover:bg-indigo-200 transition-colors border border-indigo-200 shadow-sm"
+          >
+            ✨ DEMO 快速審核
+          </button>
           <button
             onClick={onSubmit}
             disabled={pendingCount > 0}

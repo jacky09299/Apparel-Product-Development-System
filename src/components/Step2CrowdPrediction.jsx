@@ -497,7 +497,10 @@ export function Step2CrowdPrediction({ savedStyles = [], setSavedStyles, onSubmi
          
          {/* Global footer for Step 2 to return to Step 1 */}
          {/* Global footer for Step 2 */}
-         <div className="mt-4 pt-4 border-t flex justify-end shrink-0">
+         <div className="mt-4 pt-4 border-t flex justify-end shrink-0 gap-3">
+            <button onClick={onSubmit} className="bg-indigo-100 text-indigo-700 border border-indigo-200 px-6 py-2 font-bold rounded shadow-sm hover:bg-indigo-200">
+               ✨ DEMO 快速自動發布
+            </button>
             <button onClick={onSubmit} className="bg-primary text-white px-8 py-2 font-bold rounded shadow-sm hover:bg-primary/90">
                完成建立，返回首頁
             </button>
