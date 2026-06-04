@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrandFitMatrix } from './components/BrandFitMatrix';
+import { BasicStyleDecision } from './components/BasicStyleDecision';
+import { TrendyStyleDecision } from './components/TrendyStyleDecision';
 import { Step3Dashboard, Step4Designer, Step5QA } from './components/MockPages';
 import { Step2CrowdPrediction } from './components/Step2CrowdPrediction';
-// Custom hook to persist state in localStorage so it survives logout/refresh
+import { LayoutDashboard, ListTodo, UserCircle, X, Menu, ChevronRight, CheckCircle2, Circle } from 'lucide-react';
+
 function useStickyState(defaultValue, key) {
   const [value, setValue] = useState(() => {
     try {
@@ -27,68 +30,22 @@ const initialRequirements = [
 ];
 
 const initialElements = [
-  { id: 'c-white', category: '主色', name: '白' },
-  { id: 'm-cotton', category: '面料', name: '棉' },
+  { id: 'el-1', category: '風格', name: '基本休閒' },
+  { id: 'el-2', category: '品項', name: 'T恤' },
+  { id: 'el-3', category: '版型', name: '常規' },
+  { id: 'el-4', category: '面料', name: '棉' },
+  { id: 'el-5', category: '主色', name: '白' },
+  { id: 'el-6', category: '配色', name: '無' },
+  { id: 'el-7', category: '圖騰印花', name: '素面' },
+  { id: 'el-8', category: '細節設計', name: '基本款' },
 ];
 
-
-function Dashboard({ onStepChange }) {
-  return (
-    <div className="p-8 max-w-6xl mx-auto space-y-8">
-      <h1 className="text-2xl font-bold text-content-main border-b border-[#d1d5db] pb-4">商品開發中心</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* 開發決策輔助 */}
-        <div className="bg-white border border-primary rounded-lg shadow-sm overflow-hidden flex flex-col">
-          <div className="bg-primary text-white p-4 font-bold text-lg">開發決策輔助</div>
-          <div className="p-4 flex-1 flex flex-col gap-3">
-            <button onClick={() => onStepChange(1)} className="w-full text-left p-3 border border-[#d1d5db] rounded hover:border-primary hover:bg-primary-50 transition-colors flex items-center justify-between group">
-              <span className="font-medium text-[#374151] group-hover:text-primary">初步決定開發方向</span>
-              <span className="text-primary opacity-0 group-hover:opacity-100">&rarr;</span>
-            </button>
-            <button onClick={() => onStepChange(2)} className="w-full text-left p-3 border border-[#d1d5db] rounded hover:border-primary hover:bg-primary-50 transition-colors flex items-center justify-between group">
-              <span className="font-medium text-[#374151] group-hover:text-primary">建立群眾預測活動</span>
-              <span className="text-primary opacity-0 group-hover:opacity-100">&rarr;</span>
-            </button>
-            <button onClick={() => onStepChange(3)} className="w-full text-left p-3 border border-[#d1d5db] rounded hover:border-primary hover:bg-primary-50 transition-colors flex items-center justify-between group">
-              <span className="font-medium text-[#374151] group-hover:text-primary">最終決定開發計畫</span>
-              <span className="text-primary opacity-0 group-hover:opacity-100">&rarr;</span>
-            </button>
-          </div>
-        </div>
-
-        {/* 設計開發 */}
-        <div className="bg-white border border-[#d1d5db] rounded-lg shadow-sm overflow-hidden flex flex-col opacity-75">
-          <div className="bg-[#f3f4f6] text-[#4b5563] p-4 font-bold text-lg border-b border-[#d1d5db]">設計開發</div>
-          <div className="p-4 flex-1 flex flex-col gap-3 justify-center items-center text-[#9ca3af] text-sm">
-            建置中...
-          </div>
-        </div>
-
-        {/* 版型開發 */}
-        <div className="bg-white border border-[#d1d5db] rounded-lg shadow-sm overflow-hidden flex flex-col opacity-75">
-          <div className="bg-[#f3f4f6] text-[#4b5563] p-4 font-bold text-lg border-b border-[#d1d5db]">版型開發</div>
-          <div className="p-4 flex-1 flex flex-col gap-3 justify-center items-center text-[#9ca3af] text-sm">
-            建置中...
-          </div>
-        </div>
-
-        {/* 優化系統 */}
-        <div className="bg-white border border-[#d1d5db] rounded-lg shadow-sm overflow-hidden flex flex-col opacity-75">
-          <div className="bg-[#f3f4f6] text-[#4b5563] p-4 font-bold text-lg border-b border-[#d1d5db]">優化系統</div>
-          <div className="p-4 flex-1 flex flex-col gap-3 justify-center items-center text-[#9ca3af] text-sm">
-            建置中...
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const ROLES = ['系統管理員', '設計總監', '趨勢分析師', '商品企劃', '設計師'];
 
 function App() {
-  const [currentRole, setCurrentRole] = useStickyState(null, 'erp2_currentRole');
-  const [currentStep, setCurrentStep] = useStickyState(0, 'erp2_currentStep_v3');
-  const [subStep, setSubStep] = useStickyState(1, 'erp2_subStep'); // 1 = Matrix, 2 = BasicStyle
+  const [currentRole, setCurrentRole] = useStickyState('系統管理員', 'erp2_currentRole_v4');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [currentView, setCurrentView] = useState({ type: 'dashboard', readOnly: true });
 
   // Matrix Global State
   const [phase, setPhase] = useStickyState(1, 'erp2_phase');
@@ -101,7 +58,7 @@ function App() {
   }, 'erp2_evalSubs');
 
   const [requirements, setRequirements] = useStickyState(initialRequirements, 'erp2_reqs');
-  const [elements, setElements] = useStickyState(initialElements, 'erp2_elems');
+  const [elements, setElements] = useStickyState(initialElements, 'erp2_elems_v2');
   const [basicDecisions, setBasicDecisions] = useStickyState({}, 'erp2_basicDecisions');
   const [historicalCombos, setHistoricalCombos] = useStickyState([], 'erp2_historicalCombos_v3');
   const [savedStyles, setSavedStyles] = useStickyState([], 'erp2_savedStyles_v3');
@@ -115,7 +72,47 @@ function App() {
       });
     });
     return initial;
-  }, 'erp2_matrixState');
+  }, 'erp2_matrixState_v2');
+
+  // Dummy mock state for Step 2/3 progress
+  const [step2Completed, setStep2Completed] = useStickyState(false, 'erp2_step2_completed');
+  const [step3Completed, setStep3Completed] = useStickyState(false, 'erp2_step3_completed');
+
+  // Determine Overall Progress Statuses
+  const progressState = {
+    brandFit: phase >= 3,
+    basicStyle: phase >= 4 || Object.keys(basicDecisions).length > 0,
+    trendyStyle: savedStyles.length > 0,
+    crowdPrediction: step2Completed,
+    finalPlan: step3Completed
+  };
+
+  const getMyTasks = () => {
+    let tasks = [];
+    if (currentRole === '趨勢分析師' || currentRole === '系統管理員') {
+      if (!trendAnalystSubmitted) tasks.push({ id: 'brand_fit', name: '填寫品牌契合度預測', readOnly: false });
+    }
+    if (currentRole === '設計師' || currentRole === '系統管理員') {
+      if (phase < 3) tasks.push({ id: 'brand_fit', name: '設定品牌需求權重', readOnly: false });
+      if (progressState.brandFit) tasks.push({ id: 'trendy_style', name: '組合本季流行款元素', readOnly: false });
+    }
+    if (currentRole === '商品企劃' || currentRole === '系統管理員') {
+      if (!plannerSubmitted) tasks.push({ id: 'brand_fit', name: '部門契合度評估', readOnly: false });
+      if (progressState.brandFit && !progressState.basicStyle) tasks.push({ id: 'basic_style', name: '審核長青基礎款利潤', readOnly: false });
+      if (progressState.basicStyle && progressState.trendyStyle && !progressState.crowdPrediction) tasks.push({ id: 'crowd', name: '建立群眾預測活動', readOnly: false });
+      if (progressState.crowdPrediction && !progressState.finalPlan) tasks.push({ id: 'final', name: '最終決定開發計畫', readOnly: false });
+    }
+    if (currentRole === '設計總監' || currentRole === '系統管理員') {
+       if (progressState.finalPlan) tasks.push({ id: 'final', name: '總監最終審核', readOnly: false });
+    }
+    return tasks;
+  };
+
+  const myTasks = getMyTasks();
+
+  const handleTaskClick = (task) => {
+    setCurrentView({ type: task.id, readOnly: task.readOnly });
+  };
 
   const matrixProps = {
     currentRole, phase, setPhase,
@@ -128,129 +125,195 @@ function App() {
     basicDecisions, setBasicDecisions,
     historicalCombos, setHistoricalCombos,
     savedStyles, setSavedStyles,
-    setSubStep
+    globalReadOnly: currentView.readOnly
   };
 
-  if (!currentRole) {
-    return (
-      <div className="min-h-screen bg-[#f3f4f6] flex items-center justify-center p-4">
-        <div className="bg-white p-8 border border-[#d1d5db] shadow-md w-full max-w-md">
-          <div className="text-center mb-8">
-            <h1 className="text-xl font-bold text-content-main">Apparel Product Development System</h1>
-            <p className="text-sm text-[#6b7280] mt-1">請選擇您的職位以登入系統</p>
-          </div>
-          <div className="space-y-3">
-            {['商品企劃', '趨勢分析師', '設計師', '數據分析師', '採購', '財務'].map(role => (
-              <button
-                key={role}
-                onClick={() => setCurrentRole(role)}
-                className="w-full text-left px-4 py-3 border border-[#d1d5db] rounded hover:border-primary hover:bg-primary-50 transition-colors text-[#374151] font-medium flex justify-between items-center group"
-              >
-                <span>{role}</span>
-                <span className="text-primary opacity-0 group-hover:opacity-100 text-sm">登入 &rarr;</span>
-              </button>
-            ))}
-          </div>
-        </div>
+  const DashboardContent = () => (
+    <div className="p-8 max-w-5xl mx-auto space-y-8 animate-in fade-in zoom-in-95 duration-200">
+      <div className="flex items-center justify-between border-b border-[#d1d5db] pb-4">
+        <h1 className="text-2xl font-bold text-content-main flex items-center gap-2">
+          <LayoutDashboard className="w-6 h-6 text-primary" />
+          商品開發進度中央看板
+        </h1>
+        <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold border border-primary/20">
+          Season: 2026 FW
+        </span>
       </div>
-    );
-  }
+
+      <div className="grid gap-4">
+        {[
+          { id: 'brand_fit', title: '1. 品牌契合度評估矩陣', desc: 'AI 趨勢分析與跨部門需求權重評分', done: progressState.brandFit },
+          { id: 'basic_style', title: '2. 基礎款開發決策', desc: '評估長青款式成本利潤並決定開發', done: progressState.basicStyle },
+          { id: 'trendy_style', title: '3. 流行款開發決策', desc: '組合流行元素並由 AI 預估售價風險', done: progressState.trendyStyle },
+          { id: 'crowd', title: '4. 建立群眾預測活動', desc: '上架設計稿至外部社群進行A/B測試', done: progressState.crowdPrediction },
+          { id: 'final', title: '5. 最終決定開發計畫', desc: '商品企劃統整報告與總監最終審核', done: progressState.finalPlan },
+        ].map((step, idx) => (
+          <div 
+            key={step.id}
+            onClick={() => setCurrentView({ type: step.id, readOnly: true })}
+            className="bg-white border border-[#d1d5db] hover:border-primary hover:shadow-md transition-all cursor-pointer rounded-lg p-5 flex items-center gap-4 group relative overflow-hidden"
+          >
+            {step.done && <div className="absolute left-0 top-0 bottom-0 w-1 bg-status-good-border"></div>}
+            <div className="shrink-0">
+              {step.done ? <CheckCircle2 className="w-8 h-8 text-status-good-text" /> : <Circle className="w-8 h-8 text-gray-300" />}
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors">{step.title}</h3>
+              <p className="text-sm text-gray-500 mt-1">{step.desc}</p>
+            </div>
+            <div className="shrink-0 text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 font-medium text-sm">
+              查看 <ChevronRight className="w-4 h-4" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   const renderContent = () => {
-    switch (currentStep) {
-      case 0: return <Dashboard onStepChange={setCurrentStep} />;
-      case 1: return <BrandFitMatrix {...matrixProps} subStep={subStep} />;
-      case 2: return <Step2CrowdPrediction savedStyles={savedStyles} />;
-      case 3: return <Step3Dashboard />;
-      case 4: return <Step4Designer />;
-      case 5: return <Step5QA />;
-      default: return <Dashboard onStepChange={setCurrentStep} />;
-    }
+    return (
+      <>
+        <div style={{ display: currentView.type === 'dashboard' ? 'block' : 'none', height: '100%', overflowY: 'auto' }}>
+          <DashboardContent />
+        </div>
+        <div style={{ display: currentView.type === 'brand_fit' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+          <BrandFitMatrix {...matrixProps} />
+        </div>
+        <div style={{ display: currentView.type === 'basic_style' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+          <BasicStyleDecision elements={elements} matrixState={matrixState} requirements={requirements} historicalCombos={historicalCombos} basicDecisions={basicDecisions} setBasicDecisions={setBasicDecisions} onSubmit={() => { if (phase < 4) setPhase(4); setCurrentView({type: 'dashboard', readOnly: true}); }} isReadOnly={currentView.readOnly} />
+        </div>
+        <div style={{ display: currentView.type === 'trendy_style' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+          <TrendyStyleDecision elements={elements} savedStyles={savedStyles} setSavedStyles={setSavedStyles} matrixState={matrixState} requirements={requirements} isReadOnly={currentView.readOnly} onSubmit={() => setCurrentView({type: "dashboard", readOnly: true})} />
+        </div>
+        <div style={{ display: currentView.type === 'crowd' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+          <Step2CrowdPrediction savedStyles={savedStyles} />
+        </div>
+        <div style={{ display: currentView.type === 'final' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+          <Step3Dashboard />
+        </div>
+      </>
+    );
   };
 
   return (
-    <div className="flex flex-col h-screen bg-surface-base font-sans text-content-main overflow-hidden">
-      {/* Header */}
-      <header className="h-12 bg-primary text-white flex items-center px-4 shrink-0 shadow z-10">
-        <div className="flex items-center gap-4">
-          <span className="font-bold text-sm tracking-wide cursor-pointer" onClick={() => setCurrentStep(0)}>
+    <div className="flex flex-col h-screen bg-[#f3f4f6] font-sans text-content-main overflow-hidden">
+      {/* Top Navbar */}
+      <header className="h-14 bg-[#111827] text-white flex items-center px-6 shrink-0 shadow-md z-20">
+        <div className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity" onClick={() => setCurrentView({ type: 'dashboard', readOnly: true })}>
+          <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center font-bold text-lg border border-white/20">AP</div>
+          <span className="font-bold text-sm tracking-wide hidden sm:block">
             Apparel Product Development System
           </span>
         </div>
-        <div className="ml-auto text-xs flex items-center gap-4">
-          <span>登入身分: {currentRole}</span>
-          <button onClick={() => setCurrentRole(null)} className="hover:underline">登出</button>
+        
+        <div className="ml-auto flex items-center gap-4">
+          <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-md border border-white/10">
+            <UserCircle className="w-4 h-4 text-gray-300" />
+            <select 
+              value={currentRole} 
+              onChange={e => { setCurrentRole(e.target.value); setCurrentView({ type: 'dashboard', readOnly: true }); }}
+              className="bg-transparent text-sm font-bold text-white outline-none cursor-pointer"
+            >
+              {ROLES.map(r => <option key={r} value={r} className="text-black">{r}</option>)}
+            </select>
+          </div>
+          
+          <button 
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="p-2 hover:bg-white/10 rounded-md transition-colors relative"
+            title="開關任務欄"
+          >
+            <ListTodo className="w-5 h-5" />
+            {myTasks.length > 0 && (
+              <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-status-bad-text rounded-full border-2 border-[#111827]"></span>
+            )}
+          </button>
         </div>
       </header>
 
-      {/* Breadcrumb / Top Bar */}
-      <div className="h-10 bg-white border-b border-[#d1d5db] flex items-center px-4 text-sm text-[#4b5563] shrink-0">
-        <button onClick={() => setCurrentStep(0)} className="hover:text-primary hover:underline">商品開發</button>
-        <span className="mx-2 text-[#9ca3af]">&gt;</span>
-        {currentStep === 0 ? (
-          <span className="font-semibold text-content-main">總覽</span>
-        ) : (
-          <>
-            <button onClick={() => setCurrentStep(0)} className="hover:text-primary hover:underline">開發決策輔助</button>
-            <span className="mx-2 text-[#9ca3af]">&gt;</span>
-            <span className="font-semibold text-content-main">
-              {currentStep === 1 && "初步決定開發方向"}
-              {currentStep === 2 && "建立群眾預測活動"}
-              {currentStep === 3 && "最終決定開發計畫"}
-              {currentStep > 3 && `步驟 ${currentStep}`}
-            </span>
-            
-            {currentStep === 1 && (
-              <div className="flex items-center ml-6 gap-2 bg-[#f3f4f6] p-1 rounded">
-                <button 
-                  onClick={() => setSubStep(1)}
-                  className={`px-3 py-1 text-xs rounded font-bold ${subStep === 1 ? 'bg-white text-primary shadow-sm' : 'text-[#6b7280] hover:text-[#374151]'}`}
-                >
-                  品牌契合度評估矩陣
-                </button>
-                {phase >= 3 && (
-                  <button 
-                    onClick={() => setSubStep(2)}
-                    className={`px-3 py-1 text-xs rounded font-bold ${subStep === 2 ? 'bg-white text-primary shadow-sm' : 'text-[#6b7280] hover:text-[#374151]'}`}
-                  >
-                    基礎款決策
-                  </button>
-                )}
-                {phase >= 4 && (
-                  <button 
-                    onClick={() => setSubStep(3)}
-                    className={`px-3 py-1 text-xs rounded font-bold ${subStep === 3 ? 'bg-white text-primary shadow-sm' : 'text-[#6b7280] hover:text-[#374151]'}`}
-                  >
-                    流行款決策
-                  </button>
+      {/* Main Container */}
+      <div className="flex flex-1 overflow-hidden relative">
+        
+        {/* Center Content */}
+        <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${isSidebarOpen ? 'mr-[320px]' : ''}`}>
+          
+          {/* Top Info Bar when not in dashboard */}
+          {currentView.type !== 'dashboard' && (
+            <div className="h-10 bg-white border-b border-[#d1d5db] flex items-center px-6 text-sm shrink-0 shadow-sm z-10">
+              <button onClick={() => setCurrentView({ type: 'dashboard', readOnly: true })} className="text-gray-500 hover:text-primary hover:underline font-medium flex items-center gap-1">
+                &larr; 返回中央看板
+              </button>
+              <div className="ml-auto font-bold flex items-center gap-2">
+                {currentView.readOnly ? (
+                  <span className="text-status-warn-text bg-status-warn-bg px-2 py-0.5 rounded border border-status-warn-border text-xs">唯讀檢視模式 (不可編輯)</span>
+                ) : (
+                  <span className="text-status-good-text bg-status-good-bg px-2 py-0.5 rounded border border-status-good-border text-xs">任務編輯模式</span>
                 )}
               </div>
-            )}
-          </>
-        )}
-        
-        <button 
-          onClick={() => {
-            window.localStorage.clear();
-            window.location.reload();
-          }}
-          className="ml-auto text-xs text-red-600 hover:underline"
-        >
-          [開發人員] 清除所有資料並重置流程
-        </button>
-      </div>
+            </div>
+          )}
 
-      {/* Content Area */}
-      <div className="flex-1 min-h-0 bg-[#f3f4f6] flex flex-col">
-        {currentStep !== 0 ? (
-          <div className="p-4 flex-1 min-h-0 flex flex-col">
+          <div className="flex-1 overflow-y-auto relative">
             {renderContent()}
           </div>
-        ) : (
-          <div className="flex-1 overflow-y-auto">
-            {renderContent()}
+        </div>
+
+        {/* Right Collapsible Task Sidebar */}
+        <div 
+          className={`absolute right-0 top-0 bottom-0 w-[320px] bg-white border-l border-[#d1d5db] shadow-xl transition-transform duration-300 z-10 flex flex-col ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        >
+          <div className="h-14 bg-[#f9fafb] border-b border-[#d1d5db] flex items-center justify-between px-4 shrink-0">
+            <h2 className="font-bold text-gray-800 flex items-center gap-2">
+              <ListTodo className="w-5 h-5 text-primary" />
+              我的專屬任務
+              {myTasks.length > 0 && <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">{myTasks.length}</span>}
+            </h2>
+            <button onClick={() => setIsSidebarOpen(false)} className="text-gray-400 hover:text-gray-700 p-1 rounded-md hover:bg-gray-100 transition-colors">
+              <X className="w-5 h-5" />
+            </button>
           </div>
-        )}
+          
+          <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
+            {myTasks.length === 0 ? (
+              <div className="text-center text-gray-400 mt-10 text-sm">
+                <CheckCircle2 className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                <p>目前沒有需要您處理的任務！</p>
+                <p className="mt-1 text-xs">請等候其他部門推進進度。</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {myTasks.map((task, i) => (
+                  <div 
+                    key={i}
+                    onClick={() => handleTaskClick(task)}
+                    className="bg-white border border-primary border-l-4 rounded-md p-4 shadow-sm hover:shadow cursor-pointer transition-shadow group"
+                  >
+                    <div className="text-xs text-primary font-bold mb-1">待處理任務</div>
+                    <div className="font-bold text-gray-800 group-hover:text-primary transition-colors">
+                      {task.name}
+                    </div>
+                    <div className="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                      點擊進入編輯 &rarr;
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          <div className="p-4 border-t border-[#d1d5db] bg-white shrink-0">
+             <button 
+                onClick={() => {
+                  window.localStorage.clear();
+                  window.location.reload();
+                }}
+                className="w-full text-xs text-gray-400 hover:text-red-500 hover:underline text-center"
+              >
+                [開發人員] 重置系統資料
+              </button>
+          </div>
+        </div>
+
       </div>
     </div>
   );

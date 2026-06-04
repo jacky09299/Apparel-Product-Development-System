@@ -37,7 +37,16 @@ const HISTORICAL_COMBOS = [
   }
 ];
 
-export function BasicStyleDecision({ elements, matrixState, requirements, historicalCombos, basicDecisions, setBasicDecisions, onSubmit }) {
+export function BasicStyleDecision({ 
+  elements, 
+  matrixState, 
+  requirements, 
+  historicalCombos, 
+  basicDecisions, 
+  setBasicDecisions, 
+  onSubmit,
+  isReadOnly = false 
+}) {
   const [sortBy, setSortBy] = useState('none');
   const [rightSortBy, setRightSortBy] = useState('none');
 
@@ -124,10 +133,12 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
   }, [elements, matrixState, requirements]);
 
   const handleDecision = (id, status) => {
+    if (isReadOnly) return;
     setBasicDecisions(prev => ({ ...prev, [id]: status }));
   };
 
   const handleAutoDemo = () => {
+    if (isReadOnly) return;
     const candidates = [...analyzedCombos].sort((a, b) => {
       const scoreA = (a.estMargin * 100) + (a.totalFitScore * 5);
       const scoreB = (b.estMargin * 100) + (b.totalFitScore * 5);
@@ -180,12 +191,14 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
           <div className="flex justify-between items-center bg-[#f9fafb] p-3 border border-[#d1d5db] rounded-t-lg mb-2 shrink-0">
              <h3 className="font-bold text-content-main">基礎款式清單</h3>
              <div className="flex items-center gap-4">
-                 <button 
-                   onClick={handleAutoDemo}
-                   className="px-3 py-1.5 text-xs rounded-md bg-primary text-white font-bold hover:bg-primary-hover shadow-sm transition-colors flex items-center gap-1"
-                 >
-                   ✨ AI 智慧決策 (Demo)
-                 </button>
+                 {!isReadOnly && (
+                   <button 
+                     onClick={handleAutoDemo}
+                     className="px-3 py-1.5 text-xs rounded-md bg-primary text-white font-bold hover:bg-primary-hover shadow-sm transition-colors flex items-center gap-1"
+                   >
+                     ✨ AI 智慧決策 (Demo)
+                   </button>
+                 )}
                  <div className="flex gap-2">
                     <span className="text-xs text-gray-500 font-bold self-center mr-1">排序:</span>
                 <button 
@@ -231,19 +244,22 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                     <div className="flex gap-2">
                       <button 
                         onClick={() => handleDecision(combo.id, 'reject')}
-                        className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${currentDecision === 'reject' ? 'bg-status-bad-bg text-status-bad-text border border-status-bad-border font-bold' : 'bg-white border border-[#d1d5db] text-[#4b5563] hover:bg-status-bad-bg hover:text-status-bad-text hover:border-status-bad-border'}`}
+                        disabled={isReadOnly}
+                        className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${currentDecision === 'reject' ? 'bg-status-bad-bg text-status-bad-text border border-status-bad-border font-bold' : 'bg-white border border-[#d1d5db] text-[#4b5563]'} ${!isReadOnly ? 'hover:bg-status-bad-bg hover:text-status-bad-text hover:border-status-bad-border' : 'opacity-50 cursor-not-allowed'}`}
                       >
                         淘汰
                       </button>
                       <button 
                         onClick={() => handleDecision(combo.id, 'fine_tune')}
-                        className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${currentDecision === 'fine_tune' ? 'bg-status-warn-bg text-status-warn-text border border-status-warn-border font-bold' : 'bg-white border border-[#d1d5db] text-[#4b5563] hover:bg-status-warn-bg hover:text-status-warn-text hover:border-status-warn-border'}`}
+                        disabled={isReadOnly}
+                        className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${currentDecision === 'fine_tune' ? 'bg-status-warn-bg text-status-warn-text border border-status-warn-border font-bold' : 'bg-white border border-[#d1d5db] text-[#4b5563]'} ${!isReadOnly ? 'hover:bg-status-warn-bg hover:text-status-warn-text hover:border-status-warn-border' : 'opacity-50 cursor-not-allowed'}`}
                       >
                         嘗試微調
                       </button>
                       <button 
                         onClick={() => handleDecision(combo.id, 'approve')}
-                        className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${currentDecision === 'approve' ? 'bg-status-good-bg text-status-good-text border border-status-good-border font-bold' : 'bg-white border border-[#d1d5db] text-[#4b5563] hover:border-status-good-border hover:text-status-good-text'}`}
+                        disabled={isReadOnly}
+                        className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${currentDecision === 'approve' ? 'bg-status-good-bg text-status-good-text border border-status-good-border font-bold' : 'bg-white border border-[#d1d5db] text-[#4b5563]'} ${!isReadOnly ? 'hover:border-status-good-border hover:text-status-good-text' : 'opacity-50 cursor-not-allowed'}`}
                       >
                         {currentDecision === 'approve' ? '已加至決策' : '開發此款'}
                       </button>
@@ -424,12 +440,14 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                               {combo.competitionScore.toFixed(2)}
                             </td>
                             <td className="px-2 py-3 text-center">
-                              <button 
-                                onClick={() => handleDecision(combo.id, null)}
-                                className="text-status-bad-border hover:text-status-bad-text hover:bg-status-bad-bg p-1 rounded transition-colors text-xs font-bold"
-                              >
-                                移除
-                              </button>
+                              {!isReadOnly && (
+                                <button 
+                                  onClick={() => handleDecision(combo.id, null)}
+                                  className="text-status-bad-border hover:text-status-bad-text hover:bg-status-bad-bg p-1 rounded transition-colors text-xs font-bold"
+                                >
+                                  移除
+                                </button>
+                              )}
                             </td>
                           </tr>
                         ))}
@@ -460,14 +478,16 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                     </div>
                   </div>
                   
-                  <div className="mt-4 border-t border-gray-700 pt-3 text-right">
-                    <button 
-                      onClick={onSubmit}
-                      className="bg-primary hover:bg-primary-500 text-white text-sm font-bold py-2 px-6 rounded shadow transition-colors"
-                    >
-                      確認基礎款清單，前往流行款決策 &rarr;
-                    </button>
-                  </div>
+                  {!isReadOnly && (
+                    <div className="mt-4 border-t border-gray-700 pt-3 text-right">
+                      <button 
+                        onClick={onSubmit}
+                        className="bg-primary hover:bg-primary-500 text-white text-sm font-bold py-2 px-6 rounded shadow transition-colors"
+                      >
+                        確認基礎款清單，前往流行款決策 &rarr;
+                      </button>
+                    </div>
+                  )}
                 </div>
               </>
             );
