@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrandFitMatrix } from './components/BrandFitMatrix';
 import { BasicStyleDecision } from './components/BasicStyleDecision';
 import { TrendyStyleDecision } from './components/TrendyStyleDecision';
+import { TrendyStyleReview } from './components/TrendyStyleReview';
 import { Step3Dashboard, Step4Designer, Step5QA } from './components/MockPages';
 import { Step2CrowdPrediction } from './components/Step2CrowdPrediction';
 import { DataDashboard } from './components/DataDashboard';
@@ -97,6 +98,7 @@ function App() {
   // Dummy mock state for Step 2/3 progress
   const [step2Completed, setStep2Completed] = useStickyState(false, 'erp2_step2_completed');
   const [step3Completed, setStep3Completed] = useStickyState(false, 'erp2_step3_completed');
+  const [trendyReviewDone, setTrendyReviewDone] = useStickyState(false, 'erp2_trendyReviewDone');
   const [subStep, setSubStep] = useStickyState(1, 'erp2_subStep');
 
   // Determine Overall Progress Statuses
@@ -112,7 +114,7 @@ function App() {
     let tasks = [];
     if (currentRole === '趨勢分析師' || currentRole === '系統管理員') {
       if (!trendAnalystSubmitted) tasks.push({ id: 'brand_fit', name: '填寫品牌契合度預測', readOnly: false });
-      if (progressState.basicStyle && progressState.trendyStyle && !progressState.crowdPrediction) tasks.push({ id: 'step2', name: '建立群眾預測活動', readOnly: false });
+      if (trendyReviewDone && !progressState.crowdPrediction) tasks.push({ id: 'step2', name: '建立群眾預測活動', readOnly: false });
     }
     if (currentRole === '設計師' || currentRole === '系統管理員') {
       if (phase < 3) tasks.push({ id: 'brand_fit', name: '設定品牌需求權重', readOnly: false });
@@ -121,6 +123,7 @@ function App() {
     if (currentRole === '商品企劃' || currentRole === '系統管理員') {
       if (!plannerSubmitted) tasks.push({ id: 'brand_fit', name: '部門契合度評估', readOnly: false });
       if (progressState.brandFit && !progressState.basicStyle) tasks.push({ id: 'basic_style', name: '審核長青基礎款利潤', readOnly: false });
+      if (progressState.trendyStyle && !trendyReviewDone) tasks.push({ id: 'trendy_review', name: '流行款初審', readOnly: false });
       if (progressState.crowdPrediction && !progressState.finalPlan) tasks.push({ id: 'final', name: '最終決定開發計畫', readOnly: false });
     }
     if (currentRole === '設計總監' || currentRole === '系統管理員') {
@@ -168,8 +171,11 @@ function App() {
         <div style={{ display: currentView.type === 'trendy_style' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <TrendyStyleDecision elements={elements} savedStyles={savedStyles} setSavedStyles={setSavedStyles} matrixState={matrixState} requirements={requirements} isReadOnly={currentView.readOnly} onSubmit={() => setCurrentView({type: "dashboard", readOnly: true})} />
         </div>
+        <div style={{ display: currentView.type === 'trendy_review' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+          <TrendyStyleReview savedStyles={savedStyles} setSavedStyles={setSavedStyles} onSubmit={() => { setTrendyReviewDone(true); setCurrentView({type: "dashboard", readOnly: true}); }} />
+        </div>
         <div style={{ display: currentView.type === 'step2' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
-          <Step2CrowdPrediction savedStyles={savedStyles} setSavedStyles={setSavedStyles} />
+          <Step2CrowdPrediction savedStyles={savedStyles} setSavedStyles={setSavedStyles} onSubmit={() => { setStep2Completed(true); setCurrentView({type: 'dashboard', readOnly: true}); }} />
         </div>
         <div style={{ display: currentView.type === 'final' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <Step3Dashboard />

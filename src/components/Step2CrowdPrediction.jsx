@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Shirt, Smartphone, Layers, Plus, CheckCircle, ChevronRight, CheckSquare, Square, Combine, PenTool, Send, Check, Settings, Trash2 } from 'lucide-react';
 
-export function Step2CrowdPrediction({ savedStyles = [], setSavedStyles }) {
-  const [selectedBases, setSelectedBases] = useState([]);
-  const [activeStep, setActiveStep] = useState(1);
+export function Step2CrowdPrediction({ savedStyles = [], setSavedStyles, onSubmit }) {
+  const selectedBases = useMemo(() => savedStyles.filter(style => style.needsPrediction), [savedStyles]);
   
   const [dbElements, setDbElements] = useState([]);
   const POOL_CATEGORIES = ['風格', '品項', '版型', '面料', '主色', '配色', '圖騰印花', '細節設計'];
@@ -90,98 +89,7 @@ export function Step2CrowdPrediction({ savedStyles = [], setSavedStyles }) {
     return [...base, ...added];
   };
 
-  // ----- UI Renderers -----
 
-  const handleSelectBase = (style) => {
-    if (selectedBases.find(s => s.id === style.id)) {
-      setSelectedBases(prev => prev.filter(s => s.id !== style.id));
-    } else {
-      setSelectedBases(prev => [...prev, style]);
-      if (setSavedStyles) {
-        setSavedStyles(prev => prev.map(s => s.id === style.id ? { ...s, directToDev: false } : s));
-      }
-    }
-  };
-
-  const handleToggleDirectToDev = (e, style) => {
-    e.stopPropagation();
-    if (setSavedStyles) {
-      setSavedStyles(prev => prev.map(s => s.id === style.id ? { ...s, directToDev: !s.directToDev } : s));
-    }
-    if (selectedBases.find(s => s.id === style.id)) {
-      setSelectedBases(prev => prev.filter(s => s.id !== style.id));
-    }
-  };
-
-  const renderStep1 = () => {
-    const sortedStyles = [...savedStyles].sort((a, b) => (b.riskScore || 0) - (a.riskScore || 0));
-
-    return (
-      <div className="space-y-4 flex flex-col h-full">
-        <div className="bg-orange-50 border border-orange-200 text-orange-800 p-3 rounded flex justify-between items-center shrink-0">
-          <div>
-            <span className="font-bold block">1. 選擇高風險流行款式 ({selectedBases.length} 款已選為預測)</span>
-            <span className="text-xs">系統已為您自動依據「風險評估」排序。請挑選高風險組合，個別進行群眾預測；或者直接批准進入開發款式庫。取消數量限制，可任意勾選。</span>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 overflow-y-auto min-h-0 flex-1 p-1">
-          {sortedStyles.map(style => {
-            const isSelected = !!selectedBases.find(s => s.id === style.id);
-            return (
-              <div 
-                key={style.id} 
-                onClick={() => handleSelectBase(style)}
-                className={`border rounded-lg p-4 cursor-pointer transition-all ${isSelected ? 'border-primary ring-2 ring-primary ring-opacity-50 bg-blue-50' : style.directToDev ? 'border-green-500 ring-2 ring-green-500 ring-opacity-50 bg-green-50' : 'border-gray-300 hover:border-gray-400 bg-white'}`}
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <div className="flex items-center gap-2">
-                    {isSelected ? <CheckSquare className="text-primary" size={20} /> : <Square className="text-gray-300" size={20} />}
-                    <h3 className="font-bold text-gray-800 truncate" title={style.name}>{style.name}</h3>
-                  </div>
-                  <div className="bg-status-bad-bg text-status-bad-text px-2 py-0.5 rounded text-xs font-bold border border-status-bad-border">
-                    風險: {style.riskScore}
-                  </div>
-                </div>
-                
-                <div className="flex flex-wrap gap-1 mt-3">
-                  {style.elements.slice(0, 5).map(el => (
-                    <span key={el.id} className="text-[10px] bg-white border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 truncate max-w-[80px]">
-                      {el.name}
-                    </span>
-                  ))}
-                  {style.elements.length > 5 && <span className="text-[10px] text-gray-400">+{style.elements.length - 5}</span>}
-                </div>
-
-                <div className="mt-3 pt-3 border-t border-gray-200 flex justify-end">
-                  <button 
-                    onClick={(e) => handleToggleDirectToDev(e, style)}
-                    className={`text-xs font-bold px-3 py-1.5 rounded transition-colors ${style.directToDev ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
-                  >
-                    {style.directToDev ? '✅ 已批准進入開發' : '直接確認開發 (跳過預測)'}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        
-        {/* Unified Bottom Footer for Step 1 */}
-        <div className="border-t pt-4 mt-2 flex justify-end shrink-0">
-          <button
-            disabled={selectedBases.length === 0}
-            onClick={() => {
-              if(!currentStyleId && selectedBases.length > 0) initStyleConfig(selectedBases[0].id);
-              setActiveStep(2);
-            }}
-            className="bg-primary text-white px-6 py-2 rounded font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 shadow"
-          >
-            下一步：為個別款式建立預測 &rarr;
-          </button>
-        </div>
-      </div>
-    );
-  };
 
   const handleMerge = () => {
     if(!currentConfig || currentConfig.selectedForMerge.length < 2) return;
@@ -588,32 +496,40 @@ export function Step2CrowdPrediction({ savedStyles = [], setSavedStyles }) {
          </div>
          
          {/* Global footer for Step 2 to return to Step 1 */}
-         <div className="mt-4 pt-4 border-t flex justify-between shrink-0">
-            <button onClick={() => setActiveStep(1)} className="text-gray-600 border border-gray-300 px-6 py-2 font-bold hover:bg-gray-100 rounded shadow-sm">
-               &larr; 返回選擇款式
+         {/* Global footer for Step 2 */}
+         <div className="mt-4 pt-4 border-t flex justify-end shrink-0">
+            <button onClick={onSubmit} className="bg-primary text-white px-8 py-2 font-bold rounded shadow-sm hover:bg-primary/90">
+               完成建立，返回首頁
             </button>
          </div>
       </div>
     );
   };
 
+  if (selectedBases.length === 0) {
+    return (
+      <div className="bg-white border border-[#d1d5db] shadow-sm p-6 min-h-[600px] h-full flex flex-col items-center justify-center">
+        <h2 className="text-xl font-bold text-gray-500">目前沒有需要預測的款式</h2>
+        <p className="text-sm text-gray-400 mt-2">商品企劃尚未核准或所有款式皆已直接進入開發。</p>
+        <button onClick={onSubmit} className="mt-6 border border-gray-300 px-6 py-2 rounded text-gray-600 hover:bg-gray-100 font-bold">返回首頁</button>
+      </div>
+    );
+  }
+
+  // Ensure currentStyleId is set if bases are available
+  if (!currentStyleId && selectedBases.length > 0) {
+    initStyleConfig(selectedBases[0].id);
+  }
+
   return (
     <div className="bg-white border border-[#d1d5db] shadow-sm p-6 min-h-[600px] h-full flex flex-col">
       <h2 className="text-xl font-bold text-content-main mb-2 flex items-center gap-2">
-        Step 2: 高風險款式拆解與群眾預測
+        建立群眾預測活動
       </h2>
-      <p className="text-sm text-gray-500 mb-4">規則：針對每個高風險款式，您可以個別進行「類別合併」，再將合併後的維度送入拆解池，最後單獨發布預測活動。</p>
-
-      {/* Main flow steps indicator */}
-      <div className="flex items-center gap-4 mb-4 border-b pb-4 shrink-0">
-        <div className={`text-sm font-bold ${activeStep === 1 ? 'text-orange-600 border-b-2 border-orange-600' : 'text-gray-400'}`}>1. 選擇高風險款式</div>
-        <ChevronRight size={16} className="text-gray-300" />
-        <div className={`text-sm font-bold ${activeStep === 2 ? 'text-primary border-b-2 border-primary' : 'text-gray-400'}`}>2. 個別設定預測項目</div>
-      </div>
+      <p className="text-sm text-gray-500 mb-4">規則：針對每個商品企劃退回的「高風險款式」，您可以個別進行「類別合併」，再將合併後的維度送入拆解池，最後單獨發布預測活動。</p>
 
       <div className="flex-1 min-h-0">
-        {activeStep === 1 && renderStep1()}
-        {activeStep === 2 && renderStep2()}
+        {renderStep2()}
       </div>
     </div>
   );
