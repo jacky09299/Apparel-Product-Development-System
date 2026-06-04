@@ -79,7 +79,7 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
     let potentialScore = 0;
     const elementNames = [];
     selectedElements.forEach(el => {
-      potentialScore += (el.trendScore || 0);
+      potentialScore += (typeof el.trendScore === 'number' ? el.trendScore : 0);
       elementNames.push(el.name);
     });
 
@@ -130,7 +130,7 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
           const pickIndex = Math.floor(Math.pow(Math.random(), 2) * els.length); 
           const pickedEl = els[pickIndex];
           selected.push(pickedEl);
-          potentialScore += (pickedEl.trendScore || 0);
+          potentialScore += (typeof pickedEl.trendScore === 'number' ? pickedEl.trendScore : 0);
           
 
         }
