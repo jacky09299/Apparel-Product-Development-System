@@ -92,10 +92,10 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
         suggestionText = '建議停產或改款';
       }
 
-      const sales = combo.salesVolume || Math.floor(1000 + Math.random() * 9000);
-      const price = combo.estPrice || Math.floor(500 + Math.random() * 2500);
-      const fixedCost = combo.estFixedCost || Math.floor(10000 + Math.random() * 5000);
-      const variableCost = combo.estVariableCost || Math.floor(150 + Math.random() * 400);
+      const sales = combo.salesVolume || Math.floor(1000 + ((combo.id || combo.name).charCodeAt(0) % 10) / 10 * 9000);
+      const price = combo.estPrice || Math.floor(500 + ((combo.id || combo.name).charCodeAt(0) % 10) / 10 * 2500);
+      const fixedCost = combo.estFixedCost || Math.floor(10000 + ((combo.id || combo.name).charCodeAt(0) % 10) / 10 * 5000);
+      const variableCost = combo.estVariableCost || Math.floor(150 + ((combo.id || combo.name).charCodeAt(0) % 10) / 10 * 400);
       
       const totalCost = fixedCost + (variableCost * sales);
       const totalRevenue = price * sales;
@@ -452,7 +452,7 @@ export function BasicStyleDecision({ elements, matrixState, requirements, histor
                     </div>
                     <div className="flex flex-col border-l border-gray-700 pl-4">
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider">總預估營收</span>
-                      <span className="text-xl font-bold text-green-400">${totalRevenue.toLocaleString()}</span>
+                      <span className="text-xl font-bold text-status-good-text">${totalRevenue.toLocaleString()}</span>
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider">綜合預估毛利率</span>

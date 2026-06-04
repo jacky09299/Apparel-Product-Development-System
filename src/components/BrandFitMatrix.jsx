@@ -321,7 +321,7 @@ export function BrandFitMatrix({
         // First add basic elements with default baseline stats
         Array.from(basicElementsMap.values()).forEach(el => {
           // Give basic elements a default safe baseline score if they don't get matched with AI
-          const baseScore = 4.0 + Math.random() * 2.0; 
+          const baseScore = 4.0 + ((el.name.charCodeAt(0) % 10) * 0.08); 
           const defaultEl = {
             ...el,
             trendScore: baseScore,
@@ -396,60 +396,59 @@ export function BrandFitMatrix({
               if (cat === '主色' || cat === '配色') {
                 if (['焦糖棕', '酒紅', '墨綠', '芥末黃', '櫻桃紅', '大地色'].some(k => name.includes(k))) val = 'O';
                 else if (['螢光綠', '亮粉紅', '金屬', '霓虹'].some(k => name.includes(k))) val = 'X';
-                else val = '-';
-              } else val = '-';
+                else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
+              } else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
             }
             else if (req.id === 'req-2') { 
               if (cat === '圖騰印花') {
                 if (['復古格紋', '千鳥格', '變形蟲', '波卡圓點'].some(k => name.includes(k))) val = 'O';
                 else if (['大面積文字Logo', '賽博龐克', '3D漸層', '渲染/紮染'].some(k => name.includes(k))) val = 'X';
-                else val = '-';
-              } else val = '-';
+                else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
+              } else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
             }
             else if (req.id === 'req-3') { 
               if (cat === '細節設計') {
                 if (['工裝大口袋', '古銅五金', '燈芯絨拼接', '抽繩抓皺'].some(k => name.includes(k))) val = 'O';
                 else if (['無縫膠條', '反光條', '螢光拉鍊', '鏤空剪裁', '金屬拉鍊外露'].some(k => name.includes(k))) val = 'X';
-                else val = '-';
-              } else val = '-';
+                else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
+              } else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
             }
             else if (req.id === 'req-4') { 
               if (cat === '面料') {
                 if (['羊毛', '粗花呢', '絲絨', '重磅丹寧'].some(k => name.includes(k))) val = 'O';
                 else if (['透明薄紗', '高透氣亞麻', '冰絲'].some(k => name.includes(k))) val = 'X';
-                else val = '-';
+                else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
               }
               else if (cat === '品項') {
                 if (['大衣', '毛衣', '長褲', '高領', '針織'].some(k => name.includes(k))) val = 'O';
                 else if (['細肩帶', '超短褲', '平口', '短袖', '背心'].some(k => name.includes(k))) val = 'X';
-                else val = '-';
+                else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
               }
-              else val = '-';
+              else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
             }
             else if (req.id === 'req-5') { 
               if (cat === '品項') {
                 if (['背心', '針織衫', '襯衫', '開襟衫', '大衣'].some(k => name.includes(k))) val = 'O';
                 else if (['連身裙', '緊身洋裝'].some(k => name.includes(k))) val = 'X';
-                else val = '-';
-              } else val = '-';
+                else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
+              } else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
             }
             else if (req.id === 'req-6') { 
               if (cat === '面料') {
                 if (['環保再生棉', '聚酯纖維', '丹寧'].some(k => name.includes(k))) val = 'O';
                 else if (['真絲', '訂製緹花', '特殊毛料'].some(k => name.includes(k))) val = 'X';
-                else val = '-';
-              } else val = 'O'; 
+                else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
+              } else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-'; 
             }
             else if (req.id === 'req-7') { 
               if (cat === '細節設計') {
                 if (['手工刺繡', '水鑽', '珍珠鑲嵌'].some(k => name.includes(k))) val = 'X';
                 else if (['特殊金屬扣', '皮革'].some(k => name.includes(k))) val = '-';
-                else val = 'O';
-              } else val = 'O'; 
+              } else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-'; 
             }
             else if (req.id === 'req-8') { 
               if (['黑', '白', '標準T-shirt', '素色簡約', '環保再生棉'].some(k => name === k)) val = 'X';
-              else val = 'O';
+              else val = (name.charCodeAt(0) + req.id.charCodeAt(req.id.length-1)) % 5 === 0 ? 'O' : '-';
             }
             
             newState[req.id][el.id] = val;
@@ -1060,7 +1059,7 @@ export function BrandFitMatrix({
                       ) : el.isTrend ? (
                         <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">AI趨勢</span>
                       ) : el.isBasic ? (
-                        <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
+                        <span className="text-[10px] bg-[#f3f4f6] text-[#4b5563] px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
                       ) : null}
                     </div>
                   </div>
@@ -1154,6 +1153,9 @@ export function BrandFitMatrix({
     }
 
     displayElements.sort((a, b) => {
+      if (a.category !== b.category) {
+        return a.originalIndex - b.originalIndex;
+      }
       if (sortBy === 'trend') {
         const valA = a.trendScore === '人工新增' || a.trendScore === 'N/A' ? 0 : a.trendScore;
         const valB = b.trendScore === '人工新增' || b.trendScore === 'N/A' ? 0 : b.trendScore;
@@ -1281,7 +1283,7 @@ export function BrandFitMatrix({
                         ) : el.isTrend ? (
                           <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">AI趨勢</span>
                         ) : el.isBasic ? (
-                          <span className="text-[10px] bg-status-good-bg text-status-good-text px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
+                          <span className="text-[10px] bg-[#f3f4f6] text-[#4b5563] px-1 py-0.5 rounded font-bold whitespace-nowrap">長青基礎</span>
                         ) : null}
                       </div>
                     </div>

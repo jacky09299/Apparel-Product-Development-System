@@ -124,14 +124,7 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
           selected.push(pickedEl);
           potentialScore += (pickedEl.trendScore || 0);
           
-          if (uncertainCount < 2 && Math.random() < 0.2 && els.length > 1) {
-            let secondPick;
-            do {
-              secondPick = els[Math.floor(Math.random() * els.length)];
-            } while (secondPick.id === pickedEl.id);
-            selected.push(secondPick);
-            uncertainCount++;
-          }
+
         }
       });
       
@@ -236,15 +229,15 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
                   </div>
                   <div className="flex flex-col gap-1 mt-auto pt-2">
                     <div className="text-[10px] text-[#6b7280] bg-gray-100 px-1.5 py-0.5 rounded inline-block self-start">
-                      流行度: <span className={isTrendy ? 'text-status-bad-text font-bold' : ''}>{!isNaN(safeTrendScore) ? safeTrendScore.toFixed(1) : 0}</span>
+                      流行度: <span className={isTrendy ? 'text-status-good-text font-bold' : ''}>{!isNaN(safeTrendScore) ? safeTrendScore.toFixed(1) : 0}</span>
                     </div>
                     {el.fitScore !== undefined && (
                       <div className="text-[10px] text-[#6b7280] bg-gray-100 px-1.5 py-0.5 rounded inline-block self-start mt-1">
-                        品牌契合: <span className={el.fitScore >= 10 ? 'text-status-good-text font-bold' : el.fitScore > 0 ? 'text-primary font-bold' : 'text-status-bad-text font-bold'}>{el.fitScore} 分</span>
+                        品牌契合: <span className={el.fitScore >= 10 ? 'text-status-good-text font-bold' : el.fitScore > 0 ? 'text-status-warn-text font-bold' : 'text-status-bad-text font-bold'}>{el.fitScore} 分</span>
                       </div>
                     )}
                     {spreadUp !== null && !isNaN(spreadUp) && (
-                      <div className="text-[9px] text-primary font-medium">
+                      <div className="text-[9px] text-[#6b7280] font-medium">
                         變動區間: +{spreadUp} / -{spreadDown}
                       </div>
                     )}
@@ -362,13 +355,13 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
                     <div className="flex justify-between items-center mb-2">
                       <h3 className="font-bold text-content-main text-lg">{style.name}</h3>
                       <div className="flex items-center gap-3">
-                        <div className="text-xs font-bold bg-orange-50 text-primary px-2 py-1 rounded border border-orange-100">
+                        <div className={`text-xs font-bold px-2 py-1 rounded border ${(style.riskScore || 50) >= 80 ? 'bg-status-bad-bg text-status-bad-text border-status-bad-border' : (style.riskScore || 50) >= 50 ? 'bg-status-warn-bg text-status-warn-text border-status-warn-border' : 'bg-status-good-bg text-status-good-text border-status-good-border'}`}>
                           風險值: {style.riskScore || 50}/100
                         </div>
-                        <div className="text-xs font-bold bg-purple-50 text-primary px-2 py-1 rounded border border-purple-100">
+                        <div className="text-xs font-bold bg-white text-content-main px-2 py-1 rounded border border-[#d1d5db]">
                           AI 預估售價: ${style.estPrice?.toFixed(0)}
                         </div>
-                        <div className="text-xs font-bold bg-primary-50 text-primary px-2 py-1 rounded border border-primary">
+                        <div className="text-xs font-bold bg-status-good-bg text-status-good-text px-2 py-1 rounded border border-status-good-border">
                           總流行力: {style.totalScore}
                         </div>
                         <button 
@@ -391,7 +384,7 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
                             <span className="text-[10px] text-gray-400 w-12">{cat}</span>
                             {elsInCat.map((el, idx) => (
                               <React.Fragment key={el.id}>
-                                <span className={`text-[10px] px-1.5 py-0.5 rounded ${el.trendScore >= 5 ? 'bg-status-bad-bg text-status-bad-text border border-red-100' : 'bg-gray-100 text-gray-600'}`}>
+                                <span className={`text-[10px] px-1.5 py-0.5 rounded ${el.trendScore >= 5 ? 'bg-status-good-bg text-status-good-text border border-status-good-border' : 'bg-gray-100 text-gray-600'}`}>
                                   {el.name} {el.trendScore >= 5 && '🔥'}
                                 </span>
                               </React.Fragment>
