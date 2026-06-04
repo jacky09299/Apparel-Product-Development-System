@@ -116,6 +116,7 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
 
   const handleAutoDemo = async () => {
     setIsPredicting(true);
+    try {
     const demoStyles = [];
     const stylePrefixes = ['初秋', '春日', '都會', '街頭', '復古', '未來', '極簡', '度假', '派對', '運動'];
     
@@ -163,7 +164,7 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
       demoStyles.push({
         id: `demo-${Date.now()}-${i}`,
         name: name,
-        elements: selected,
+        elements: selected.map(e => { const { timeline, ...rest } = e; return rest; }),
         totalScore: potentialScore.toFixed(1),
         estPrice: estPrice,
         riskScore: Math.floor(Math.random() * 101)
@@ -171,7 +172,12 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
     }
     
     setSavedStyles(prev => [...prev, ...demoStyles]);
-    setIsPredicting(false);
+    } catch (err) {
+      console.error(err);
+      alert("Error generating demo: " + err.message);
+    } finally {
+      setIsPredicting(false);
+    }
   };
 
   const handleDeleteStyle = (id) => {

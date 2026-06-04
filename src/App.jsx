@@ -4,6 +4,8 @@ import { BasicStyleDecision } from './components/BasicStyleDecision';
 import { TrendyStyleDecision } from './components/TrendyStyleDecision';
 import { Step3Dashboard, Step4Designer, Step5QA } from './components/MockPages';
 import { Step2CrowdPrediction } from './components/Step2CrowdPrediction';
+import { DataDashboard } from './components/DataDashboard';
+import { DecisionSummaryTable } from './components/DecisionSummaryTable';
 import { LayoutDashboard, ListTodo, UserCircle, X, Menu, ChevronRight, CheckCircle2, Circle } from 'lucide-react';
 
 function useStickyState(defaultValue, key) {
@@ -19,7 +21,7 @@ function useStickyState(defaultValue, key) {
     return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
   });
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    try { window.localStorage.setItem(key, JSON.stringify(value)); } catch (err) { console.error("Error setting localStorage", key, err); if (err.name === "QuotaExceededError") { alert("Local storage is full! Please clear your site data."); } }
   }, [key, value]);
   return [value, setValue];
 }
@@ -41,6 +43,23 @@ const initialElements = [
 ];
 
 const ROLES = ['系統管理員', '設計總監', '趨勢分析師', '商品企劃', '設計師'];
+
+
+if (typeof window !== 'undefined' && !window.__errorLoggerInjected) {
+  window.__errorLoggerInjected = true;
+  window.addEventListener('error', (e) => {
+    const div = document.createElement('div');
+    div.style = "position:fixed;top:0;left:0;z-index:9999;background:red;color:white;padding:10px;font-size:12px;max-width:100vw;word-wrap:break-word;";
+    div.innerText = "Error: " + e.message + " @ " + e.filename + ":" + e.lineno + "\n" + (e.error ? e.error.stack : '');
+    document.body.appendChild(div);
+  });
+  window.addEventListener('unhandledrejection', (e) => {
+    const div = document.createElement('div');
+    div.style = "position:fixed;bottom:0;left:0;z-index:9999;background:orange;color:white;padding:10px;font-size:12px;max-width:100vw;word-wrap:break-word;";
+    div.innerText = "Promise Rejection: " + (e.reason ? (e.reason.stack || e.reason.message || e.reason) : 'Unknown');
+    document.body.appendChild(div);
+  });
+}
 
 function App() {
   const [currentRole, setCurrentRole] = useStickyState('系統管理員', 'erp2_currentRole_v4');
@@ -92,6 +111,7 @@ function App() {
     let tasks = [];
     if (currentRole === '趨勢分析師' || currentRole === '系統管理員') {
       if (!trendAnalystSubmitted) tasks.push({ id: 'brand_fit', name: '填寫品牌契合度預測', readOnly: false });
+      if (progressState.basicStyle && progressState.trendyStyle && !progressState.crowdPrediction) tasks.push({ id: 'step2', name: '建立群眾預測活動', readOnly: false });
     }
     if (currentRole === '設計師' || currentRole === '系統管理員') {
       if (phase < 3) tasks.push({ id: 'brand_fit', name: '設定品牌需求權重', readOnly: false });
@@ -100,7 +120,6 @@ function App() {
     if (currentRole === '商品企劃' || currentRole === '系統管理員') {
       if (!plannerSubmitted) tasks.push({ id: 'brand_fit', name: '部門契合度評估', readOnly: false });
       if (progressState.brandFit && !progressState.basicStyle) tasks.push({ id: 'basic_style', name: '審核長青基礎款利潤', readOnly: false });
-      if (progressState.basicStyle && progressState.trendyStyle && !progressState.crowdPrediction) tasks.push({ id: 'crowd', name: '建立群眾預測活動', readOnly: false });
       if (progressState.crowdPrediction && !progressState.finalPlan) tasks.push({ id: 'final', name: '最終決定開發計畫', readOnly: false });
     }
     if (currentRole === '設計總監' || currentRole === '系統管理員') {
@@ -130,53 +149,13 @@ function App() {
     globalReadOnly: currentView.readOnly
   };
 
-  const DashboardContent = () => (
-    <div className="p-8 max-w-5xl mx-auto space-y-8 animate-in fade-in zoom-in-95 duration-200">
-      <div className="flex items-center justify-between border-b border-[#d1d5db] pb-4">
-        <h1 className="text-2xl font-bold text-content-main flex items-center gap-2">
-          <LayoutDashboard className="w-6 h-6 text-primary" />
-          商品開發進度中央看板
-        </h1>
-        <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold border border-primary/20">
-          Season: 2026 FW
-        </span>
-      </div>
 
-      <div className="grid gap-4">
-        {[
-          { id: 'brand_fit', title: '1. 品牌契合度評估矩陣', desc: 'AI 趨勢分析與跨部門需求權重評分', done: progressState.brandFit },
-          { id: 'basic_style', title: '2. 基礎款開發決策', desc: '評估長青款式成本利潤並決定開發', done: progressState.basicStyle },
-          { id: 'trendy_style', title: '3. 流行款開發決策', desc: '組合流行元素並由 AI 預估售價風險', done: progressState.trendyStyle },
-          { id: 'crowd', title: '4. 建立群眾預測活動', desc: '上架設計稿至外部社群進行A/B測試', done: progressState.crowdPrediction },
-          { id: 'final', title: '5. 最終決定開發計畫', desc: '商品企劃統整報告與總監最終審核', done: progressState.finalPlan },
-        ].map((step, idx) => (
-          <div 
-            key={step.id}
-            onClick={() => setCurrentView({ type: step.id, readOnly: true })}
-            className="bg-white border border-[#d1d5db] hover:border-primary hover:shadow-md transition-all cursor-pointer rounded-lg p-5 flex items-center gap-4 group relative overflow-hidden"
-          >
-            {step.done && <div className="absolute left-0 top-0 bottom-0 w-1 bg-status-good-border"></div>}
-            <div className="shrink-0">
-              {step.done ? <CheckCircle2 className="w-8 h-8 text-status-good-text" /> : <Circle className="w-8 h-8 text-gray-300" />}
-            </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors">{step.title}</h3>
-              <p className="text-sm text-gray-500 mt-1">{step.desc}</p>
-            </div>
-            <div className="shrink-0 text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 font-medium text-sm">
-              查看 <ChevronRight className="w-4 h-4" />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
 
   const renderContent = () => {
     return (
       <>
         <div style={{ display: currentView.type === 'dashboard' ? 'block' : 'none', height: '100%', overflowY: 'auto' }}>
-          <DashboardContent />
+          <DataDashboard {...matrixProps} setCurrentView={setCurrentView} />
         </div>
         <div style={{ display: currentView.type === 'brand_fit' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <BrandFitMatrix {...matrixProps} />
@@ -187,11 +166,22 @@ function App() {
         <div style={{ display: currentView.type === 'trendy_style' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <TrendyStyleDecision elements={elements} savedStyles={savedStyles} setSavedStyles={setSavedStyles} matrixState={matrixState} requirements={requirements} isReadOnly={currentView.readOnly} onSubmit={() => setCurrentView({type: "dashboard", readOnly: true})} />
         </div>
-        <div style={{ display: currentView.type === 'crowd' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+        <div style={{ display: currentView.type === 'step2' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <Step2CrowdPrediction savedStyles={savedStyles} />
         </div>
         <div style={{ display: currentView.type === 'final' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <Step3Dashboard />
+        </div>
+        <div style={{ display: currentView.type === 'summary' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+          <div className="flex-1 overflow-auto bg-white">
+            <div className="p-4 border-b flex justify-between items-center sticky top-0 bg-white z-10">
+              <h2 className="text-xl font-bold">完整流行契合表</h2>
+              <button onClick={() => setCurrentView({ type: 'dashboard' })} className="text-gray-500 hover:text-gray-700 font-bold">
+                返回首頁
+              </button>
+            </div>
+            <DecisionSummaryTable elements={elements} matrixState={matrixState} requirements={requirements} phase={phase} isPreview={false} />
+          </div>
         </div>
       </>
     );
@@ -246,10 +236,8 @@ function App() {
                 &larr; 返回中央看板
               </button>
               <div className="ml-auto font-bold flex items-center gap-2">
-                {currentView.readOnly ? (
+                {currentView.readOnly && (
                   <span className="text-status-warn-text bg-status-warn-bg px-2 py-0.5 rounded border border-status-warn-border text-xs">唯讀檢視模式 (不可編輯)</span>
-                ) : (
-                  <span className="text-status-good-text bg-status-good-bg px-2 py-0.5 rounded border border-status-good-border text-xs">任務編輯模式</span>
                 )}
               </div>
             </div>
@@ -267,7 +255,7 @@ function App() {
           <div className="h-14 bg-[#f9fafb] border-b border-[#d1d5db] flex items-center justify-between px-4 shrink-0">
             <h2 className="font-bold text-gray-800 flex items-center gap-2">
               <ListTodo className="w-5 h-5 text-primary" />
-              我的專屬任務
+              我的任務
               {myTasks.length > 0 && <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">{myTasks.length}</span>}
             </h2>
             <button onClick={() => setIsSidebarOpen(false)} className="text-gray-400 hover:text-gray-700 p-1 rounded-md hover:bg-gray-100 transition-colors">
