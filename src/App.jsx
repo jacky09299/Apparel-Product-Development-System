@@ -77,6 +77,7 @@ function App() {
   // Dummy mock state for Step 2/3 progress
   const [step2Completed, setStep2Completed] = useStickyState(false, 'erp2_step2_completed');
   const [step3Completed, setStep3Completed] = useStickyState(false, 'erp2_step3_completed');
+  const [subStep, setSubStep] = useStickyState(1, 'erp2_subStep');
 
   // Determine Overall Progress Statuses
   const progressState = {
@@ -125,6 +126,7 @@ function App() {
     basicDecisions, setBasicDecisions,
     historicalCombos, setHistoricalCombos,
     savedStyles, setSavedStyles,
+    subStep, setSubStep,
     globalReadOnly: currentView.readOnly
   };
 
