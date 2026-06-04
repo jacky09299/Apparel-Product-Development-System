@@ -4,6 +4,7 @@ import { BasicStyleDecision } from './components/BasicStyleDecision';
 import { TrendyStyleDecision } from './components/TrendyStyleDecision';
 import { TrendyStyleReview } from './components/TrendyStyleReview';
 import { Step3Dashboard, Step4Designer, Step5QA } from './components/MockPages';
+import { FinalDecisionDashboard } from './components/FinalDecisionDashboard';
 import { Step2CrowdPrediction } from './components/Step2CrowdPrediction';
 import { DataDashboard } from './components/DataDashboard';
 import { DevelopmentList } from './components/DevelopmentList';
@@ -178,7 +179,7 @@ function App() {
           <Step2CrowdPrediction savedStyles={savedStyles} setSavedStyles={setSavedStyles} onSubmit={() => { setStep2Completed(true); setCurrentView({type: 'dashboard', readOnly: true}); }} />
         </div>
         <div style={{ display: currentView.type === 'final' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
-          <Step3Dashboard />
+          <FinalDecisionDashboard savedStyles={savedStyles} setSavedStyles={setSavedStyles} onSubmit={() => { setStep3Completed(true); setCurrentView({type: "dashboard", readOnly: true}); }} />
         </div>
         <div style={{ display: currentView.type === 'development_list' ? 'block' : 'none', height: '100%', overflowY: 'auto' }}>
           <DevelopmentList historicalCombos={historicalCombos} basicDecisions={basicDecisions} savedStyles={savedStyles} setCurrentView={setCurrentView} />

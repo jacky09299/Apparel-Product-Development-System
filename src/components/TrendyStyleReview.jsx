@@ -26,9 +26,11 @@ export function TrendyStyleReview({ savedStyles, setSavedStyles, onSubmit }) {
     const sortedIds = sortedStyles.map(s => s.id);
     setSavedStyles(prev => prev.map(s => {
       const index = sortedIds.indexOf(s.id);
-      if (index === -1) return s; // shouldn't happen
-      // Logic: 0 -> predict, 1 -> dev, 2 -> predict, 3 -> dev, 4 -> reject...
-      const decision = index === 0 ? 'predict' : index === 1 ? 'dev' : index === 2 ? 'predict' : index === 3 ? 'dev' : 'reject';
+      if (index === -1) return s;
+      
+      // Let's send the top 5 to prediction (needsPrediction), the next 5 to directToDev, and the rest to reject
+      const decision = index < 5 ? 'predict' : index < 10 ? 'dev' : 'reject';
+      
       return {
         ...s,
         directToDev: decision === 'dev',

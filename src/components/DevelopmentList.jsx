@@ -12,11 +12,7 @@ export function DevelopmentList({ historicalCombos, basicDecisions, savedStyles,
       status: basicDecisions[combo.id] === 'approve' ? '✅ 確認開發' : '⚠️ 需微調'
     }));
 
-  // 2. Trendy styles that bypass testing or are confirmed
-  // Note: For now we include trendy styles with a `directToDev` flag
-  // and those confirmed in phase 4 (which we can simulate via a confirmed flag if added later).
-  // The user requested: "不包含送去群眾預測的" (exclude those sent to crowd prediction).
-  // So we filter savedStyles that have directToDev === true.
+  // 2. Trendy styles that bypass testing (direct to dev)
   const trendyDirectStyles = savedStyles
     .filter(style => style.directToDev === true)
     .map(style => ({
@@ -26,7 +22,17 @@ export function DevelopmentList({ historicalCombos, basicDecisions, savedStyles,
       status: '✅ 確認開發'
     }));
 
-  const allApprovedStyles = [...basicStyles, ...trendyDirectStyles];
+  // 3. Trendy styles that passed prediction
+  const trendyPredictedStyles = savedStyles
+    .filter(style => style.predictionApproved === true)
+    .map(style => ({
+      ...style,
+      type: 'trendy_predicted',
+      typeName: '流行款 (預測勝出)',
+      status: '✅ 確認開發'
+    }));
+
+  const allApprovedStyles = [...basicStyles, ...trendyDirectStyles, ...trendyPredictedStyles];
 
   return (
     <div className="p-8 max-w-6xl mx-auto space-y-6 animate-in fade-in zoom-in-95 duration-200">
@@ -43,7 +49,7 @@ export function DevelopmentList({ historicalCombos, basicDecisions, savedStyles,
       </div>
 
       <p className="text-gray-500 text-sm">
-        此列表紀錄所有「確定送進開發」的款式組合。包含長青基礎款，以及不經過群眾預測直接送開發的流行款式。
+        此列表紀錄所有「確定送進開發」的款式組合。包含長青基礎款，以及企劃核准直接開發、與群眾預測勝出後決議開發的流行款式。
       </p>
 
       {allApprovedStyles.length === 0 ? (
