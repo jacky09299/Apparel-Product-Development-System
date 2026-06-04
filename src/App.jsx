@@ -270,42 +270,49 @@ function App() {
           </div>
         </div>
 
-        {/* Right Collapsible Task Sidebar */}
+        {/* Right Collapsible Task Sidebar (Monochromatic & Urgent) */}
         <div 
-          className={`absolute right-0 top-0 bottom-0 w-[320px] bg-white border-l border-[#d1d5db] shadow-xl transition-transform duration-300 z-10 flex flex-col ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`absolute right-0 top-0 bottom-0 w-[320px] bg-gray-100 border-l-4 border-gray-800 shadow-2xl transition-transform duration-300 z-10 flex flex-col ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
-          <div className="h-14 bg-[#f9fafb] border-b border-[#d1d5db] flex items-center justify-between px-4 shrink-0">
-            <h2 className="font-bold text-gray-800 flex items-center gap-2">
-              <ListTodo className="w-5 h-5 text-primary" />
+          <div className="h-14 bg-gray-800 text-white border-b border-gray-900 flex items-center justify-between px-4 shrink-0 font-mono">
+            <h2 className="font-bold text-gray-100 flex items-center gap-2 tracking-widest text-sm">
+              <ListTodo className="w-5 h-5 text-gray-300" />
               我的任務
-              {myTasks.length > 0 && <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">{myTasks.length}</span>}
+              {myTasks.length > 0 && <span className="bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-sm animate-pulse">{myTasks.length}</span>}
             </h2>
-            <button onClick={() => setIsSidebarOpen(false)} className="text-gray-400 hover:text-gray-700 p-1 rounded-md hover:bg-gray-100 transition-colors">
+            <button onClick={() => setIsSidebarOpen(false)} className="text-gray-400 hover:text-white p-1 transition-colors">
               <X className="w-5 h-5" />
             </button>
           </div>
           
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
+          <div className="flex-1 overflow-y-auto p-4 bg-gray-200">
             {myTasks.length === 0 ? (
-              <div className="text-center text-gray-400 mt-10 text-sm">
-                <CheckCircle2 className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                <p>目前沒有需要您處理的任務！</p>
-                <p className="mt-1 text-xs">請等候其他部門推進進度。</p>
+              <div className="text-center text-gray-500 mt-10 text-sm font-mono font-bold">
+                <CheckCircle2 className="w-12 h-12 mx-auto mb-2 opacity-50 text-gray-400" />
+                <p>目前無待辦任務。</p>
+                <p className="mt-1 text-xs font-normal">系統閒置中，等待其他流程推進。</p>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {myTasks.map((task, i) => (
                   <div 
                     key={i}
                     onClick={() => handleTaskClick(task)}
-                    className="bg-white border border-primary border-l-4 rounded-md p-4 shadow-sm hover:shadow cursor-pointer transition-shadow group"
+                    className="bg-white border-2 border-red-600 p-3 shadow-[0_0_10px_rgba(220,38,38,0.5)] hover:bg-gray-50 cursor-pointer transition-colors relative animate-[pulse_2s_ease-in-out_infinite]"
                   >
-                    <div className="text-xs text-primary font-bold mb-1">待處理任務</div>
-                    <div className="font-bold text-gray-800 group-hover:text-primary transition-colors">
+                    <div className="text-[10px] text-red-600 font-bold mb-1 font-mono flex justify-between tracking-wider">
+                      <span className="bg-red-100 px-1 rounded border border-red-200">緊急待處理</span>
+                      <span className="animate-bounce">⚠️</span>
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm mt-2">
                       {task.name}
                     </div>
-                    <div className="text-xs text-gray-500 mt-2 flex items-center gap-1">
-                      點擊進入編輯 &rarr;
+                    <div className="text-[11px] text-red-500 mt-1 font-bold">
+                      完成期限：今天 18:00 前
+                    </div>
+                    <div className="text-[10px] text-gray-500 mt-3 font-mono border-t border-gray-200 pt-1 flex justify-between items-center">
+                      <span>&gt; {task.name.includes('審核') ? '審核中' : '待辦'}</span>
+                      <span className="font-bold text-gray-700 hover:text-red-600">去完成 &rarr;</span>
                     </div>
                   </div>
                 ))}
@@ -313,7 +320,7 @@ function App() {
             )}
           </div>
           
-          <div className="p-4 border-t border-[#d1d5db] bg-white shrink-0">
+          <div className="p-4 border-t border-gray-300 bg-gray-100 shrink-0">
              <button 
                 onClick={() => {
                   window.localStorage.clear();

@@ -474,7 +474,7 @@ export function BasicStyleDecision({
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider">綜合預估毛利率</span>
-                      <span className="text-xl font-bold text-primary">{(totalAvgMargin * 100).toFixed(1)}%</span>
+                      <span className="text-xl font-bold text-purple-400">{(totalAvgMargin * 100).toFixed(1)}%</span>
                     </div>
                   </div>
                   
@@ -482,7 +482,7 @@ export function BasicStyleDecision({
                     <div className="mt-4 border-t border-gray-700 pt-3 text-right">
                       <button 
                         onClick={onSubmit}
-                        className="bg-primary hover:bg-primary-500 text-white text-sm font-bold py-2 px-6 rounded shadow transition-colors"
+                        className="bg-[#374151] hover:bg-[#4b5563] text-white text-sm font-bold py-2 px-6 rounded shadow transition-colors border border-[#4b5563]"
                       >
                         確認基礎款清單，前往流行款決策 &rarr;
                       </button>
