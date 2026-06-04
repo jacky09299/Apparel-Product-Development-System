@@ -57993,6 +57993,261 @@
       "timeline": [],
       "score": 16.226754542937734,
       "enName": "vintage"
+    },
+    {
+      "category": "配色",
+      "name": "螢光綠",
+      "score": 8.5,
+      "interval": [
+        8,
+        9
+      ],
+      "timeline": [
+        5,
+        6,
+        7,
+        8,
+        8.5
+      ],
+      "id": "ai-100"
+    },
+    {
+      "category": "配色",
+      "name": "電光藍",
+      "score": 8.2,
+      "interval": [
+        7.5,
+        8.5
+      ],
+      "timeline": [
+        4,
+        5,
+        6,
+        8,
+        8.2
+      ],
+      "id": "ai-101"
+    },
+    {
+      "category": "配色",
+      "name": "霧粉色",
+      "score": 7.8,
+      "interval": [
+        7,
+        8
+      ],
+      "timeline": [
+        6,
+        6.5,
+        7,
+        7.5,
+        7.8
+      ],
+      "id": "ai-102"
+    },
+    {
+      "category": "配色",
+      "name": "金屬銀",
+      "score": 8.9,
+      "interval": [
+        8.2,
+        9.5
+      ],
+      "timeline": [
+        3,
+        4,
+        6,
+        8,
+        8.9
+      ],
+      "id": "ai-103"
+    },
+    {
+      "category": "配色",
+      "name": "暖橘色",
+      "score": 7.2,
+      "interval": [
+        6.5,
+        7.8
+      ],
+      "timeline": [
+        5,
+        5.5,
+        6,
+        7,
+        7.2
+      ],
+      "id": "ai-104"
+    },
+    {
+      "category": "風格",
+      "name": "Y2K",
+      "score": 9.1,
+      "interval": [
+        8.5,
+        9.5
+      ],
+      "timeline": [
+        7,
+        8,
+        8.5,
+        9,
+        9.1
+      ],
+      "id": "ai-105"
+    },
+    {
+      "category": "風格",
+      "name": "Cyberpunk",
+      "score": 8.4,
+      "interval": [
+        7.8,
+        9
+      ],
+      "timeline": [
+        4,
+        5,
+        7,
+        8,
+        8.4
+      ],
+      "id": "ai-106"
+    },
+    {
+      "category": "風格",
+      "name": "Old Money",
+      "score": 8.8,
+      "interval": [
+        8,
+        9.2
+      ],
+      "timeline": [
+        5,
+        6,
+        7,
+        8,
+        8.8
+      ],
+      "id": "ai-107"
+    },
+    {
+      "category": "風格",
+      "name": "廢土風",
+      "score": 7.5,
+      "interval": [
+        6.5,
+        8.2
+      ],
+      "timeline": [
+        2,
+        3,
+        5,
+        7,
+        7.5
+      ],
+      "id": "ai-108"
+    },
+    {
+      "category": "風格",
+      "name": "Gorpcore",
+      "score": 8.6,
+      "interval": [
+        8,
+        9
+      ],
+      "timeline": [
+        4,
+        5,
+        7,
+        8,
+        8.6
+      ],
+      "id": "ai-109"
+    },
+    {
+      "category": "版型",
+      "name": "超短版",
+      "score": 8.7,
+      "interval": [
+        8,
+        9.2
+      ],
+      "timeline": [
+        5,
+        6,
+        7,
+        8,
+        8.7
+      ],
+      "id": "ai-110"
+    },
+    {
+      "category": "版型",
+      "name": "Oversize",
+      "score": 9,
+      "interval": [
+        8.5,
+        9.5
+      ],
+      "timeline": [
+        8,
+        8.5,
+        8.8,
+        8.9,
+        9
+      ],
+      "id": "ai-111"
+    },
+    {
+      "category": "版型",
+      "name": "A字修身",
+      "score": 7.8,
+      "interval": [
+        7,
+        8.5
+      ],
+      "timeline": [
+        6,
+        6.5,
+        7,
+        7.5,
+        7.8
+      ],
+      "id": "ai-112"
+    },
+    {
+      "category": "版型",
+      "name": "繭型",
+      "score": 8.1,
+      "interval": [
+        7.5,
+        8.8
+      ],
+      "timeline": [
+        4,
+        5,
+        6,
+        7,
+        8.1
+      ],
+      "id": "ai-113"
+    },
+    {
+      "category": "版型",
+      "name": "解構不對稱",
+      "score": 8.5,
+      "interval": [
+        7.8,
+        9
+      ],
+      "timeline": [
+        3,
+        4,
+        6,
+        8,
+        8.5
+      ],
+      "id": "ai-114"
     }
   ],
   "historical_stable_combinations": [
