@@ -5,8 +5,9 @@ import { TrendyStyleDecision } from './components/TrendyStyleDecision';
 import { Step3Dashboard, Step4Designer, Step5QA } from './components/MockPages';
 import { Step2CrowdPrediction } from './components/Step2CrowdPrediction';
 import { DataDashboard } from './components/DataDashboard';
+import { DevelopmentList } from './components/DevelopmentList';
 import { DecisionSummaryTable } from './components/DecisionSummaryTable';
-import { LayoutDashboard, ListTodo, UserCircle, X, Menu, ChevronRight, CheckCircle2, Circle } from 'lucide-react';
+import { LayoutDashboard, ListTodo, UserCircle, X, Menu, ChevronRight, CheckCircle2, Circle, FolderArchive } from 'lucide-react';
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = useState(() => {
@@ -146,7 +147,8 @@ function App() {
     historicalCombos, setHistoricalCombos,
     savedStyles, setSavedStyles,
     subStep, setSubStep,
-    globalReadOnly: currentView.readOnly
+    globalReadOnly: currentView.readOnly,
+    setCurrentView
   };
 
 
@@ -167,10 +169,13 @@ function App() {
           <TrendyStyleDecision elements={elements} savedStyles={savedStyles} setSavedStyles={setSavedStyles} matrixState={matrixState} requirements={requirements} isReadOnly={currentView.readOnly} onSubmit={() => setCurrentView({type: "dashboard", readOnly: true})} />
         </div>
         <div style={{ display: currentView.type === 'step2' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
-          <Step2CrowdPrediction savedStyles={savedStyles} />
+          <Step2CrowdPrediction savedStyles={savedStyles} setSavedStyles={setSavedStyles} />
         </div>
         <div style={{ display: currentView.type === 'final' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <Step3Dashboard />
+        </div>
+        <div style={{ display: currentView.type === 'development_list' ? 'block' : 'none', height: '100%', overflowY: 'auto' }}>
+          <DevelopmentList historicalCombos={historicalCombos} basicDecisions={basicDecisions} savedStyles={savedStyles} setCurrentView={setCurrentView} />
         </div>
         <div style={{ display: currentView.type === 'summary' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <div className="flex-1 overflow-auto bg-white">
@@ -198,6 +203,16 @@ function App() {
           </span>
         </div>
         
+        <div className="flex items-center ml-8">
+          <button 
+            onClick={() => setCurrentView({ type: 'development_list', readOnly: true })}
+            className={`text-sm px-3 py-1.5 rounded-md transition-colors flex items-center gap-2 ${currentView.type === 'development_list' ? 'bg-white/20 text-white font-bold' : 'text-gray-300 hover:bg-white/10 hover:text-white'}`}
+          >
+            <FolderArchive className="w-4 h-4" />
+            開發款式庫
+          </button>
+        </div>
+
         <div className="ml-auto flex items-center gap-4">
           <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-md border border-white/10">
             <UserCircle className="w-4 h-4 text-gray-300" />

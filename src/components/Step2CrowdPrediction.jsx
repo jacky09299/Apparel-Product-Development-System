@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Shirt, Smartphone, Layers, Plus, CheckCircle, ChevronRight, CheckSquare, Square, Combine, PenTool, Send, Check, Settings, Trash2 } from 'lucide-react';
 
-export function Step2CrowdPrediction({ savedStyles = [] }) {
+export function Step2CrowdPrediction({ savedStyles = [], setSavedStyles }) {
   const [selectedBases, setSelectedBases] = useState([]);
   const [activeStep, setActiveStep] = useState(1);
   
@@ -22,13 +22,7 @@ export function Step2CrowdPrediction({ savedStyles = [] }) {
       .catch(err => console.error(err));
   }, []);
 
-  const handleSelectBase = (style) => {
-    if (selectedBases.find(s => s.id === style.id)) {
-      setSelectedBases(selectedBases.filter(s => s.id !== style.id));
-    } else {
-      setSelectedBases([...selectedBases, style]);
-    }
-  };
+
 
   const initStyleConfig = (styleId) => {
     if (!styleConfigs[styleId]) {
@@ -98,6 +92,27 @@ export function Step2CrowdPrediction({ savedStyles = [] }) {
 
   // ----- UI Renderers -----
 
+  const handleSelectBase = (style) => {
+    if (selectedBases.find(s => s.id === style.id)) {
+      setSelectedBases(prev => prev.filter(s => s.id !== style.id));
+    } else {
+      setSelectedBases(prev => [...prev, style]);
+      if (setSavedStyles) {
+        setSavedStyles(prev => prev.map(s => s.id === style.id ? { ...s, directToDev: false } : s));
+      }
+    }
+  };
+
+  const handleToggleDirectToDev = (e, style) => {
+    e.stopPropagation();
+    if (setSavedStyles) {
+      setSavedStyles(prev => prev.map(s => s.id === style.id ? { ...s, directToDev: !s.directToDev } : s));
+    }
+    if (selectedBases.find(s => s.id === style.id)) {
+      setSelectedBases(prev => prev.filter(s => s.id !== style.id));
+    }
+  };
+
   const renderStep1 = () => {
     const sortedStyles = [...savedStyles].sort((a, b) => (b.riskScore || 0) - (a.riskScore || 0));
 
@@ -105,8 +120,8 @@ export function Step2CrowdPrediction({ savedStyles = [] }) {
       <div className="space-y-4 flex flex-col h-full">
         <div className="bg-orange-50 border border-orange-200 text-orange-800 p-3 rounded flex justify-between items-center shrink-0">
           <div>
-            <span className="font-bold block">1. 選擇高風險流行款式 ({selectedBases.length} 款已選)</span>
-            <span className="text-xs">系統已為您自動依據「風險評估」排序。請挑選高風險組合，個別進行群眾預測。取消數量限制，可任意勾選。</span>
+            <span className="font-bold block">1. 選擇高風險流行款式 ({selectedBases.length} 款已選為預測)</span>
+            <span className="text-xs">系統已為您自動依據「風險評估」排序。請挑選高風險組合，個別進行群眾預測；或者直接批准進入開發款式庫。取消數量限制，可任意勾選。</span>
           </div>
         </div>
 
@@ -117,7 +132,7 @@ export function Step2CrowdPrediction({ savedStyles = [] }) {
               <div 
                 key={style.id} 
                 onClick={() => handleSelectBase(style)}
-                className={`border rounded-lg p-4 cursor-pointer transition-all ${isSelected ? 'border-primary ring-2 ring-primary ring-opacity-50 bg-blue-50' : 'border-gray-300 hover:border-gray-400 bg-white'}`}
+                className={`border rounded-lg p-4 cursor-pointer transition-all ${isSelected ? 'border-primary ring-2 ring-primary ring-opacity-50 bg-blue-50' : style.directToDev ? 'border-green-500 ring-2 ring-green-500 ring-opacity-50 bg-green-50' : 'border-gray-300 hover:border-gray-400 bg-white'}`}
               >
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex items-center gap-2">
@@ -136,6 +151,15 @@ export function Step2CrowdPrediction({ savedStyles = [] }) {
                     </span>
                   ))}
                   {style.elements.length > 5 && <span className="text-[10px] text-gray-400">+{style.elements.length - 5}</span>}
+                </div>
+
+                <div className="mt-3 pt-3 border-t border-gray-200 flex justify-end">
+                  <button 
+                    onClick={(e) => handleToggleDirectToDev(e, style)}
+                    className={`text-xs font-bold px-3 py-1.5 rounded transition-colors ${style.directToDev ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                  >
+                    {style.directToDev ? '✅ 已批准進入開發' : '直接確認開發 (跳過預測)'}
+                  </button>
                 </div>
               </div>
             );

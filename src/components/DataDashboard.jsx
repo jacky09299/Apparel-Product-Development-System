@@ -2,7 +2,17 @@ import React from 'react';
 import { Target, TrendingUp, Users, Package, AlertTriangle, ArrowUpRight, Activity, CheckCircle2 } from 'lucide-react';
 import { DecisionSummaryTable } from './DecisionSummaryTable';
 
-export function DataDashboard({ elements, matrixState, requirements, phase, historicalCombos, setCurrentView }) {
+export function DataDashboard({ elements, matrixState, requirements, phase, historicalCombos, setCurrentView, basicDecisions = {}, savedStyles = [] }) {
+  const basicCount = Object.values(basicDecisions).filter(v => v === 'approve' || v === 'fine_tune').length;
+  // Currently, we consider 'confirmed' trendy styles to be those that bypass crowd prediction. 
+  // (In the future this should also include styles approved after crowd prediction).
+  const trendyCount = savedStyles.filter(style => style.directToDev).length;
+  const totalStyles = basicCount + trendyCount;
+
+  const highRiskCount = savedStyles.filter(s => (s.riskScore || 0) > 50).length;
+
+  const basicRatio = totalStyles > 0 ? Math.round((basicCount / totalStyles) * 100) : 0;
+  const trendyRatio = totalStyles > 0 ? Math.round((trendyCount / totalStyles) * 100) : 0;
   return (
     <div className="p-8 max-w-6xl mx-auto space-y-8 animate-in fade-in zoom-in-95 duration-200">
       <div className="flex items-center justify-between border-b border-[#d1d5db] pb-4">
@@ -22,54 +32,62 @@ export function DataDashboard({ elements, matrixState, requirements, phase, hist
 
       {/* Top Metrics Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white border border-[#d1d5db] rounded-lg p-5 shadow-sm">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-gray-500 font-medium text-sm">已鎖定款式總數</h3>
-            <Package className="w-5 h-5 text-gray-400" />
+        {totalStyles > 0 && (
+          <div className="bg-white border border-[#d1d5db] rounded-lg p-5 shadow-sm">
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="text-gray-500 font-medium text-sm">已鎖定款式總數</h3>
+              <Package className="w-5 h-5 text-gray-400" />
+            </div>
+            <div className="text-3xl font-black text-gray-800">{totalStyles}<span className="text-base font-medium text-gray-500 ml-1">款</span></div>
+            <div className="text-xs text-gray-500 font-medium mt-2 flex items-center gap-1">
+              長青款 {basicCount} 款 / 流行款 {trendyCount} 款
+            </div>
           </div>
-          <div className="text-3xl font-black text-gray-800">12<span className="text-base font-medium text-gray-500 ml-1">款</span></div>
-          <div className="text-xs text-status-good-text font-medium mt-2 flex items-center gap-1">
-            <ArrowUpRight className="w-3 h-3" /> 較上季增加 2 款
-          </div>
-        </div>
-        
-        <div className="bg-white border border-[#d1d5db] rounded-lg p-5 shadow-sm">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-gray-500 font-medium text-sm">平均預估勝率</h3>
-            <Target className="w-5 h-5 text-gray-400" />
-          </div>
-          <div className="text-3xl font-black text-gray-800">68<span className="text-base font-medium text-gray-500 ml-1">%</span></div>
-          <div className="text-xs text-status-good-text font-medium mt-2 flex items-center gap-1">
-            <ArrowUpRight className="w-3 h-3" /> 高於平均標準 65%
-          </div>
-        </div>
+        )}
 
-        <div className="bg-white border border-[#d1d5db] rounded-lg p-5 shadow-sm">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-gray-500 font-medium text-sm">群眾參與人次</h3>
-            <Users className="w-5 h-5 text-gray-400" />
+        {elements && elements.length > 0 && (
+          <div className="bg-white border border-[#d1d5db] rounded-lg p-5 shadow-sm">
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="text-gray-500 font-medium text-sm">本季候選流行元素</h3>
+              <Activity className="w-5 h-5 text-gray-400" />
+            </div>
+            <div className="text-3xl font-black text-gray-800">{elements.length}<span className="text-base font-medium text-gray-500 ml-1">項</span></div>
+            <div className="text-xs text-gray-500 font-medium mt-2 flex items-center gap-1">
+              由趨勢分析師預測提供
+            </div>
           </div>
-          <div className="text-3xl font-black text-gray-800">4,208<span className="text-base font-medium text-gray-500 ml-1">人</span></div>
-          <div className="text-xs text-status-good-text font-medium mt-2 flex items-center gap-1">
-            <ArrowUpRight className="w-3 h-3" /> 目前有 3 個活動進行中
-          </div>
-        </div>
+        )}
 
-        <div className="bg-white border border-orange-200 rounded-lg p-5 shadow-sm bg-orange-50">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-orange-800 font-medium text-sm">高風險流行預警</h3>
-            <AlertTriangle className="w-5 h-5 text-orange-500" />
+        {requirements && requirements.length > 0 && (
+          <div className="bg-white border border-[#d1d5db] rounded-lg p-5 shadow-sm">
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="text-gray-500 font-medium text-sm">已設定品牌需求</h3>
+              <Target className="w-5 h-5 text-gray-400" />
+            </div>
+            <div className="text-3xl font-black text-gray-800">{requirements.length}<span className="text-base font-medium text-gray-500 ml-1">項</span></div>
+            <div className="text-xs text-gray-500 font-medium mt-2 flex items-center gap-1">
+              作為跨部門評分基準
+            </div>
           </div>
-          <div className="text-3xl font-black text-orange-900">3<span className="text-base font-medium text-orange-700 ml-1">款</span></div>
-          <div className="text-xs text-orange-700 font-medium mt-2">
-            需特別關注成本結構
+        )}
+
+        {savedStyles.length > 0 && (
+          <div className={`bg-white border ${highRiskCount > 0 ? 'border-orange-200 bg-orange-50' : 'border-[#d1d5db]'} rounded-lg p-5 shadow-sm`}>
+            <div className="flex justify-between items-start mb-2">
+              <h3 className={`${highRiskCount > 0 ? 'text-orange-800' : 'text-gray-500'} font-medium text-sm`}>高風險流行款式</h3>
+              <AlertTriangle className={`w-5 h-5 ${highRiskCount > 0 ? 'text-orange-500' : 'text-gray-400'}`} />
+            </div>
+            <div className={`text-3xl font-black ${highRiskCount > 0 ? 'text-orange-900' : 'text-gray-800'}`}>{highRiskCount}<span className={`text-base font-medium ${highRiskCount > 0 ? 'text-orange-700' : 'text-gray-500'} ml-1`}>款</span></div>
+            <div className={`text-xs font-medium mt-2 ${highRiskCount > 0 ? 'text-orange-700' : 'text-gray-500'}`}>
+              {highRiskCount > 0 ? '建議透過群眾預測降低風險' : '目前款式風險皆在可控範圍'}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column: Recent Activity */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className={`space-y-6 ${totalStyles > 0 ? 'lg:col-span-2' : 'lg:col-span-3'}`}>
           <div className="bg-white border border-[#d1d5db] rounded-lg shadow-sm overflow-hidden">
             <div className="bg-[#f9fafb] border-b border-[#d1d5db] p-4 flex justify-between items-center">
               <h3 className="font-bold text-gray-800">近期開發進度</h3>
@@ -131,32 +149,36 @@ export function DataDashboard({ elements, matrixState, requirements, phase, hist
         </div>
 
         {/* Right Column: Quick Stats */}
-        <div className="space-y-6">
-          <div className="bg-white border border-[#d1d5db] rounded-lg shadow-sm p-5">
-            <h3 className="font-bold text-gray-800 mb-4 border-b pb-2">本季開發配比建議</h3>
-            <div className="space-y-3">
-              <div>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-gray-600 font-medium">長青基礎款 (預計 40%)</span>
-                  <span className="text-gray-800 font-bold">目前 35%</span>
+        {totalStyles > 0 && (
+          <div className="space-y-6">
+            <div className="bg-white border border-[#d1d5db] rounded-lg shadow-sm p-5">
+              <h3 className="font-bold text-gray-800 mb-4 border-b pb-2">本季開發配比實況</h3>
+              <div className="space-y-3">
+                <div>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="text-gray-600 font-medium">長青基礎款 (建議 40%)</span>
+                    <span className="text-gray-800 font-bold">目前 {basicRatio}% ({basicCount}款)</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-gray-500 h-2 rounded-full" style={{ width: `${basicRatio}%` }}></div>
+                  </div>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-gray-500 h-2 rounded-full" style={{ width: '35%' }}></div>
+                <div>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="text-primary font-medium">流行風險款 (建議 60%)</span>
+                    <span className="text-primary font-bold">目前 {trendyRatio}% ({trendyCount}款)</span>
+                  </div>
+                  <div className="w-full bg-blue-100 rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full" style={{ width: `${trendyRatio}%` }}></div>
+                  </div>
                 </div>
               </div>
-              <div>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-primary font-medium">流行風險款 (預計 60%)</span>
-                  <span className="text-primary font-bold">目前 65%</span>
-                </div>
-                <div className="w-full bg-blue-100 rounded-full h-2">
-                  <div className="bg-primary h-2 rounded-full" style={{ width: '65%' }}></div>
-                </div>
-              </div>
+              <p className="text-xs text-gray-500 mt-4 italic">
+                * {basicRatio < 40 ? '系統建議：可考慮增加長青基礎款比例，以平衡整體產品線風險。' : (trendyRatio < 60 ? '系統建議：可考慮增加流行款式，以提升品牌市場聲量。' : '系統建議：目前開發配比符合預期。')}
+              </p>
             </div>
-            <p className="text-xs text-gray-500 mt-4 italic">* 系統建議：可考慮增加長青基礎款比例，以平衡整體產品線風險。</p>
           </div>
-        </div>
+        )}
       </div>
       {elements && elements.length > 0 && (
         <div className="mt-12 bg-white rounded-lg shadow-sm border border-[#d1d5db] overflow-hidden">

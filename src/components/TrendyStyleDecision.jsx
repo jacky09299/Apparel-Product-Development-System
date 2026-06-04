@@ -123,7 +123,6 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
     for (let i = 0; i < 20; i++) {
       const selected = [];
       let potentialScore = 0;
-      let uncertainCount = 0;
       
       CATEGORY_ORDER.forEach(cat => {
         const els = elementsByCategory[cat] || [];
@@ -132,8 +131,6 @@ export function TrendyStyleDecision({ elements, savedStyles, setSavedStyles, mat
           const pickedEl = els[pickIndex];
           selected.push(pickedEl);
           potentialScore += (typeof pickedEl.trendScore === 'number' ? pickedEl.trendScore : 0);
-          
-
         }
       });
       

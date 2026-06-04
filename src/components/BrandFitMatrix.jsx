@@ -19,7 +19,8 @@ export function BrandFitMatrix({
   basicDecisions, setBasicDecisions,
   historicalCombos, setHistoricalCombos,
   savedStyles, setSavedStyles,
-  subStep, setSubStep
+  subStep, setSubStep,
+  setCurrentView
 }) {
   const [activeTab, setActiveTab] = useState('trends');
   const [newReq, setNewReq] = useState({ name: '', weight: 1, role: '設計師' });
@@ -284,7 +285,7 @@ export function BrandFitMatrix({
           '採購': true
         });
         setPhase(3);
-        setActiveTab('summary');
+        if (setCurrentView) setCurrentView({ type: 'dashboard', readOnly: true });
       });
   };
 
@@ -1014,19 +1015,16 @@ export function BrandFitMatrix({
   const canViewRequirements = currentRole === '商品企劃';
   const canViewEvaluation = phase >= 2;
 
-  const canViewSummary = phase === 3;
-
   useEffect(() => {
     const visibleTabs = [
       ...(canViewTrends ? ['trends'] : []),
       ...(canViewRequirements ? ['requirements'] : []),
-      ...(canViewEvaluation ? ['evaluation'] : []),
-      ...(canViewSummary ? ['summary'] : [])
+      ...(canViewEvaluation ? ['evaluation'] : [])
     ];
     if (visibleTabs.length > 0 && !visibleTabs.includes(activeTab)) {
       setActiveTab(visibleTabs[0]);
     }
-  }, [currentRole, phase, plannerSubmitted, trendAnalystSubmitted, activeTab, canViewTrends, canViewRequirements, canViewEvaluation, canViewSummary]);
+  }, [currentRole, phase, plannerSubmitted, trendAnalystSubmitted, activeTab, canViewTrends, canViewRequirements, canViewEvaluation]);
 
   return (
     <div className="bg-white border border-[#d1d5db] shadow-sm flex flex-col relative h-full">
@@ -1058,7 +1056,6 @@ export function BrandFitMatrix({
           {activeTab === 'trends' && renderTrends()}
           {activeTab === 'requirements' && renderRequirements()}
           {activeTab === 'evaluation' && renderEvaluation()}
-          {activeTab === 'summary' && renderSummary()}
         </div>
       )}
 
