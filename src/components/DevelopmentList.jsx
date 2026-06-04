@@ -27,8 +27,11 @@ export function DevelopmentList({ historicalCombos, basicDecisions, savedStyles,
     .filter(style => style.predictionApproved === true)
     .map(style => ({
       ...style,
+      // If there's a selected combo, we can display it. But since we didn't save the combo name in `style` directly,
+      // we can fetch it if we want, or just append the combo ID. But actually, in FinalDecisionDashboard we only saved the ID.
+      // We can just rely on the ID or update FinalDecisionDashboard to save the combo name.
       type: 'trendy_predicted',
-      typeName: '流行款 (預測勝出)',
+      typeName: '流行款 (預測選定)',
       status: '✅ 確認開發'
     }));
 
@@ -75,7 +78,7 @@ export function DevelopmentList({ historicalCombos, basicDecisions, savedStyles,
                   }`}>
                     {item.typeName}
                   </span>
-                  <h3 className="font-bold text-gray-800 text-lg">{item.name || item.id}</h3>
+                  <h3 className="font-bold text-gray-800 text-lg">{item.selectedPredictionComboName || item.name || item.id}</h3>
                 </div>
                 
                 <div className="flex flex-wrap gap-2 mt-3">
