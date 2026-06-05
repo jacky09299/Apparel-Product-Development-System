@@ -9,7 +9,8 @@ import { Step2CrowdPrediction } from './components/Step2CrowdPrediction';
 import { DataDashboard } from './components/DataDashboard';
 import { DevelopmentList } from './components/DevelopmentList';
 import { DecisionSummaryTable } from './components/DecisionSummaryTable';
-import { LayoutDashboard, ListTodo, UserCircle, X, Menu, ChevronRight, CheckCircle2, Circle, FolderArchive } from 'lucide-react';
+import { DesignerAssist } from './components/DesignerAssist';
+import { LayoutDashboard, ListTodo, UserCircle, X, Menu, ChevronRight, CheckCircle2, Circle, FolderArchive, PenTool } from 'lucide-react';
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = useState(() => {
@@ -184,6 +185,9 @@ function App() {
         <div style={{ display: currentView.type === 'development_list' ? 'block' : 'none', height: '100%', overflowY: 'auto' }}>
           <DevelopmentList historicalCombos={historicalCombos} basicDecisions={basicDecisions} savedStyles={savedStyles} setCurrentView={setCurrentView} />
         </div>
+        <div style={{ display: currentView.type === 'designer_assist' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
+          <DesignerAssist savedStyles={savedStyles} />
+        </div>
         <div style={{ display: currentView.type === 'summary' ? 'flex' : 'none', height: '100%', flexDirection: 'column', minHeight: 0 }}>
           <div className="flex-1 overflow-auto bg-white">
             <div className="p-4 border-b flex justify-between items-center sticky top-0 bg-white z-10">
@@ -210,7 +214,14 @@ function App() {
           </span>
         </div>
         
-        <div className="flex items-center ml-8">
+        <div className="flex items-center ml-8 gap-2">
+          <button 
+            onClick={() => setCurrentView({ type: 'designer_assist', readOnly: true })}
+            className={`text-sm px-3 py-1.5 rounded-md transition-colors flex items-center gap-2 ${currentView.type === 'designer_assist' ? 'bg-white/20 text-white font-bold' : 'text-gray-300 hover:bg-white/10 hover:text-white'}`}
+          >
+            <PenTool className="w-4 h-4" />
+            設計師設計輔助
+          </button>
           <button 
             onClick={() => setCurrentView({ type: 'development_list', readOnly: true })}
             className={`text-sm px-3 py-1.5 rounded-md transition-colors flex items-center gap-2 ${currentView.type === 'development_list' ? 'bg-white/20 text-white font-bold' : 'text-gray-300 hover:bg-white/10 hover:text-white'}`}
@@ -258,9 +269,6 @@ function App() {
                 &larr; 返回中央看板
               </button>
               <div className="ml-auto font-bold flex items-center gap-2">
-                {currentView.readOnly && (
-                  <span className="text-status-warn-text bg-status-warn-bg px-2 py-0.5 rounded border border-status-warn-border text-xs">唯讀檢視模式 (不可編輯)</span>
-                )}
               </div>
             </div>
           )}
